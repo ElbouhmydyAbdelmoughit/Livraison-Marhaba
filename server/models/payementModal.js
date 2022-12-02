@@ -9,7 +9,8 @@ const Payement = mongoose.model(
           ref: "User"
         }
       ],
-    adresse: String
+    adresse: String,
+    price: String
   })
 );
 
