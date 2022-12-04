@@ -1,16 +1,20 @@
 const router = require('express').Router();
 
 const authController = require('../controllers/authControllers/authControllers');
+const tryCatch = require('../middlewares/tryCatch');
+const errorHandller = require('../middlewares/errorHandller');
 
 
-router.post('/login', (req, res)=>{ res.send('login') });
-router.post('/register', (req, res)=>{ res.send('register') });
-router.get('/verify-email/:token', (req, res)=>{ res.send('verify-email') });
-router.post('/reset-password', (req, res)=>{ res.send('reset-password') });
-router.post('/forget-password', (req, res)=>{ res.send('forget-password') });
-router.get('/verify-forget-password/:token', (req, res)=>{ res.send('verify-forget-password') });
-router.post('/form-forget-password', (req, res)=>{ res.send('form-forget-password') });
-router.get('/logout', (req, res)=>{ res.send('logout') });
+router.post('/login', tryCatch(authController.login));
+router.post('/register', tryCatch(authController.register));
+router.get('/verify-email/:token', tryCatch(authController.verifyEmail));
+router.post('/reset-password', tryCatch(authController.resetPassword));
+router.post('/forget-password', tryCatch(authController.forgetPassword));
+router.get('/verify-forget-password/:token', tryCatch(authController.verifyForgetPassword));
+router.post('/forme-forget-password', tryCatch(authController.formForgetPassword));
+router.get('/logout', tryCatch(authController.logout));
+
+router.use(errorHandller)
 
 
 module.exports = router;
