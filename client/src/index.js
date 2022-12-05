@@ -1,17 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import Reset from "./components/Reset/Reset";
+import Client from "./components/Client/Client";
+import Livreur from "./components/Livreur/Livreur";
+import ERROR404 from "./components/ERROR404/ERROR404";
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<ERROR404 />} />
+        <Route path="/" element={<Home />} />
+        <Route path="Login" element={<Login />} />
+        <Route path="Register" element={<Register />} />
+        <Route path="Reset" element={<Reset />} />
+        <Route path="Client" element={<Client />} />
+        <Route path="Livreur" element={<Livreur />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
+export default App;
