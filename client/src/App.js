@@ -7,6 +7,7 @@ import Register from "./components/Register/Register";
 // import Reset from "./components/Reset/Reset";
 import Client from "./components/Client/Client";
 import Livreur from "./components/Livreur/Livreur";
+import Manager from "./components/Manager/Manager"
 import ERROR404 from "./components/ERROR404/ERROR404";
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path="*" element={<ERROR404 />} />
         <Route path="/" element={<Home />} />
+        <Route path="Manager" element={<Manager/>} />
         <Route path="Login" element={<Login />} />
         <Route path="Register" element={<Register />} />
         {/* <Route path="Reset" element={<Reset />} /> */}
