@@ -6,7 +6,10 @@ const Produit = mongoose.model(
     title: String,
     description: String,
     price: Number,
-    image: String
+    image: {
+      data: Buffer,
+      contentType: String
+    },
   })
 );
 
