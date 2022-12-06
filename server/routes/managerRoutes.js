@@ -17,12 +17,13 @@ router.post('/updat-produit', tryCatch(produitControllers.updatProduit));
 router.delete('/delet-produit/:id', tryCatch(produitControllers.deletProduit));
 
 
-router.post('/add-categorie', tryCatch(categorieControllers.addCategorie));
-router.post('/findCategorie', tryCatch(categorieControllers.findCategorie));
-router.put('/updateCategorie/:id', tryCatch(categorieControllers.updateCategorie));
-router.delete('/deleteCategorie/:id', tryCatch(categorieControllers.deleteCategorie));
+router.get('/me', (req, res)=>{ res.send('manager') });
+router.post('/add-categorie', categorieControllers.addCategorie);
+router.post('/findCategorie', categorieControllers.findCategorie);
+router.post('/add-livreur', livreurControllers.AddLivreur)
+router.put('/updateCategorie/:id', categorieControllers.updateCategorie);
+router.delete('/deleteCategorie/:id', categorieControllers.deleteCategorie);
 
 router.use(errorHandller)
-
 
 module.exports = router;

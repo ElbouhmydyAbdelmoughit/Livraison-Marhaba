@@ -13,7 +13,7 @@ function Sidebar() {
   const menus = [
     { name: "dashboard", link: "/", icon: MdOutlineDashboard },
     { name: "commande", link: "/", icon: MdOutlineDeliveryDining },
-    { name: "livreur", link: "livreur", icon: AiOutlineUser },
+    { name: "livreur", link: "/Livreur", icon: AiOutlineUser },
     { name: "parametre", link: "/", icon: FiSettings },
     { name: "logout", link: "/logout", icon: BiLogOut, margin: true },
   ];
