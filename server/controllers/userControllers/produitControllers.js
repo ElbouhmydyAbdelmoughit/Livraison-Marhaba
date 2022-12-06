@@ -1,5 +1,8 @@
 const db = require('../../models');
 const multer = require('multer');
+const fs = require('fs');
+
+const path = require('path')
 
 // Create Main Model
 const Categorie = db.categorie;
@@ -13,12 +16,20 @@ const User = db.user;
 
 const getProduit = async (req, res) => {
     const get_produit = await Produit.find();
-    res.json(get_produit)
+    res.json({message: get_produit})
 }
 
 const addProduit = async (req, res) => {
     const {body} = req
-    res.send(body.image)
+    const x = req.files[0].filename 
+    const add_produit = await Produit.create({
+        ...body,
+        image: {
+            data: req.image,
+            contentType: 'image/png'
+        }
+    })
+    res.send(add_produit)
 }
 
 const updatProduit = async (req, res) => {
@@ -27,7 +38,9 @@ const updatProduit = async (req, res) => {
 }
 
 const deletProduit = async (req, res) => {
-    res.send('delet produit')
+    const delet_produit = await Categorie.findByIdAndRemove(req.params.id)
+    if(!delet_produit) throw Error ('Produit is not deleted')
+    res.json({message: 'delete successfully'})
 }
 
 

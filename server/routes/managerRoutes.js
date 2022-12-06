@@ -1,24 +1,28 @@
 const router = require('express').Router();
 
-const multer  = require('multer')
 const produitControllers = require('../controllers/userControllers/produitControllers');
 const categorieControllers = require('../controllers/userControllers/categorieControllers');
-const upload = multer()
+const tryCatch = require('../middlewares/tryCatch');
+const errorHandller = require('../middlewares/errorHandller');
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 require('../middlewares/upload')
 
 
 router.get('/me', (req, res)=>{ res.send('manager') });
-router.get('/produit', produitControllers.getProduit);
-router.post('/add-produit', upload.single('image'), produitControllers.addProduit);
-router.post('/updat-produit', produitControllers.updatProduit);
-router.post('/delet-produit', produitControllers.deletProduit);
+
+router.get('/produit', tryCatch(produitControllers.getProduit));
+router.post('/add-produit', upload.array('image', 3), tryCatch(produitControllers.addProduit));
+router.post('/updat-produit', tryCatch(produitControllers.updatProduit));
+router.delete('/delet-produit/:id', tryCatch(produitControllers.deletProduit));
 
 
-router.get('/me', (req, res)=>{ res.send('manager') });
-router.post('/add-categorie', categorieControllers.addCategorie);
-router.post('/findCategorie', categorieControllers.findCategorie);
-router.put('/updateCategorie/:id', categorieControllers.updateCategorie);
-router.delete('/deleteCategorie/:id', categorieControllers.deleteCategorie);
+router.post('/add-categorie', tryCatch(categorieControllers.addCategorie));
+router.post('/findCategorie', tryCatch(categorieControllers.findCategorie));
+router.put('/updateCategorie/:id', tryCatch(categorieControllers.updateCategorie));
+router.delete('/deleteCategorie/:id', tryCatch(categorieControllers.deleteCategorie));
+
+router.use(errorHandller)
 
 
 module.exports = router;
