@@ -2,9 +2,7 @@ const db = require("../../models");
 const jwt = require("jsonwebtoken");
 var storage = require("local-storage");
 const bcrypt = require("bcryptjs");
-const { categorie } = require("../../models");
 const saltRounds = 10;
-// const User = require('../../models/categorieModal')
 
 // Create Main Model
 const Categorie = db.categorie;
@@ -13,46 +11,20 @@ const Payement = db.payement;
 const Produit = db.produit;
 const Role = db.role;
 const Status = db.status;
-const User = db.user;
 
 const addCategorie = async (req, res) => {
-  const { body } = req;
-  if (!body.name) res.send("content can not be empty");
-  const find_categorie = await Categorie.aggregate([
-    {
-      $match: { name: body.name },
-    },
-    {
-      $limit: 1,
-    },
-  ]);
-
-  if (find_categorie[0].name !== "sports1") {
-    res.send("Good name");
+  const { name } = req.body;
+  if (!name) res.send("content can not be empty");
+  const find_categorie = await Categorie.findOne({ name });
+  if (find_categorie) res.send(`You can't to add categorie ${name}`);
+  else {
+    const category = await Categorie.create({
+      name: name,
+    });
+    if (category) res.send(category);
+    if (!category) res.send("Error, you can to add user");
   }
-  if (find_categorie[0].name === "sports1") {
-    res.send("this name is already exist");
-
-    // const user = await Categorie.insertMany([
-    //   {
-    //     name: body.name,
-    //   },
-    // ]);
-    // if (user) res.send(user);
-    // if (!user) res.send("Error, you can to add user");
-  }
-  //   if (true)
-  //     res.send(`You can't to add categorie '${body.name}'`);
-  //   else {
-  // const user = await Categorie.insertMany([
-  //   {
-  //     name: body.name,
-  //   },
-  // ]);
-  // if (user) res.send(user);
-  // if (!user) res.send("Error, you can to add user");
 };
-// };
 
 const findCategorie = async (req, res) => {
   const findUser = await Categorie.find();
