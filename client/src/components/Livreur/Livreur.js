@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "../../api/axios";
 import { toast, ToastContainer } from "react-toastify";
 import { IoIosAdd } from "react-icons/io";
+import Generator from "../../helpes/Generator";
+import env from "react-dotenv";
 
 export default function Livreur() {
   const [showModal, setShowModal] = useState(false);
@@ -10,18 +12,17 @@ export default function Livreur() {
   const [email, setEmail] = useState("");
   const data = { username, email };
   console.log("username :" + username, "email :" + email);
-  const url = "http://localhost:2000/api/user/manager/add-livreur";
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("data: " + data);
     axios
-      .post(url, data)
+      .post(process.env.URL, data)
       .then((res) => {
         console.log(res.data);
-        toast.success("Un email a été envoyé à votre compte");
+        Generator("success", "Un email a été envoyé à votre compte");
       })
       .catch((err) => {
-        toast.error(err.message);
+        Generator("error", err.message);
       });
   };
   return (
