@@ -1,29 +1,27 @@
 const router = require('express').Router();
+const multer = require('multer');
+const upload = require('../middlewares/upload')
 
+// Require modules
 const produitControllers = require('../controllers/userControllers/produitControllers');
 const categorieControllers = require('../controllers/userControllers/categorieControllers');
+const livreurControllers = require('../controllers/userControllers/userControllers');
 const tryCatch = require('../middlewares/tryCatch');
 const errorHandller = require('../middlewares/errorHandller');
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
-require('../middlewares/upload')
 
-
-router.get('/me', (req, res)=>{ res.send('manager') });
-
+// Route of statistique
+router.get('/statistique', (req, res)=>{ res.send('Statistique') });
+// Routes of produit
 router.get('/produit', tryCatch(produitControllers.getProduit));
-router.post('/add-produit', upload.array('image', 3), tryCatch(produitControllers.addProduit));
+router.post('/add-produit', upload.any('image'), tryCatch(produitControllers.addProduit));
 router.post('/updat-produit', tryCatch(produitControllers.updatProduit));
 router.delete('/delet-produit/:id', tryCatch(produitControllers.deletProduit));
-
-
-router.get('/me', (req, res)=>{ res.send('manager') });
-router.post('/add-categorie', categorieControllers.addCategorie);
-router.post('/findCategorie', categorieControllers.findCategorie);
-router.post('/add-livreur', livreurControllers.AddLivreur)
-router.put('/updateCategorie/:id', categorieControllers.updateCategorie);
-router.delete('/deleteCategorie/:id', categorieControllers.deleteCategorie);
-
+// Routes of categorie
+router.post('/add-categorie', tryCatch(categorieControllers.addCategorie));
+router.post('/findCategorie', tryCatch(categorieControllers.findCategorie));
+router.put('/updateCategorie/:id', tryCatch(categorieControllers.updateCategorie));
+router.delete('/deleteCategorie/:id', tryCatch(categorieControllers.deleteCategorie));
+// Error handller
 router.use(errorHandller)
 
 module.exports = router;

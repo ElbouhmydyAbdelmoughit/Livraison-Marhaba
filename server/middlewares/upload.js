@@ -1,17 +1,26 @@
 const multer = require('multer')
+const path = require('path')
+
+let i = 0;
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/upload');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now()+path.extname(file.originalname));
+  }
+});
 
 
-// SET STORAGE
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads')
-    },
-    // add back the extension
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
+module.exports = multer({
+  storage: storage,
+  limits: 1024*1024,
+  fileFilter: function (req, file, cb) {
+    var ext = path.extname(file.originalname);
+    if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
+      return cb(new Error('Only images are allowed'))
     }
-})
-
-const upload = multer({
-    storage: storage
+     cb(null, true)
+  }
 })

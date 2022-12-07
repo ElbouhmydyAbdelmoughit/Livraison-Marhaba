@@ -21,15 +21,19 @@ const getProduit = async (req, res) => {
 
 const addProduit = async (req, res) => {
     const {body} = req
-    const x = req.files[0].filename 
+    if(!body.title || !body.description || !body.price || !body.categorie) throw Error('Fill the all fields to add meal')
+    const categorie = await Categorie.findOne({name: body.categorie})
+    if (!categorie) throw Error("Invalid Category")
+    let images = []
+    req.files.forEach(e=>{
+        images.push(e.filename)
+    })
     const add_produit = await Produit.create({
         ...body,
-        image: {
-            data: req.image,
-            contentType: 'image/png'
-        }
+        categorie: categorie._id,
+        image: images
     })
-    res.send(add_produit)
+    res.json(add_produit)
 }
 
 const updatProduit = async (req, res) => {
