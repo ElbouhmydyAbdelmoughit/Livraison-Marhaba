@@ -13,7 +13,7 @@ router.get('/statistique', (req, res)=>{ res.send('Statistique') });
 // Routes of produit
 router.get('/produit', tryCatch(produitControllers.getProduit));
 router.post('/add-produit', upload.any('image'), tryCatch(produitControllers.addProduit));
-router.post('/updat-produit', tryCatch(produitControllers.updatProduit));
+router.put('/updat-produit/:id', tryCatch(produitControllers.updatProduit));
 router.delete('/delet-produit/:id', tryCatch(produitControllers.deletProduit));
 // Routes of categorie
 router.post('/add-categorie', tryCatch(categorieControllers.addCategorie));
