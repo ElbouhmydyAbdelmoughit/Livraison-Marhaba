@@ -43,6 +43,4 @@ const AddLivreur = async (req, res) => {
 }
 
 
-module.exports = {
-    AddLivreur
-}
+module.exports = {AddLivreur}
