@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
-const authController = require('../controllers/userControllers/userControllers');
+const userControllers = require('../controllers/userControllers/userControllers');
 
 
-router.get('/me', (req, res)=>{ res.send('livreur') });
+// Routes of livreur
+router.post('/add-livreur', userControllers.AddLivreur)
 
 
 module.exports = router;
