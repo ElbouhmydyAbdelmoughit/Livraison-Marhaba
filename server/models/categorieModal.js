@@ -4,7 +4,6 @@ const Categorie = mongoose.model(
   "Categorie",
   new mongoose.Schema({
     name: String,
-    description: String,
   })
 );
 

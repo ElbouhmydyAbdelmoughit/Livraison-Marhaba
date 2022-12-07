@@ -5,11 +5,11 @@ const livreurControllers = require('../controllers/userControllers/userControlle
 
 
 router.get('/me', (req, res)=>{ res.send('manager') });
-router.post('/add-categorie', categorieControllers.addCategorie);
-router.post('/findCategorie', categorieControllers.findCategorie);
-router.post('/add-livreur', livreurControllers.AddLivreur)
-router.put('/updateCategorie/:id', categorieControllers.updateCategorie);
-router.delete('/deleteCategorie/:id', categorieControllers.deleteCategorie);
+router.post('/Categorie/add', categorieControllers.addCategorie);
+router.post('/Categorie/find', categorieControllers.findCategorie);
+router.put('/Categorie/update/:id', categorieControllers.updateCategorie);
+router.delete('/Categorie/delete/:id', categorieControllers.deleteCategorie);
+router.post('/livreur/add', livreurControllers.AddLivreur)
 
 
 module.exports = router;
