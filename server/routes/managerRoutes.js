@@ -5,7 +5,6 @@ const upload = require('../middlewares/upload')
 // Require modules
 const produitControllers = require('../controllers/userControllers/produitControllers');
 const categorieControllers = require('../controllers/userControllers/categorieControllers');
-const livreurControllers = require('../controllers/userControllers/userControllers');
 const tryCatch = require('../middlewares/tryCatch');
 const errorHandller = require('../middlewares/errorHandller');
 
