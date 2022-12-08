@@ -6,7 +6,7 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 // import Reset from "./components/Reset/Reset";
-import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormForgotPassword from "./components/FormForgotPassword/FormForgotPassword";
 import Manager from "./components/Manager/Manager"
 import Livreur from "./components/Livreur/Livreur";
@@ -20,7 +20,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="Login" element={<Login />} />
         <Route path="Register" element={<Register />} />
-        <Route path="Forget-Password" element={<ForgetPassword />} />
+        <Route path="Forgot-Password" element={<ForgotPassword />} />
         <Route path="Form-Forgot-Password" element={<FormForgotPassword />} />
 
         <Route path="Manager" element={<Manager/>} />

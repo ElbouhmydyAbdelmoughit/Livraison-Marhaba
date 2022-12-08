@@ -48,10 +48,12 @@ const register = async (req, res) => {
 const verifyEmail = async (req, res) => {
     const verify_email = await jwt.verify(req.params.token, process.env.TOKEN_KEY)
     const verify_user = await User.findOne({email: verify_email.email})
-    if(verify_user.verification == true) throw Error('Your account is already actived')
+    if(verify_user.verification == true) res.redirect('http://localhost:3000/login')
+                                        // throw Error('Your account is already actived')
     const verification_email = await User.updateOne({email: verify_email.email}, {$set: {verification: true}})
-    if(!verification_email) throw Error("You can't to active your account")
-    res.json({message: 'Your account is actived'})
+    if(!verification_email) res.redirect('http://localhost:3000/login')
+                            // throw Error("You can't to active your account")
+    res.redirect('http://localhost:3000/login')
 }
 
 const resetPassword = async (req, res) => {
@@ -68,33 +70,33 @@ const resetPassword = async (req, res) => {
     res.json({message: 'Your password is changed'})
 }
 
-const forgetPassword = async (req, res) => {
+const forgotPassword = async (req, res) => {
     const email = req.body.email
     if(!email) throw Error('Enter your email')
     const forget_password_email = await User.findOne({email: email})
     if(!forget_password_email) throw Error('User not found')
-    mailer.main('forgetPassword', forget_password_email)
+    mailer.main('forgotPassword', forget_password_email)
     res.json({message: 'Check your email'})
 }
 
-const verifyForgetPassword = async (req, res) => {
+const verifyForgotPassword = async (req, res) => {
     const token = req.params.token
     const verify_token = await jwt.verify(token, process.env.TOKEN_KEY)
     const verify_token_email = await User.findOne({email: verify_token.email})
     const new_token = await jwt.sign({id: verify_token_email._id}, process.env.TOKEN_KEY)
     storage('new_token', new_token)
-    res.json({message: 'Redirect to "forme-verify-forget-password"'})
+    res.redirect('http://localhost:3000/form-forgot-password')
 }
 
-const formForgetPassword = async (req, res) => {
+const formForgotPassword = async (req, res) => {
     const {body} = req
-    if(!body.password || body.password != body.cofirm_password) throw Error('Fill the all fields to Change your password')
+    if(!body.password || body.password != body.cofirm_password || !storage('new_token')) throw Error('Fill the all fields to Change your password')
     const verify_form_token = await jwt.verify(storage('new_token'), process.env.TOKEN_KEY)
     const find_forget_user = await User.findById(verify_form_token.id)
     if(!find_forget_user) Error('Error, User not found, replay to check your email')
     const hash_forget_password = await bcrypt.hash(body.password, saltRounds)
     const update_forget_password = await User.updateOne({_id: find_forget_user._id}, {$set: {password: hash_forget_password}})
-    res.json({message: 'Your password is changed'})
+    res.json({message: 'Your password is updated', email: find_forget_user.email, password: body.password})
 }
 
 const logout = async (req, res) => {
@@ -107,8 +109,8 @@ module.exports = {
     register,
     verifyEmail,
     resetPassword,
-    forgetPassword,
-    verifyForgetPassword,
-    formForgetPassword,
+    forgotPassword,
+    verifyForgotPassword,
+    formForgotPassword,
     logout
 }
