@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-function main(method, {user, password}) {
+function main(method, user) {
   const token = jwt.sign({email: user.email}, process.env.TOKEN_KEY)
   let subject = ''
   let html =''
@@ -11,10 +11,14 @@ function main(method, {user, password}) {
     html = `<div style='height: 150px; width: 100%;'>
               <h3>Hi dear ${user.username},</h3>
               <p>
-                <span>
+                <div>
                   welcome to <span style='font-weight: bold;'>LIVRAISON MARHABA</span>,
-                  click <a href="http://localhost:${process.env.PORT}/api/auth/verify-email/${token}">here</a> for active your account.
-                </span>
+                  Click the button bellow to access to login page
+                  <br>
+                  <a href="http://localhost:${process.env.PORT}/api/auth/verify-email/${token}" style="background-color: #f59e0b; border: none; color: white; padding: 10px 15px; margin-top: 10px; border-radius: 6px; text-align: center; text-decoration: none;display: inline-block; font-size: 16px;">
+                    Log here
+                  </a>
+                </div>
               </p>
             </div>`
   }
@@ -40,7 +44,7 @@ function main(method, {user, password}) {
               <br>
               Your email: <strong>${user.email}</strong> 
             </p>
-            <p>Passord:<strong>${password}</strong></p>
+            <p>Passord:<strong>${user.password}</strong></p>
             <p>Click the button bellow to access to login page</p>
             <a href="#" style="background-color: #f59e0b; border: none;color: white;padding: 15px 32px; text-align: center; text-decoration: none;display: inline-block; font-size: 16px;">
             Log here
