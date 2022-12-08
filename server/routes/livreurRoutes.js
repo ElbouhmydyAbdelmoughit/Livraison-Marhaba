@@ -8,7 +8,6 @@ const errorHandller = require('../middlewares/errorHandller');
 // Routes of livreur
 router.get('/', (req, res)=>{ res.send('Statistique of livreur') });
 router.post('/add-livreur', tryCatch(userControllers.AddLivreur))
-router.post('/reset-password', tryCatch(userControllers.resetPassword));
 
 router.use(errorHandller)
 

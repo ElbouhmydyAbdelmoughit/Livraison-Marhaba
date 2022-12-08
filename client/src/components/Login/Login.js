@@ -1,10 +1,8 @@
 import React from "react";
 import { useState } from "react";
-// import { IoIosAdd } from "react-icons/io";
 import Generator from "../../helpes/Generator";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
-import env from "react-dotenv";
 
 export default function Login() {
 
@@ -30,9 +28,11 @@ export default function Login() {
             .then(e=>{
                 if(e.data.message) {
                     Generator('success', e.data.message)
+                    localStorage.setItem('token', e.data.token)
                     localStorage.setItem('email', e.data.email)
                     localStorage.setItem('username', e.data.username)
                     localStorage.setItem('role', e.data.role)
+                    window.location = `/${localStorage.getItem('role')}`
                 }
                 else Generator('error', e.data)
             })
