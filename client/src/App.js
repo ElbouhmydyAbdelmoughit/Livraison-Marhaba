@@ -1,6 +1,7 @@
 import "react-toastify/dist/ReactToastify.css";
 import './index.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
 
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
@@ -13,20 +14,48 @@ import Livreur from "./components/Livreur/Livreur";
 import Client from "./components/Client/Client";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import ERROR404 from "./components/ERROR404/ERROR404";
+
+import AuthPrivateRoutes from './components/PrivateRoutes/AuthPrivateRoutes'
+import RolePrivateRoutes from './components/PrivateRoutes/RolePrivateRoutes'
+import UserPrivateRoutes from './components/PrivateRoutes/UserPrivateRoutes'
+
 const App = () => {
+
+  window.addEventListener('storage', () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/logout`)
+      .then(()=>{
+        localStorage.clear();
+        window.location.replace('http://localhost:3000/login')
+      })
+      .catch(()=>{console.log('Error')})
+  })
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="Login" element={<Login />} />
-        <Route path="Register" element={<Register />} />
-        <Route path="Forgot-Password" element={<ForgotPassword />} />
-        <Route path="Form-Forgot-Password" element={<FormForgotPassword />} />
-
-        <Route path="Manager" element={<Manager/>} />
-        <Route path="Client" element={<Client />} />
-        <Route path="Livreur" element={<Livreur />} />
-        <Route path="Reset-Password" element={<ResetPassword />} />
+        {/* Auth */}
+        <Route element={<UserPrivateRoutes/>}>
+          <Route path="Login" element={<Login />} />
+          <Route path="Register" element={<Register />} />
+          <Route path="Forgot-Password" element={<ForgotPassword />} />
+          <Route path="Form-Forgot-Password" element={<FormForgotPassword />} />
+        </Route>
+        {/* User manager */}
+        <Route element={<RolePrivateRoutes role='manager'/>}>
+          <Route path="Manager" element={<Manager/>} />
+          <Route path="Reset-Password" element={<ResetPassword />} />
+        </Route>
+        {/* User client */}
+        <Route element={<RolePrivateRoutes role='client'/>}>
+          <Route path="Client" element={<Client />} />
+          <Route path="Reset-Password" element={<ResetPassword />} />
+        </Route>
+        {/* User livreur */}
+        <Route element={<RolePrivateRoutes role='livreur'/>}>
+          <Route path="Livreur" element={<Livreur />} />
+          <Route path="Reset-Password" element={<ResetPassword />} />
+        </Route>
 
         <Route path="*" element={<ERROR404 />} />
       </Routes>
