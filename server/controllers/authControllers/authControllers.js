@@ -56,19 +56,19 @@ const verifyEmail = async (req, res) => {
     res.redirect('http://localhost:3000/login')
 }
 
-const resetPassword = async (req, res) => {
-    const {body} = req
-    if(!body.last_password || !body.new_password || body.confirm_new_password != body.new_password) throw Error('Fill the all fields to reset your password')
-    const token_reset = storage('token');
-    const user_reset = await jwt.verify(token_reset, process.env.TOKEN_KEY)
-    const find_user_reset = await User.findById(user_reset._id)
-    const verify_last_password = await bcrypt.compare(body.last_password, find_user_reset.password)
-    if(!verify_last_password) throw Error('Your password is incorrect')
-    const hash_new_password = await bcrypt.hash(body.new_password, saltRounds)
-    const update_reset_password = await User.updateOne({_id: find_user_reset._id}, {$set: {password: hash_new_password}})
-    if(!update_reset_password) throw Error('Error')
-    res.json({message: 'Your password is changed'})
-}
+// const resetPassword = async (req, res) => {
+//     const {body} = req
+//     if(!body.last_password || !body.new_password || body.confirm_new_password != body.new_password) throw Error('Fill the all fields to reset your password')
+//     const token_reset = storage('token');
+//     const user_reset = await jwt.verify(token_reset, process.env.TOKEN_KEY)
+//     const find_user_reset = await User.findById(user_reset._id)
+//     const verify_last_password = await bcrypt.compare(body.last_password, find_user_reset.password)
+//     if(!verify_last_password) throw Error('Your password is incorrect')
+//     const hash_new_password = await bcrypt.hash(body.new_password, saltRounds)
+//     const update_reset_password = await User.updateOne({_id: find_user_reset._id}, {$set: {password: hash_new_password}})
+//     if(!update_reset_password) throw Error('Error')
+//     res.json({message: 'Your password is changed'})
+// }
 
 const forgotPassword = async (req, res) => {
     const email = req.body.email
@@ -108,7 +108,7 @@ module.exports = {
     login,
     register,
     verifyEmail,
-    resetPassword,
+    // resetPassword,
     forgotPassword,
     verifyForgotPassword,
     formForgotPassword,
