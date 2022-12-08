@@ -16,7 +16,7 @@ export default function Livreur() {
     e.preventDefault();
     console.log("data: " + data);
     axios
-      .post("http://localhost:2000/livreur/add-livreur", data)
+      .post(`${process.env.REACT_APP_API_URL}/livreur/add-livreur`, data)
       .then((res) => {
         console.log(res.data);
         Generator("success", "Un email a été envoyé à votre compte");
