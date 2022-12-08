@@ -11,7 +11,7 @@ router.get('/verify-email/:token', tryCatch(authController.verifyEmail));
 router.post('/reset-password', tryCatch(authController.resetPassword));
 router.post('/forget-password', tryCatch(authController.forgetPassword));
 router.get('/verify-forget-password/:token', tryCatch(authController.verifyForgetPassword));
-router.post('/forme-forget-password', tryCatch(authController.formForgetPassword));
+router.post('/form-forgot-password', tryCatch(authController.formForgetPassword));
 router.get('/logout', tryCatch(authController.logout));
 
 router.use(errorHandller)

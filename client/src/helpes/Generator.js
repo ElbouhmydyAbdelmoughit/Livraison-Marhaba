@@ -8,10 +8,10 @@ import { toast } from "react-toastify";
  */
 const Generator = (type, message) => {
   if (type === "error") {
-    toast.error(message, { position: "bottom-right" });
+    toast.error(message, { position: "top-right" });
   }
   if (type === "success") {
-    toast.success(message, { position: "bottom-right" });
+    toast.success(message, { position: "top-right" });
   }
 };
 

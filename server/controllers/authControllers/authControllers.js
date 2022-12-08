@@ -24,7 +24,8 @@ const login = async (req, res) => {
     if(!login_user.status) throw Error('You can\'t to login')
     const token = await jwt.sign({_id: login_user._id}, process.env.TOKEN_KEY)
     storage('token', token)
-    res.json({token: storage('token')})
+    const login_user_role = await Role.findById(login_user.roles)
+    res.json({message: 'Login success',username: login_user.username, email: login_user.email, role:login_user_role.name, token: storage('token')})
 }
 
 const register = async (req, res) => {
