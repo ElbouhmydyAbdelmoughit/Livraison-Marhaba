@@ -23,11 +23,11 @@ const App = () => {
 
   window.addEventListener('storage', () => {
     axios.get(`${process.env.REACT_APP_API_URL}/logout`)
-      .then(()=>{
+      .then(() => {
         localStorage.clear();
         window.location.replace('http://localhost:3000/login')
       })
-      .catch(()=>{console.log('Error')})
+      .catch(() => { console.log('Error') })
   })
 
   return (
@@ -35,25 +35,25 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* Auth */}
-        <Route element={<UserPrivateRoutes/>}>
+        <Route element={<UserPrivateRoutes />}>
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />
           <Route path="Forgot-Password" element={<ForgotPassword />} />
           <Route path="Form-Forgot-Password" element={<FormForgotPassword />} />
         </Route>
         {/* User manager */}
-        <Route element={<RolePrivateRoutes role='manager'/>}>
-          <Route path="Manager" element={<Manager/>} />
-          <Route path="Reset-Password" element={<ResetPassword />} />
-        </Route>
-        {/* User client */}
-        <Route element={<RolePrivateRoutes role='client'/>}>
-          <Route path="Client" element={<Client />} />
-          <Route path="Reset-Password" element={<ResetPassword />} />
-        </Route>
-        {/* User livreur */}
-        <Route element={<RolePrivateRoutes role='livreur'/>}>
-          <Route path="Livreur" element={<Livreur />} />
+        <Route element={<AuthPrivateRoutes />}>
+          <Route element={<RolePrivateRoutes role='manager' />}>
+            <Route path="Manager" element={<Manager />} />
+          </Route>
+          {/* User client */}
+          <Route element={<RolePrivateRoutes role='client' />}>
+            <Route path="Client" element={<Client />} />
+          </Route>
+          {/* User livreur */}
+          <Route element={<RolePrivateRoutes role='livreur' />}>
+            <Route path="Livreur" element={<Livreur />} />
+          </Route>
           <Route path="Reset-Password" element={<ResetPassword />} />
         </Route>
 
