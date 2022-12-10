@@ -4,16 +4,15 @@ const upload = require('../middlewares/upload')
 
 // Require modules
 const statistiqueControllers = require('../controllers/userControllers/statistiqueControllers');
+const userControllers = require('../controllers/userControllers/userControllers');
 const produitControllers = require('../controllers/userControllers/produitControllers');
 const categorieControllers = require('../controllers/userControllers/categorieControllers');
-const userControllers = require('../controllers/userControllers/userControllers');
 const tryCatch = require('../middlewares/tryCatch');
 const errorHandller = require('../middlewares/errorHandller');
 
 // Route of statistique
 router.get('/', tryCatch(statistiqueControllers.Statistique));
-// Router of user
-router.post('/reset-password', tryCatch(userControllers.resetPassword));
+router.get('/get-user', tryCatch(userControllers.getUser));
 // Routes of produit
 router.get('/produit', tryCatch(produitControllers.getProduit));
 router.post('/add-produit', upload.any('image'), tryCatch(produitControllers.addProduit));

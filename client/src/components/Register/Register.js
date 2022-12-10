@@ -3,8 +3,6 @@ import { useState } from "react";
 import Generator from "../../helpes/Generator";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
-// import { IoIosAdd } from "react-icons/io";
-// import env from "react-dotenv";
 
 export default function Register() {
   const [register, setRegister] = useState({

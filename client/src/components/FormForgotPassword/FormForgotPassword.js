@@ -1,10 +1,8 @@
 import React from "react";
 import { useState } from "react";
-// import { IoIosAdd } from "react-icons/io";
 import Generator from "../../helpes/Generator";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
-import env from "react-dotenv";
 
 export default function FormForgotPassword() {
 
