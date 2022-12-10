@@ -9,6 +9,8 @@ import Register from "./components/Register/Register";
 // import Reset from "./components/Reset/Reset";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormForgotPassword from "./components/FormForgotPassword/FormForgotPassword";
+import Satatistique from "./components/Manager/Statistique"
+import Users from "./components/Manager/Users"
 import Manager from "./components/Manager/Manager"
 import Livreur from "./components/Livreur/Livreur";
 import Client from "./components/Client/Client";
@@ -18,6 +20,7 @@ import ERROR404 from "./components/ERROR404/ERROR404";
 import AuthPrivateRoutes from './components/PrivateRoutes/AuthPrivateRoutes'
 import RolePrivateRoutes from './components/PrivateRoutes/RolePrivateRoutes'
 import UserPrivateRoutes from './components/PrivateRoutes/UserPrivateRoutes'
+
 
 const App = () => {
 
@@ -44,6 +47,8 @@ const App = () => {
         {/* User manager */}
         <Route element={<AuthPrivateRoutes />}>
           <Route element={<RolePrivateRoutes role='manager' />}>
+            <Route path="/Satatistique" element={<Satatistique />} />
+            <Route path="/Users" element={<Users />} />
             <Route path="Manager" element={<Manager />} />
           </Route>
           {/* User client */}

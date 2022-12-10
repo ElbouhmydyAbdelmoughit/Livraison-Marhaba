@@ -14,6 +14,11 @@ const Role = db.role;
 const Status = db.status;
 const User = db.user;
 
+const getUser = async (req, res) => {
+    const get_users = await User.find()
+    res.json(get_users)
+}
+
 const resetPassword = async (req, res) => {
     const {body} = req
     if(!body.last_password || !body.new_password || body.confirm_new_password != body.new_password) throw Error('Fill the all fields to reset your password')
@@ -58,6 +63,7 @@ const AddLivreur = async (req, res) => {
 
 
 module.exports = {
+    getUser,
     resetPassword,
     AddLivreur
 }
