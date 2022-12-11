@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "../../api/axios";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { IoIosAdd } from "react-icons/io";
 import Generator from "../../helpes/Generator";
 import env from "react-dotenv";
