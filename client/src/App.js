@@ -22,7 +22,7 @@ import RolePrivateRoutes from "./components/PrivateRoutes/RolePrivateRoutes";
 import UserPrivateRoutes from "./components/PrivateRoutes/UserPrivateRoutes";
 
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./redux/store/store";
 
 const App = () => {
   window.addEventListener("storage", () => {
