@@ -3,8 +3,10 @@ import { useState } from "react";
 import Generator from "../../helpes/Generator";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const navigate = useNavigate();
   const [register, setRegister] = useState({
     username: "",
     email: "",
@@ -23,10 +25,7 @@ export default function Register() {
       .post(`${process.env.REACT_APP_API_URL}/api/auth/register`, register)
       .then((e) => {
         if (e.data.message) {
-          Generator("success", e.data.message);
-          localStorage.setItem("email", e.data.email);
-          localStorage.setItem("password", e.data.password);
-          window.location = "/login";
+          navigate("/login", { state: e.data });
         } else Generator("error", e.data);
       })
       .catch(() => {

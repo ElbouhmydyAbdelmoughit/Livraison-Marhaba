@@ -1,5 +1,5 @@
 import "react-toastify/dist/ReactToastify.css";
-import './index.css'
+import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
@@ -9,29 +9,33 @@ import Register from "./components/Register/Register";
 // import Reset from "./components/Reset/Reset";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormForgotPassword from "./components/FormForgotPassword/FormForgotPassword";
-import Satatistique from "./components/Manager/Statistique"
-import Users from "./components/Manager/Users"
-import Manager from "./components/Manager/Manager"
+import Statistique from "./components/Manager/Statistique";
+import Users from "./components/Manager/Users";
+import Manager from "./components/Manager/Manager";
 import Livreur from "./components/Livreur/Livreur";
 import Client from "./components/Client/Client";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import ERROR404 from "./components/ERROR404/ERROR404";
 
-import AuthPrivateRoutes from './components/PrivateRoutes/AuthPrivateRoutes'
-import RolePrivateRoutes from './components/PrivateRoutes/RolePrivateRoutes'
-import UserPrivateRoutes from './components/PrivateRoutes/UserPrivateRoutes'
+import AuthPrivateRoutes from "./components/PrivateRoutes/AuthPrivateRoutes";
+import RolePrivateRoutes from "./components/PrivateRoutes/RolePrivateRoutes";
+import UserPrivateRoutes from "./components/PrivateRoutes/UserPrivateRoutes";
 
+import { Provider } from "react-redux";
+import store from "./store";
 
 const App = () => {
-
-  window.addEventListener('storage', () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/logout`)
+  window.addEventListener("storage", () => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/logout`)
       .then(() => {
         localStorage.clear();
-        window.location.replace('http://localhost:3000/login')
+        window.location.replace("http://localhost:3000/login");
       })
-      .catch(() => { console.log('Error') })
-  })
+      .catch(() => {
+        console.log("Error");
+      });
+  });
 
   return (
     <BrowserRouter>
@@ -45,23 +49,24 @@ const App = () => {
           <Route path="Form-Forgot-Password" element={<FormForgotPassword />} />
         </Route>
         {/* User manager */}
+        {/* <Provider store={store}> */}
         <Route element={<AuthPrivateRoutes />}>
-          <Route element={<RolePrivateRoutes role='manager' />}>
-            <Route path="/Satatistique" element={<Satatistique />} />
+          <Route element={<RolePrivateRoutes role="manager" />}>
+            <Route path="/Statistique" element={<Statistique />} />
             <Route path="/Users" element={<Users />} />
             <Route path="Manager" element={<Manager />} />
           </Route>
           {/* User client */}
-          <Route element={<RolePrivateRoutes role='client' />}>
+          <Route element={<RolePrivateRoutes role="client" />}>
             <Route path="Client" element={<Client />} />
           </Route>
           {/* User livreur */}
-          <Route element={<RolePrivateRoutes role='livreur' />}>
+          <Route element={<RolePrivateRoutes role="livreur" />}>
             <Route path="Livreur" element={<Livreur />} />
           </Route>
           <Route path="Reset-Password" element={<ResetPassword />} />
         </Route>
-
+        {/* </Provider> */}
         <Route path="*" element={<ERROR404 />} />
       </Routes>
     </BrowserRouter>
