@@ -39,7 +39,7 @@ export default function Register() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-4xl font-bold text-center text-amber-500">
-              Reset Password
+              Register
             </h1>
             <form onSubmit={onSubmit} className="space-y-4 md:space-y-6">
               <div>
