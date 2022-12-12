@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 window.env = {
   "ACLOCAL_PATH": "C:\\Program Files (x86)\\Git\\mingw32\\share\\aclocal;C:\\Program Files (x86)\\Git\\usr\\share\\aclocal",
   "ALLUSERSPROFILE": "C:\\ProgramData",
@@ -111,3 +112,6 @@ window.env = {
   "_": "C:/Users/Youcode/AppData/Local/Programs/Microsoft VS Code/Code.exe",
   "__PSLockDownPolicy": "0"
 };
+=======
+window.env = {};
+>>>>>>> 140b9e7cb0e457c7e10ead902f5db75a5460ad8f

@@ -15,8 +15,8 @@ const User = db.user;
 
 
 const getProduit = async (req, res) => {
-    const get_produit = await Produit.find();
-    res.json({message: get_produit})
+    const produit = await Produit.find();
+    res.json({produit})
 }
 
 const addProduit = async (req, res) => {
@@ -33,17 +33,38 @@ const addProduit = async (req, res) => {
         categorie: categorie._id,
         image: images
     })
-    res.json(add_produit)
+    res.json({message: `Repas ${add_produit.title} is added`})
 }
 
 const updatProduit = async (req, res) => {
     const {body} = req
-    res.send('updat produit')
+    const id = req.params.id
+    res.send(body)
+    // if(!id || !body.title || !body.description || !body.price || !body.categorie) throw Error('Fill the all fields to add meal')
+    // const categorie = await Categorie.findOne({name: body.categorie})
+    // if (!categorie) throw Error("Invalid Category")
+    // const add_produit = await Produit.updateOne({
+    //     ...body,
+    //     categorie: categorie._id
+    // })
+    // const update_produit = await Categorie.findByIdAndUpdate(
+    //     id, {
+    //         ...body,
+    //         categorie: categorie._id
+    //     }
+    //   );
+    // res.json({message: `Repas ${add_produit.title} is updated`, update_produit})
 }
 
 const deletProduit = async (req, res) => {
-    const delet_produit = await Categorie.findByIdAndRemove(req.params.id)
-    if(!delet_produit) throw Error ('Produit is not deleted')
+    const id = req.params.id
+    const find_produit = await Produit.findById(id)
+    if(!find_produit) throw Error('Error, Product is not found')
+    for(let i=0; i<find_produit.image.length; i++){
+       fs.unlinkSync(`C:/Users/Youcode/Desktop/Livraison-Marhaba/server/public/upload/${find_produit.image[i]}`)
+    }
+    const delet_produit = await Produit.deleteOne({_id: id})
+    if(!delet_produit) throw Error ('Error, Product is not deleted')
     res.json({message: 'delete successfully'})
 }
 

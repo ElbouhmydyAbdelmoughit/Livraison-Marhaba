@@ -3,17 +3,20 @@ const multer = require('multer');
 const upload = require('../middlewares/upload')
 
 // Require modules
+const statistiqueControllers = require('../controllers/userControllers/statistiqueControllers');
+const userControllers = require('../controllers/userControllers/userControllers');
 const produitControllers = require('../controllers/userControllers/produitControllers');
 const categorieControllers = require('../controllers/userControllers/categorieControllers');
 const tryCatch = require('../middlewares/tryCatch');
 const errorHandller = require('../middlewares/errorHandller');
 
 // Route of statistique
-router.get('/statistique', (req, res)=>{ res.send('Statistique') });
+router.get('/', tryCatch(statistiqueControllers.Statistique));
+router.get('/get-user', tryCatch(userControllers.getUser));
 // Routes of produit
 router.get('/produit', tryCatch(produitControllers.getProduit));
 router.post('/add-produit', upload.any('image'), tryCatch(produitControllers.addProduit));
-router.post('/updat-produit', tryCatch(produitControllers.updatProduit));
+router.put('/updat-produit/:id', tryCatch(produitControllers.updatProduit));
 router.delete('/delet-produit/:id', tryCatch(produitControllers.deletProduit));
 // Routes of categorie
 router.post('/add-categorie', tryCatch(categorieControllers.addCategorie));
