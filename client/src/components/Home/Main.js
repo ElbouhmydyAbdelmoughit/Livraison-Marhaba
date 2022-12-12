@@ -2,7 +2,7 @@ import React from 'react'
 import food from '../../assets/images/food.png'
 export default function Main() {
   return (
-    <div className='bg-amber-500 h-[41rem] flex'>
+    <div className='bg-amber-500 h-[41rem] flex' id='home'>
         <div className='mt-48 ml-4 md:ml-20 lg:ml-8 '>
             <button className='btn bg-[#be0b20] text-white font-bold px-2 py-1'>New reduction</button>
             <p className='text-white text-4xl md:text-5xl lg:text-4xl font-serif py-1'>No more time wasting:</p>
