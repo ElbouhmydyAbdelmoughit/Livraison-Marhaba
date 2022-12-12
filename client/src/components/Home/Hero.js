@@ -5,7 +5,7 @@ import {RiSecurePaymentLine} from 'react-icons/ri'
 export default function Hero() {
   return (
     <div className='bg-white md:flex md:gap-32 mt-12 lg:gap-x-80 pb-24 pt-12'>
-        <div className='flex flex-col items-center md:ml-8 lg:ml-64'>
+        <div className='flex flex-col items-center md:ml-8 lg:ml-56'>
             <TbMailFast className="text-5xl mb-2"/>
             <p className='font-bold'>Fast delivery</p>
         </div>
