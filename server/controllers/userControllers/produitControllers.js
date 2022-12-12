@@ -15,7 +15,7 @@ const User = db.user;
 
 
 const getProduit = async (req, res) => {
-    const produit = await Produit.find();
+    const produit = await Produit.find().populate({path: 'categorie', model: Categorie});
     res.json({produit})
 }
 

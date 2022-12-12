@@ -60,9 +60,9 @@ function Produit() {
                                 {produit.map((p, i) => (
                                     <tr className="bg-white border-b hover:bg-gray-50" key={i}>
                                         <td className="w-4 p-4">{p.title}</td>
-                                        <td className="w-4 p-4">{p.categorie}</td>
+                                        <td className="w-4 p-4">{p.categorie[0].name}</td>
                                         <td className="w-4 p-4">{p.description}</td>
-                                        <td className="w-4 p-4">{p.price}</td>
+                                        <td className="w-4 p-4">{p.price} DH</td>
                                         <td className="w-4 p-4 text-gray-500">
                                             <div className='flex justify-evenly'>
                                                 <button type='button' className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>

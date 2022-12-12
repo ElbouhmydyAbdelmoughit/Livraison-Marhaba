@@ -31,12 +31,24 @@ const Statistique = async (req, res) => {
         { $group: { _id: null, sum: { $count: {} } } }
     ])
 
+    let n_user = 0
+    let n_command = 0
+    let n_payement = 0
+    let n_categorie = 0
+    let n_produit = 0
+
+    if(user.length === 0) {n_user = 0} else {n_user = user[0].sum}
+    if(command.length === 0) {n_command = 0} else {n_command = command[0].sum}
+    if(payement.length === 0) {n_payement = 0} else {n_payement = payement[0].sum}
+    if(categorie.length === 0) {n_categorie = 0} else {n_categorie = categorie[0].sum}
+    if(produit.length === 0) {n_produit = 0} else {n_produit = produit[0].sum}
+
     res.json({
-        user: user,
-        command: command,
-        payement: payement,
-        categorie: categorie,
-        produit: produit
+        user: n_user,
+        command: n_command,
+        payement: n_payement,
+        categorie: n_categorie,
+        produit: n_produit
     })
 }
 
