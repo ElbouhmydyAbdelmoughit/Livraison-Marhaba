@@ -12,6 +12,11 @@ const Produit = db.produit;
 const Role = db.role;
 const Status = db.status;
 
+const getCategorie = async (req, res) => {
+  const categorie = await Categorie.find();
+  res.json({categorie})
+}
+
 const addCategorie = async (req, res) => {
   const { name } = req.body;
   if (!name) res.send("content can not be empty");
@@ -29,7 +34,7 @@ const addCategorie = async (req, res) => {
 const findCategorie = async (req, res) => {
   const findUser = await Categorie.find();
   if (!findUser) res.send("Error");
-  res.send(findUser);
+  res.json(findUser);
 };
 
 const updateCategorie = async (req, res) => {
@@ -54,6 +59,7 @@ const deleteCategorie = async (req, res) => {
 };
 
 module.exports = {
+  getCategorie,
   addCategorie,
   findCategorie,
   updateCategorie,

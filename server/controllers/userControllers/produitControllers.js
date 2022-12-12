@@ -1,5 +1,4 @@
 const db = require('../../models');
-const multer = require('multer');
 const fs = require('fs');
 
 const path = require('path')
@@ -58,14 +57,13 @@ const updatProduit = async (req, res) => {
 
 const deletProduit = async (req, res) => {
     const id = req.params.id
+    const status = req.params.status
     const find_produit = await Produit.findById(id)
-    if(!find_produit) throw Error('Error, Product is not found')
-    for(let i=0; i<find_produit.image.length; i++){
-       fs.unlinkSync(`C:/Users/Youcode/Desktop/Livraison-Marhaba/server/public/upload/${find_produit.image[i]}`)
-    }
-    const delet_produit = await Produit.deleteOne({_id: id})
+    if(!find_produit) throw Error('Error, Product not found')
+    const delet_produit = await Produit.findByIdAndUpdate(id, { status: status });
     if(!delet_produit) throw Error ('Error, Product is not deleted')
-    res.json({message: 'delete successfully'})
+    if(status) res.json({message: 'delete successfully'})
+    if(!status) res.json({message: 'reset successfully'})
 }
 
 

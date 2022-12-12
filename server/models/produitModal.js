@@ -12,7 +12,11 @@ const Produit = mongoose.model(
     ],
     description: String,
     price: Number,
-    image: Array
+    image: Array,
+    status: {
+      type: Boolean,
+      default: true
+    }
   })
 );
 
