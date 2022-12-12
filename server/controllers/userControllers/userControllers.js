@@ -54,7 +54,7 @@ const AddLivreur = async (req, res) => {
           password: hashedpassword,
     });
     if(user){
-        mailer.main('addLivreur', {user, password})
+        mailer.main('addLivreur', {email: user.email, password})
         res.json({message: 'Successfully, An email is sent to account', email: user.email, password: password})
     }else{
         throw Error('User not created try again')
