@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import axios from "../../api/axios";
-import { ToastContainer } from "react-toastify";
 import { IoIosAdd } from "react-icons/io";
 import Generator from "../../helpes/Generator";
+import { ToastContainer } from "react-toastify";
+import axios from "axios";
 import env from "react-dotenv";
 
 export default function Livreur() {
@@ -16,13 +16,14 @@ export default function Livreur() {
     e.preventDefault();
     console.log("data: " + data);
     axios
-      .post(process.env.URL, data)
+      .post(`${process.env.REACT_APP_API_URL}/livreur/add-livreur`, data)
       .then((res) => {
         console.log(res.data);
         Generator("success", "Un email a été envoyé à votre compte");
       })
       .catch((err) => {
         Generator("error", err.message);
+        console.log(err);
       });
   };
   return (
