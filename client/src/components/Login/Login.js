@@ -9,12 +9,14 @@ import { useEffect } from "react";
 export default function Login() {
   const location = useLocation();
   useEffect(() => {
-    Generator("success", location.state.message);
+    if(location.state) Generator("success", location.state.message);
   }, []);
   let email = "";
   let password = "";
-  if (location.state.email) email = location.state.email;
-  if (location.state.password) password = location.state.password;
+  if (location.state){
+    email = location.state.email;
+    password = location.state.password;
+  }
 
   const [login, setLogin] = useState({
     email: email,
