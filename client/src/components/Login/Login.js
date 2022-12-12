@@ -50,22 +50,12 @@ export default function Login() {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-4xl font-bold text-center text-amber-500">
-              Sign in
-            </h1>
-            {/* <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className="inline-block p-3 mx-1 text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out rounded-full shadow-md bg-amber-500 hover:bg-white hover:text-amber-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className="w-4 h-4">
-                                <path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
-                            </svg>
-                        </button>
-                        <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-                            <p className="mx-4 mb-0 font-semibold text-center">OR</p>
-                        </div> */}
+            <h1 className="text-4xl font-bold text-center text-amber-500">Sign in</h1>
             <form onSubmit={onSubmit} className="space-y-4 md:space-y-6">
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-gray-900"
                 >
                   Your email
                 </label>
@@ -82,7 +72,7 @@ export default function Login() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-gray-900"
                 >
                   Password
                 </label>

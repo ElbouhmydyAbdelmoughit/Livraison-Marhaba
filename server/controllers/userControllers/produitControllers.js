@@ -15,8 +15,8 @@ const User = db.user;
 
 
 const getProduit = async (req, res) => {
-    const get_produit = await Produit.find();
-    res.json({message: get_produit})
+    const produit = await Produit.find();
+    res.json({produit})
 }
 
 const addProduit = async (req, res) => {

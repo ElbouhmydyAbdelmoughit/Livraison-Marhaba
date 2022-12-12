@@ -2,7 +2,7 @@ import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import { AiOutlineUser } from "react-icons/ai";
 
-function Manager() {
+function Statistique() {
 
   const card = [
     { name: "Users", number: 0, icon: AiOutlineUser },
@@ -45,4 +45,4 @@ function Manager() {
   )
 }
 
-export default Manager
+export default Statistique

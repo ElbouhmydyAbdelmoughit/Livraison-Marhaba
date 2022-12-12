@@ -9,9 +9,9 @@ import Register from "./components/Register/Register";
 // import Reset from "./components/Reset/Reset";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormForgotPassword from "./components/FormForgotPassword/FormForgotPassword";
-import Statistique from "./components/Manager/Statistique";
-import Users from "./components/Manager/Users";
-import Manager from "./components/Manager/Manager";
+import Produit from "./components/Manager/Produit"
+import Statistique from "./components/Manager/Statistique"
+import Manager from "./components/Manager/Manager"
 import Livreur from "./components/Livreur/Livreur";
 import Client from "./components/Client/Client";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
@@ -51,9 +51,9 @@ const App = () => {
         {/* User manager */}
         {/* <Provider store={store}> */}
         <Route element={<AuthPrivateRoutes />}>
-          <Route element={<RolePrivateRoutes role="manager" />}>
+          <Route element={<RolePrivateRoutes role='manager' />}>
             <Route path="/Statistique" element={<Statistique />} />
-            <Route path="/Users" element={<Users />} />
+            <Route path="/Produit" element={<Produit />} />
             <Route path="Manager" element={<Manager />} />
           </Route>
           {/* User client */}
