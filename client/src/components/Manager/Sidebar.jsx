@@ -8,7 +8,6 @@ import { FiSettings } from "react-icons/fi";
 import { BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-
 function Sidebar() {
   const [open, setOpen] = useState(true);
 
@@ -21,8 +20,9 @@ function Sidebar() {
   ];
   return (
     <div
-      className={`${open ? "w-72" : "w-16"
-        } duration-500 bg-gray-50 min-h-screen text-amber-500 relative px-3`}
+      className={`${
+        open ? "w-72" : "w-16"
+      } duration-500 bg-gray-50 min-h-screen text-amber-500 relative px-3`}
     >
       <div className="flex justify-end py-3">
         <HiMenuAlt3
@@ -38,11 +38,15 @@ function Sidebar() {
           <Link
             to={menu?.link}
             key={i}
-            className={`${menu?.margin && "mt-5"} flex items-center text-sm gap-4 font-medium p-2 rounded-md hover:bg-amber-500 hover:text-white`}>
+            className={`${
+              menu?.margin && "mt-5"
+            } flex items-center text-sm gap-4 font-medium p-2 rounded-md hover:bg-amber-500 hover:text-white`}
+          >
             <div>{React.createElement(menu?.icon, { size: "25" })}</div>
             <h2
-              className={`whitespace-pre duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"
-                }`}
+              className={`whitespace-pre duration-500 ${
+                !open && "opacity-0 translate-x-28 overflow-hidden"
+              }`}
             >
               {menu?.name}
             </h2>
