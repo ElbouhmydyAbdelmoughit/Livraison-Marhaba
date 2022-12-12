@@ -1,19 +1,47 @@
 import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
+import axios from 'axios'
 import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import { BiLogOut, BiUserCircle } from "react-icons/bi";
+import { useState, useEffect } from "react"
+import { MdOutlineDashboard, MdOutlineDeliveryDining } from "react-icons/md";
 
 function Statistique() {
 
+  let [statistique, setStatistique] = useState([])
+  useEffect(() => {
+    try {
+      getStatistique()
+      console.log()
+    } catch (error) {
+      console.log(error)
+    }
+  }, []);
+  const getStatistique = async () => {
+    const get_statistique = await axios.get(`${process.env.REACT_APP_API_URL}/manager/statistique`)
+    setStatistique(get_statistique.data)
+  }
+
   const card = [
-    { name: "Users", number: 0, icon: AiOutlineUser },
-    { name: "Commandes", number: 0, icon: '' },
-    { name: "Payements", number: 0, icon: '' },
-    { name: "Payements", number: 0, icon: '' },
+    { name: "Users", number: statistique.user.sum, icon: AiOutlineUser },
+    { name: "Commandes", number: statistique.command.sum, icon: '' },
+    { name: "Payements", number: statistique.payement.sum, icon: '' },
+    { name: "Categories", number: statistique.categorie.sum, icon: '' },
+    { name: "Produit", number: statistique.produit.sum, icon: '' }
+  ];
+
+  const menus = [
+    { name: "Dashboard", link: "/statistique", icon: MdOutlineDashboard },
+    { name: "Commande", link: "/", icon: MdOutlineDeliveryDining },
+    { name: "Payement", link: "/", icon: MdOutlineDeliveryDining },
+    { name: "Users", link: "/", icon: BiUserCircle },
+    { name: "logout", link: "/", icon: BiLogOut, margin: true },
   ];
 
   return (
     <div className="flex w-screen">
-      <Sidebar />
+      <Sidebar menus={menus} />
       <main className="w-full h-screen">
         <div class="flex flex-wrap mt-9 px-5">
           {card?.map((card, i) => (
