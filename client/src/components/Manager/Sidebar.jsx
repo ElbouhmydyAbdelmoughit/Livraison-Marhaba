@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard, MdOutlineDeliveryDining } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
