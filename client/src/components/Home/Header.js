@@ -17,7 +17,7 @@ export default function Header() {
         <div className="flex md:order-2">
           <Link to={"/Login"}>
             <p className="btn text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-amber-400 dark:hover:bg-amber-600 dark:focus:ring-amber-700">
-              Get started
+              Login
             </p>
           </Link>
         </div>
