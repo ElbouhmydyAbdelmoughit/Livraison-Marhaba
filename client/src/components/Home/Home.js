@@ -1,7 +1,15 @@
 import React from "react";
-
-const Home = () => {
-  return <div>Home</div>;
-};
-
-export default Home;
+import Footer from "./Footer";
+import Header from "./Header";
+import Hero from "./Hero";
+import Main from "./Main";
+export default function Home() {
+  return (
+    <div className="flex flex-col">
+      <Header />
+      <Main />
+      <Hero />
+      <Footer />
+    </div>
+  );
+}
