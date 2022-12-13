@@ -18,7 +18,20 @@ function Category() {
         { name: "logout", link: "/", icon: BiLogOut, margin: true },
     ];
     const [showModal, setShowModal] = useState(false);
-    
+
+    const [name, setName] = useState({
+        name: ""
+    })
+    const postData = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:2000/manager/add-categorie',{
+            name
+        }).then(()=>{
+            console.log('noooooooooooo')
+        })
+        
+    }
+
     const [category, setCategory] = useState([])
     useEffect(()=> {
         axios.post('http://localhost:2000/manager/findCategorie')
@@ -27,11 +40,11 @@ function Category() {
         })
     }, [])
 
-    const setData = (data) => {
-        let{id, name} = data;
-        localStorage.setItem('id', id)
-        localStorage.setItem('name', name)
-    }
+    // const setData = (data) => {
+    //     let{id, name} = data;
+    //     localStorage.setItem('id', id)
+    //     localStorage.setItem('name', name)
+    // }
     
     const onDelete = (id,e) => {
         e.preventDefault()
@@ -80,7 +93,7 @@ function Category() {
                                         <td className="w-4 p-4">{data.name}</td>
                                         <td className="w-4 p-4 text-gray-500">
                                             <div className='flex justify-evenly'>
-                                                <button type='button' onClick={() => setData(data)} className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
+                                                <button type='button'  className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
                                                 <button type='button' onClick={(e) => onDelete(data._id,e)} className='text-xl hover:text-amber-500'><AiOutlineDelete /></button>
                                             </div>
                                         </td>
@@ -108,23 +121,15 @@ function Category() {
                                             <div className='mt-2'>
                                                 <label htmlFor="categorie" className='block mb-1 text-sm font-medium text-gray-900'>Categorie</label>
                                                 <input type="text" name="categorie" id="categorie" placeholder="Categorie"
-                                                onChange={(e) => setCategory (e.target.value)}
+                                                onChange={(e) => setName (e.target.value)}
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
-                                            </div>
-                                            <div class="flex items-center justify-center w-full mt-3">
-                                                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-20 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                                    <div class="flex flex-col items-center justify-center">
-                                                        <svg aria-hidden="true" class="w-10 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                                        <p class="text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                                    </div>
-                                                    <input id="dropzone-file" type="file" accept="image/png, image/jpeg, image/jpg" multiple class="hidden" />
-                                                </label>
                                             </div>
                                         </div>
                                         <div className="flex items-center justify-center p-4 border-t border-solid rounded-b border-slate-200">
                                             <button
-                                            //  onClick={dataCategory}
-                                             className="flex px-4 py-1 font-bold text-white border-2 rounded-md bg-amber-500 hover:text-amber-500 hover:bg-white border-amber-500" type="submit">Add Category</button>
+                                                onClick={postData}
+                                                className="flex px-4 py-1 font-bold text-white border-2 rounded-md bg-amber-500 hover:text-amber-500 hover:bg-white border-amber-500" type="submit">Add Category
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
