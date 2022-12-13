@@ -17,8 +17,9 @@ router.get('/get-user', tryCatch(userControllers.getUser));
 router.get('/produit', tryCatch(produitControllers.getProduit));
 router.post('/add-produit', upload.any('image'), tryCatch(produitControllers.addProduit));
 router.put('/updat-produit/:id', tryCatch(produitControllers.updatProduit));
-router.delete('/delet-produit/:id', tryCatch(produitControllers.deletProduit));
+router.delete('/delet-produit/:id/:status', tryCatch(produitControllers.deletProduit));
 // Routes of categorie
+router.get('/categorie', tryCatch(categorieControllers.getCategorie));
 router.post('/add-categorie', tryCatch(categorieControllers.addCategorie));
 router.post('/findCategorie', tryCatch(categorieControllers.findCategorie));
 router.put('/updateCategorie/:id', tryCatch(categorieControllers.updateCategorie));
