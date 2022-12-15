@@ -26,7 +26,9 @@ export default function Register() {
       .then((e) => {
         if (e.data.message) {
           navigate("/login", { state: e.data });
-        } else Generator("error", e.data);
+        } else {
+          Generator("error", e.data);
+        }
       })
       .catch(() => {
         console.log("Error");
