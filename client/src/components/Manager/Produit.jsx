@@ -1,26 +1,18 @@
 import React from 'react'
-import Sidebar from '../Sidebar/Sidebar'
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { MdOutlineDashboard, MdOutlineDeliveryDining } from "react-icons/md";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { BiReset } from "react-icons/bi";
-import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import Generator from "../../helpes/Generator"
 import { ToastContainer } from "react-toastify"
+import SidebarM from './SidebarM';
 
 function Produit() {
     const [produit, setProduit] = useState([])
     const [categorie, setCategorie] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [add_produit, setAddProduit] = useState({})
-    const menus = [
-        { name: "Dashboard", link: "/statistique", icon: MdOutlineDashboard },
-        { name: "Commande", link: "/", icon: MdOutlineDeliveryDining },
-        { name: "Payement", link: "/", icon: MdOutlineDeliveryDining },
-        { name: "Users", link: "/", icon: BiUserCircle },
-        { name: "logout", link: "/", icon: BiLogOut, margin: true },
-    ];
+
     useEffect(() => {
         try {
             getProduit()
@@ -55,7 +47,7 @@ function Produit() {
 
     return (
         <div className="flex w-screen">
-            <Sidebar menus={menus} />
+            <SidebarM />
             <main className="w-full h-screen">
                 <div className="relative w-full h-screen p-5 shadow-md overflw-x-auto sm:rounded-lg">
                     <div className="bg-white py-7">
