@@ -15,7 +15,7 @@ router.get('/', tryCatch(statistiqueControllers.Statistique));
 router.get('/get-user', tryCatch(userControllers.getUser));
 // Routes of produit
 router.get('/produit', tryCatch(produitControllers.getProduit));
-router.post('/add-produit', upload.single('image'), tryCatch(produitControllers.addProduit));
+router.post('/add-produit', upload.any('image'), tryCatch(produitControllers.addProduit));
 router.put('/updat-produit/:id', tryCatch(produitControllers.updatProduit));
 router.delete('/delet-produit/:id/:status', tryCatch(produitControllers.deletProduit));
 // Routes of categorie
