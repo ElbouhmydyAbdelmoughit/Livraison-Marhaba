@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { AiOutlineUser } from "react-icons/ai";
 import { useState, useEffect } from "react"
-import SidebarM from './SidebarM';
+import SidebarM from './Sidebar';
 
 function Statistique() {
 
