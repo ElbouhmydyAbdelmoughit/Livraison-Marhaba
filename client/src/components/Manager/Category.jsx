@@ -1,15 +1,25 @@
 import React from 'react'
+import { Link, useParams } from 'react-router-dom'
 import Sidebar from '../Sidebar/Sidebar'
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { MdOutlineDashboard, MdOutlineDeliveryDining } from "react-icons/md";
-import { AiOutlineUser } from "react-icons/ai";
-import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+// import { AiOutlineUser } from "react-icons/ai";
+import { MdDeleteOutline } from "react-icons/md";
+import { FiEdit2 } from "react-icons/fi"
 import { BiLogOut, BiUserCircle } from "react-icons/bi";
+import Update from './Update'
 // import Generator from "../../helpes/Generator"
 // import { ToastContainer } from "react-toastify"
 
 function Category() {
+    const {id} = useParams()
+    const [showModal, setShowModal] = useState(false);
+    const [category, setCategory] = useState([])
+    const [name, setName] = useState({
+        name: ""
+    })
+
     const menus = [
         { name: "Dashboard", link: "/statistique", icon: MdOutlineDashboard },
         { name: "Commande", link: "/", icon: MdOutlineDeliveryDining },
@@ -17,51 +27,45 @@ function Category() {
         { name: "Users", link: "/", icon: BiUserCircle },
         { name: "logout", link: "/", icon: BiLogOut, margin: true },
     ];
-    const [showModal, setShowModal] = useState(false);
+    
 
-    const [name, setName] = useState({
-        name: ""
-    })
     const postData = (e) => {
         e.preventDefault()
         axios.post('http://localhost:2000/manager/add-categorie',{
             name
         }).then(()=>{
-            console.log('noooooooooooo')
+            console.log('yessssssssss')
         })
         
     }
 
-    const [category, setCategory] = useState([])
     useEffect(()=> {
         axios.post('http://localhost:2000/manager/findCategorie')
         .then((response)=>{
             setCategory(response.data)
         })
     }, [])
-
-    // const setData = (data) => {
-    //     let{id, name} = data;
-    //     localStorage.setItem('id', id)
-    //     localStorage.setItem('name', name)
-    // }
     
     const onDelete = (id,e) => {
         e.preventDefault()
         axios.delete(`http://localhost:2000/manager/deleteCategorie/${id}`)
         .then(()=>{
-            // console.log('deleted success')
             window.location.reload();
             // getData()
         })
 
     }
 
-    const getData = () => {
-        axios.get('http://localhost:2000/manager/findCategorie')
-        .then((getData) => {
-            setCategory(getData.data)
-        })
+    // const getData = () => {
+    //     axios.get('http://localhost:2000/manager/findCategorie')
+    //     .then((getData) => {
+    //         setCategory(getData.data)
+    //     })
+    // }
+
+    const update =(id) => {
+        // console.log(id)
+        props.history.push("/Update"+id)
     }
 
     return (
@@ -74,7 +78,7 @@ function Category() {
                     <div className="bg-white py-7">
                         <div className="flex items-center justify-between py-4">
                             <h1 className="ml-2 text-xl font-bold">Category</h1>
-                            <input type="text" id="table-search-users" className="block w-40 p-2 pl-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search For meal" />
+                            {/* <input type="text" id="table-search-users" className="block w-40 p-2 pl-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search For meal" /> */}
                             <button className="flex px-4 py-1 mr-4 font-bold text-white border-2 rounded-md bg-amber-500 hover:text-amber-500 hover:bg-white border-amber-500">
                                 {/* <IoIosAdd size={26} className="pt-1" /> */}
                                 <button type='button' onClick={() => setShowModal(true)}>Add Category</button>
@@ -93,8 +97,20 @@ function Category() {
                                         <td className="w-4 p-4">{data.name}</td>
                                         <td className="w-4 p-4 text-gray-500">
                                             <div className='flex justify-evenly'>
-                                                <button type='button'  className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
-                                                <button type='button' onClick={(e) => onDelete(data._id,e)} className='text-xl hover:text-amber-500'><AiOutlineDelete /></button>
+                                            {/* <Link
+                                                to={{
+                                                    pathname: `/Update/${id}`,
+                                                    state: data.name
+                                                }}
+                                                className='text-xl hover:text-amber-500'
+                                                id=""
+                                                ><FiEdit2 /></Link> */}
+                                                <Link to={``}>
+                                                    <button type='button' 
+                                                    onClick={(e) => update(data._id, e)}
+                                                    className='text-xl hover:text-amber-500 '><FiEdit2 /></button>
+                                                </Link>
+                                                <button type='button' onClick={(e) => onDelete(data._id,e)} className='text-2xl text-red-400 '><MdDeleteOutline /></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -121,6 +137,7 @@ function Category() {
                                             <div className='mt-2'>
                                                 <label htmlFor="categorie" className='block mb-1 text-sm font-medium text-gray-900'>Categorie</label>
                                                 <input type="text" name="categorie" id="categorie" placeholder="Categorie"
+                                                // value={name}
                                                 onChange={(e) => setName (e.target.value)}
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
                                             </div>
