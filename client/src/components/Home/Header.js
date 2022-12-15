@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "../../assets/images/logo.png";
 import {Link} from "react-router-dom"
-
+import {AiOutlineShopping} from 'react-icons/ai'
 
 export default function Header() {
   return (
@@ -14,7 +14,8 @@ export default function Header() {
             alt="Marhaba logo"
           />
         </a>
-        <div className="flex md:order-2">
+        <div className="flex justify-center items-center gap-x-8 md:order-2">
+          <AiOutlineShopping className='text-2xl text-amber-500'/>
           <Link to={"/Login"}>
             <p className="btn text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-amber-400 dark:hover:bg-amber-600 dark:focus:ring-amber-700">
               Login
