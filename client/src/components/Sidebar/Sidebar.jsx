@@ -16,7 +16,7 @@ function Sidebar(props) {
   
   return (
     <div className={`${open ? "w-72" : "w-16"} duration-500 bg-gray-50 min-h-screen text-amber-500 relative px-3`}>
-      <div className="flex justify-end py-3" style={{height: '10%'}}>
+      <div className="flex justify-end py-3" style={{height: '8%'}}>
         <HiMenuAlt3
           size={26}
           className="cursor-pointer"
