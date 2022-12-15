@@ -24,15 +24,16 @@ const addProduit = async (req, res) => {
     const categorie = await Categorie.findOne({name: body.categorie})
     if (!categorie) throw Error("Invalid Category")
     let images = []
-    req.files.forEach(e=>{
-        images.push(e.filename)
-    })
-    const add_produit = await Produit.create({
-        ...body,
-        categorie: categorie._id,
-        image: images
-    })
-    res.json({message: `Repas ${add_produit.title} is added`})
+    res.send(body.image)
+    // req.files.forEach(e=>{
+    //     images.push(e.filename)
+    // })
+    // const add_produit = await Produit.create({
+    //     ...body,
+    //     categorie: categorie._id,
+    //     image: images
+    // })
+    // res.json({message: `Repas ${add_produit.title} is added`})
 }
 
 const updatProduit = async (req, res) => {
