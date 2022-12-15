@@ -16,7 +16,7 @@ function Sidebar(props) {
   
   return (
     <div className={`${open ? "w-72" : "w-16"} duration-500 bg-gray-50 min-h-screen text-amber-500 relative px-3`}>
-      <div className="flex justify-end py-3" style={{height: '15%'}}>
+      <div className="flex justify-end py-3" style={{height: '10%'}}>
         <HiMenuAlt3
           size={26}
           className="cursor-pointer"
@@ -25,7 +25,7 @@ function Sidebar(props) {
       </div>
       {/* <img src={foodIcon} alt ="Marhaba" className="border-red-600 cursor-pointer top-9" /> */}
 
-      <div className="relative flex flex-col gap-4 mt-4" style={{height: '80%'}}>
+      <div className="relative flex flex-col gap-4 mt-4" style={{height: '85%'}}>
         {menus?.map((menu, i) => (
           <Link
             to={menu?.link}
