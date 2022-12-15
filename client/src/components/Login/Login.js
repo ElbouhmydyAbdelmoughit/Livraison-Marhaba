@@ -9,11 +9,11 @@ import { useEffect } from "react";
 export default function Login() {
   const location = useLocation();
   useEffect(() => {
-    if(location.state) Generator("success", location.state.message);
+    if (location.state) Generator("success", location.state.message);
   }, []);
   let email = "";
   let password = "";
-  if (location.state){
+  if (location.state) {
     email = location.state.email;
     password = location.state.password;
   }
@@ -52,7 +52,9 @@ export default function Login() {
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-4xl font-bold text-center text-amber-500">Sign in</h1>
+            <h1 className="text-4xl font-bold text-center text-amber-500">
+              Sign in
+            </h1>
             <form onSubmit={onSubmit} className="space-y-4 md:space-y-6">
               <div>
                 <label

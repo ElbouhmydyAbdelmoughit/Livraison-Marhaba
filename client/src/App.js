@@ -9,9 +9,8 @@ import Register from "./components/Register/Register";
 // import Reset from "./components/Reset/Reset";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormForgotPassword from "./components/FormForgotPassword/FormForgotPassword";
-import Produit from "./components/Manager/Produit"
+import Produit from "./components/Manager/Produit";
 import Category from "./components/Manager/Category";
-import Update from "./components/Manager/Update";
 import Statistique from "./components/Manager/Statistique"
 import Manager from "./components/Manager/Manager"
 import Livreur from "./components/Livreur/Livreur";
@@ -24,7 +23,8 @@ import RolePrivateRoutes from "./components/PrivateRoutes/RolePrivateRoutes";
 import UserPrivateRoutes from "./components/PrivateRoutes/UserPrivateRoutes";
 
 import { Provider } from "react-redux";
-import store from "./redux/store/store";
+import store from "./store";
+import Cart from "./components/Cart/Cart";
 
 const App = () => {
   window.addEventListener("storage", () => {
@@ -53,7 +53,7 @@ const App = () => {
         {/* User manager */}
         {/* <Provider store={store}> */}
         <Route element={<AuthPrivateRoutes />}>
-          <Route element={<RolePrivateRoutes role='manager' />}>
+          <Route element={<RolePrivateRoutes role="manager" />}>
             <Route path="/Statistique" element={<Statistique />} />
             <Route path="/Produit" element={<Produit />} />
             <Route path="/Category" element={<Category />} />
@@ -63,6 +63,7 @@ const App = () => {
           {/* User client */}
           <Route element={<RolePrivateRoutes role="client" />}>
             <Route path="Client" element={<Client />} />
+            <Route path="Cart" element={<Cart />} />
           </Route>
           {/* User livreur */}
           <Route element={<RolePrivateRoutes role="livreur" />}>

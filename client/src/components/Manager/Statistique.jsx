@@ -1,11 +1,8 @@
 import React from 'react'
-import Sidebar from '../Sidebar/Sidebar'
 import axios from 'axios'
 import { AiOutlineUser } from "react-icons/ai";
-import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
-import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import { useState, useEffect } from "react"
-import { MdOutlineDashboard, MdOutlineDeliveryDining } from "react-icons/md";
+import SidebarM from './Sidebar';
 
 function Statistique() {
 
@@ -30,17 +27,9 @@ function Statistique() {
     { name: "Produit", number: statistique.produit, icon: '' }
   ];
 
-  const menus = [
-    { name: "Dashboard", link: "/statistique", icon: MdOutlineDashboard },
-    { name: "Commande", link: "/", icon: MdOutlineDeliveryDining },
-    { name: "Payement", link: "/", icon: MdOutlineDeliveryDining },
-    { name: "Users", link: "/", icon: BiUserCircle },
-    { name: "logout", link: "/", icon: BiLogOut, margin: true },
-  ];
-
   return (
     <div className="flex w-screen">
-      <Sidebar menus={menus} />
+      <SidebarM />
       <main className="w-full h-screen">
         <div className="flex flex-wrap px-5 mt-9">
           {card?.map((card, i) => (

@@ -1,25 +1,15 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
 import Sidebar from '../Sidebar/Sidebar'
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { MdOutlineDashboard, MdOutlineDeliveryDining } from "react-icons/md";
-// import { AiOutlineUser } from "react-icons/ai";
-import { MdDeleteOutline } from "react-icons/md";
-import { FiEdit2 } from "react-icons/fi"
+import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { BiLogOut, BiUserCircle } from "react-icons/bi";
-import Update from './Update'
 // import Generator from "../../helpes/Generator"
 // import { ToastContainer } from "react-toastify"
 
 function Category() {
-    const {id} = useParams()
-    const [showModal, setShowModal] = useState(false);
-    const [category, setCategory] = useState([])
-    const [name, setName] = useState({
-        name: ""
-    })
-
     const menus = [
         { name: "Dashboard", link: "/statistique", icon: MdOutlineDashboard },
         { name: "Commande", link: "/", icon: MdOutlineDeliveryDining },
@@ -27,8 +17,11 @@ function Category() {
         { name: "Users", link: "/", icon: BiUserCircle },
         { name: "logout", link: "/", icon: BiLogOut, margin: true },
     ];
-    
+    const [showModal, setShowModal] = useState(false);
 
+    const [name, setName] = useState({
+        name: ""
+    })
     const postData = (e) => {
         e.preventDefault()
         axios.post('http://localhost:2000/manager/add-categorie',{
@@ -72,7 +65,7 @@ function Category() {
 
         
         <div className="flex w-screen">
-            <Sidebar menus={menus} />
+            <SidebarM />
             <main className="w-full h-screen">
                 <div className="relative w-full h-screen p-5 shadow-md overflw-x-auto sm:rounded-lg">
                     <div className="bg-white py-7">
