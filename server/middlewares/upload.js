@@ -6,10 +6,10 @@ const storage = multer.diskStorage({
     cb(null, './public/upload');
   },
   filename: function (req, file, cb) {
+    console.log(file)
     cb(null, Date.now()+path.extname(file.originalname));
   }
 });
-
 
 module.exports = multer({
   storage: storage,
