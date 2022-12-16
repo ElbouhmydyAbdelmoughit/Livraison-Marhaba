@@ -4,7 +4,7 @@ import logo from "../../assets/images/logo.png";
 import {HiMenuAlt3} from "react-icons/hi"
 
 const Cart = () => {
-  const test = true
+  const test = false
   return (
     (test)? 
     <div>
