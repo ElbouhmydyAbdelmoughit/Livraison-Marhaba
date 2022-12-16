@@ -38,21 +38,17 @@ const addProduit = async (req, res) => {
 const updatProduit = async (req, res) => {
     const {body} = req
     const id = req.params.id
-    res.send(body)
-    // if(!id || !body.title || !body.description || !body.price || !body.categorie) throw Error('Fill the all fields to add meal')
-    // const categorie = await Categorie.findOne({name: body.categorie})
-    // if (!categorie) throw Error("Invalid Category")
-    // const add_produit = await Produit.updateOne({
-    //     ...body,
-    //     categorie: categorie._id
-    // })
-    // const update_produit = await Categorie.findByIdAndUpdate(
-    //     id, {
-    //         ...body,
-    //         categorie: categorie._id
-    //     }
-    //   );
-    // res.json({message: `Repas ${add_produit.title} is updated`, update_produit})
+    if(!id || !body.title || !body.description || !body.price || !body.categorie) throw Error('Fill the all fields to add meal')
+    const categorie = await Categorie.findOne({name: body.categorie})
+    if (!categorie) throw Error("Invalid Category")
+    const update_produit = await Produit.findByIdAndUpdate(
+        id, {
+            ...body,
+            categorie: categorie._id
+        }
+    )
+    if(!update_produit) throw Error('Error, try again')
+    res.json({message: `Repas ${body.title} is updated`, update_produit})
 }
 
 const deletProduit = async (req, res) => {
@@ -62,8 +58,8 @@ const deletProduit = async (req, res) => {
     if(!find_produit) throw Error('Error, Product not found')
     const delet_produit = await Produit.findByIdAndUpdate(id, { status: status });
     if(!delet_produit) throw Error ('Error, Product is not deleted')
-    if(status) res.json({message: 'delete successfully'})
-    if(!status) res.json({message: 'reset successfully'})
+    if(find_produit.status) res.json({message: 'delete successfully'})
+    if(!find_produit.status) res.json({message: 'reset successfully'})
 }
 
 
