@@ -31,15 +31,27 @@ function Produit() {
         const value = e.target.value;
         setAddProduit({ ...add_produit, [e.target.name]: value });
     }
+    // 
     const onChangeFile = (e) => {
-        const file = e.target.files;
-        setAddProduit({ ...add_produit, [e.target.name]: file });
+        const value = e.target.files[0];
+        setAddProduit({ ...add_produit, [e.target.name]: value })
     }
     const addProduit = async (e) => {
-        e.preventDefault();
-        const produit_add = await axios.post(`${process.env.REACT_APP_API_URL}/manager/add-produit`, add_produit)
-        console.log(produit_add.data)
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append('title', add_produit.title)
+        formData.append('categorie', add_produit.categorie)
+        formData.append('description', add_produit.description)
+        formData.append('price', add_produit.price)
+        formData.append('image', add_produit.image)
+        const produit_add = await axios.post(`${process.env.REACT_APP_API_URL}/manager/add-produit`, formData)
+        if (produit_add.data.message) {
+            Generator("success", produit_add.data.message)
+            window.location.reload(false);
+        }
+        else Generator("error", produit_add.data)
     }
+    // 
     const deletProduit = async (id, status, e) => {
         e.preventDefault()
         const delete_produit = await axios.delete(`${process.env.REACT_APP_API_URL}/manager/delet-produit/${id}/${status}`)
@@ -139,7 +151,7 @@ function Produit() {
                                                     <svg aria-hidden="true" className="w-10 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                                                     <p className="text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                                 </div>
-                                                <input type="file" onChange={onChangeFile} name="image" id="dropzone-file" className="hidden" />
+                                                <input type="file" onChange={onChangeFile} name="image" id="dropzone-file" accept=".png, .jpg, .jpeg" className="hidden" />
                                             </label>
                                         </div>
                                     </div>
