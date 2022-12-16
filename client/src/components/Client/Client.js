@@ -10,7 +10,7 @@ export default function Client() {
   const menus = [
     { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
     { name: "Produit", link: "/", icon: AiOutlineShoppingCart },
-    { name: "Cart", link: "/", icon: AiOutlineShopping },
+    { name: "Cart", link: "/Cart", icon: AiOutlineShopping },
     { name: "Historique", link: "/", icon: FaHistory },
     { name: "Logout", link: "/", icon: BiLogOut, margin: true },
   ];
