@@ -12,7 +12,9 @@ function Produit() {
     const [produit, setProduit] = useState([])
     const [categorie, setCategorie] = useState([])
     const [showModal, setShowModal] = useState(false)
-    const [add_produit, setAddProduit] = useState({})
+    const [showModalEdit, setShowModalEdit] = useState(false)
+    const [add_produit, setAddProduit] = useState({'title':'', 'categorie':'', 'description':'', 'price':''})
+    const [edit_produit, setEditProduit] = useState({'title':'', 'categorie':'', 'description':'', 'price':''})
 
     useEffect(() => {
         try {
@@ -29,9 +31,12 @@ function Produit() {
     }
     const onChange = (e) => {
         const value = e.target.value;
-        setAddProduit({ ...add_produit, [e.target.name]: value });
+        setAddProduit({ ...add_produit, [e.target.name]: value })
     }
-    // 
+    const onChangeEdit = (e) => {
+        const value = e.target.value;
+        setEditProduit({ ...edit_produit, [e.target.name]: value })
+    }
     const onChangeFile = (e) => {
         const value = e.target.files[0];
         setAddProduit({ ...add_produit, [e.target.name]: value })
@@ -47,17 +52,27 @@ function Produit() {
         const produit_add = await axios.post(`${process.env.REACT_APP_API_URL}/manager/add-produit`, formData)
         if (produit_add.data.message) {
             Generator("success", produit_add.data.message)
-            window.location.reload(false);
+            setShowModal(false)
+            setTimeout(() => { window.location.reload(false) }, "1000")
         }
         else Generator("error", produit_add.data)
     }
-    // 
+    const editProduit = async (e) => {
+        e.preventDefault()
+        const produit_edit = await axios.put(`${process.env.REACT_APP_API_URL}/manager/updat-produit/${edit_produit._id}`, edit_produit)
+        if (produit_edit.data.message) {
+            Generator("success", produit_edit.data.message)
+            setShowModalEdit(false)
+            setTimeout(() => { window.location.reload(false) }, "1000")
+        }
+        else Generator("error", produit_edit.data)
+    }
     const deletProduit = async (id, status, e) => {
         e.preventDefault()
         const delete_produit = await axios.delete(`${process.env.REACT_APP_API_URL}/manager/delet-produit/${id}/${status}`)
         if (delete_produit.data.message) {
             Generator("success", delete_produit.data.message)
-            window.location.reload(false);
+            setTimeout(() => { window.location.reload(false) }, "1000")
         }
         else Generator("error", delete_produit.data)
     }
@@ -95,7 +110,7 @@ function Produit() {
                                         <td className="w-4 p-4">{p.price} DH</td>
                                         <td className={`w-4 p-4 text-gray-500 ${!(p.status) ? 'hidden' : ''}`}>
                                             <div className='flex justify-evenly'>
-                                                <button type='button' className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
+                                                <button type='button' onClick={() => {setEditProduit(p);setShowModalEdit(true)}} className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
                                                 <button type='button' onClick={(e) => deletProduit(p._id, false, e)} className='text-xl hover:text-amber-500'><AiOutlineDelete /></button>
                                             </div>
                                         </td>
@@ -157,6 +172,50 @@ function Produit() {
                                     </div>
                                     <div className="flex items-center justify-center p-4 border-t border-solid rounded-b border-slate-200">
                                         <button type="submit" className="flex px-4 py-1 font-bold text-white border-2 rounded-md bg-amber-500 hover:text-amber-500 hover:bg-white border-amber-500">Add Meal</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : null}
+            {showModalEdit ? (
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+                    <div className="relative w-auto max-w-3xl mx-auto my-6">
+                        <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+                            <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200 ">
+                                <h3 className="text-3xl font-semibold">Edite meal</h3>
+                                <button className="float-right p-1 ml-8 text-3xl font-semibold leading-none text-gray-300 bg-transparent border-0 outline-none opacity-1 focus:outline-none" onClick={() => setShowModalEdit(false)}>
+                                    <span className="block w-6 h-6 text-2xl text-gray-300 outline-none focus:outline-none hover:text-amber-500">x</span>
+                                </button>
+                            </div>
+                            <div className="relative flex-auto px-6 py-2">
+                                <form onSubmit={editProduit} className="text-lg leading-relaxed text-slate-500">
+                                    <div className="flex flex-col">
+                                        <div>
+                                            <label htmlFor="title" className='block mb-1 text-sm font-medium text-gray-900'>Title</label>
+                                            <input type="text" value={edit_produit.title} onChange={onChangeEdit} name="title" id="title" placeholder="Title" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                                        </div>
+                                        <div className='mt-2'>
+                                            <label htmlFor="categorie" className='block mb-1 text-sm font-medium text-gray-900'>Categorie</label>
+                                            <select value={edit_produit.categorie} onChange={onChangeEdit} name="categorie" id="categorie" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                                <option value=''>Select categorie</option>
+                                                {categorie.map((c, i) => (
+                                                    <option value={c.name}>{c.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className='mt-2'>
+                                            <label htmlFor="description" className='block mb-1 text-sm font-medium text-gray-900'>Description</label>
+                                            <input type="text" value={edit_produit.description} onChange={onChangeEdit} name="description" id="description" placeholder="Description" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                                        </div>
+                                        <div className='mt-2'>
+                                            <label htmlFor="price" className='block mb-1 text-sm font-medium text-gray-900'>Price</label>
+                                            <input type="text" value={edit_produit.price} onChange={onChangeEdit} name="price" id="price" placeholder="Price" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" />
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center justify-center p-4 border-t border-solid rounded-b border-slate-200">
+                                        <button type="submit" className="flex px-4 py-1 font-bold text-white border-2 rounded-md bg-amber-500 hover:text-amber-500 hover:bg-white border-amber-500">Edit Meal</button>
                                     </div>
                                 </form>
                             </div>
