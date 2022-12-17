@@ -11,7 +11,7 @@ const tryCatch = require('../middlewares/tryCatch');
 const errorHandller = require('../middlewares/errorHandller');
 
 // Route of statistique
-router.get('/', tryCatch(statistiqueControllers.Statistique));
+router.get('/', tryCatch(statistiqueControllers.StatistiqueManager));
 router.get('/get-user', tryCatch(userControllers.getUser));
 // Routes of produit
 router.get('/produit', tryCatch(produitControllers.getProduit));
