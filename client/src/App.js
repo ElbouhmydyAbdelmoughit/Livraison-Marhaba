@@ -23,9 +23,8 @@ import RolePrivateRoutes from "./components/PrivateRoutes/RolePrivateRoutes";
 import UserPrivateRoutes from "./components/PrivateRoutes/UserPrivateRoutes";
 
 import { Provider } from "react-redux";
-import store from "./app/store";
 import Cart from "./components/Cart/Cart";
-
+import store from "./store";
 const App = () => {
   window.addEventListener("storage", () => {
     axios
@@ -40,6 +39,8 @@ const App = () => {
   });
 
   return (
+    
+      <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}/>
@@ -60,10 +61,8 @@ const App = () => {
           </Route> 
           {/* User client */} 
           <Route element={<RolePrivateRoutes role="client" />}>
-            <Provider store={store}>
               <Route path="Client" element={<Client />} />
               <Route path="Cart" element={<Cart />} /> 
-            </Provider> 
           </Route> 
           {/* User livreur */} 
           <Route element={<RolePrivateRoutes role="livreur" />}>
@@ -74,6 +73,8 @@ const App = () => {
         <Route path="*" element={<ERROR404 />} /> 
       </Routes> 
     </BrowserRouter>
+        </Provider>
+   
   );
 };
 
