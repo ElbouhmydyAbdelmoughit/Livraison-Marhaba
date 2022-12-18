@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const managerRoutes = require("./routes/managerRoutes");
 const livreurRoutes = require("./routes/livreurRoutes");
 const clientRoutes = require("./routes/clientRoutes");
+const commandeRouter = require('./routes/commandRoutes')
 
 // Connection to database
 require("./config/db");
@@ -21,6 +22,7 @@ app.use("/api/auth", authRoutes);
 app.use("/manager", managerRoutes);
 app.use("/livreur", livreurRoutes);
 app.use("/client", clientRoutes);
+app.use('/add-to-cart', commandeRouter)
 
 app.all("*", (req, res) => {
   res.send("Page not found");
