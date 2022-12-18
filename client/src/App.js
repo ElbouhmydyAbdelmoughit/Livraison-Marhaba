@@ -78,7 +78,7 @@ const App = () => {
         <Route path="*" element={<ERROR404 />} /> 
       </Routes> 
     </BrowserRouter>
-        </Provider>
+  </Provider>
    
   );
 };
