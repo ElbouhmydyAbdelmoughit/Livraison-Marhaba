@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { AiOutlineUser } from "react-icons/ai";
 import { useState, useEffect } from "react"
-import SidebarM from './Sidebar';
+import Sidebar from './Sidebar';
 
 function Statistique() {
 
@@ -29,7 +29,7 @@ function Statistique() {
 
   return (
     <div className="flex w-screen">
-      <SidebarM />
+      <Sidebar />
       <main className="w-full h-screen">
         <div className="flex flex-wrap px-5 mt-9">
           {card?.map((card, i) => (

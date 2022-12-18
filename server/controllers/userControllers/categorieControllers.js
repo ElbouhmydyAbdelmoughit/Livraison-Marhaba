@@ -64,4 +64,4 @@ module.exports = {
   findCategorie,
   updateCategorie,
   deleteCategorie,
-};
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
-import SidebarM from './Sidebar';
+import Sidebar from './Sidebar';
 
 // import Generator from "../../helpes/Generator"
 // import { ToastContainer } from "react-toastify"
@@ -60,7 +60,7 @@ function Category() {
 
         
         <div className="flex w-screen">
-            <SidebarM />
+            <Sidebar />
             <main className="w-full h-screen">
                 <div className="relative w-full h-screen p-5 shadow-md overflw-x-auto sm:rounded-lg">
                     <div className="bg-white py-7">
