@@ -6,7 +6,7 @@ export default function Product() {
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg w-full h-screen">
         <div className="flex justify-between items-center py-4 bg-white dark:bg-gray-800">
             <div className="ml-2">
-                <h1>Hello Client</h1>
+                <h1>Meals</h1>
             </div>
             <div className="relative mr-4">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>

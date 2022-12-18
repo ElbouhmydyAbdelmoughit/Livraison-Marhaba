@@ -12,12 +12,12 @@ const Status = db.status;
 const User = db.user;
 
 
-const getCommand = async (req, res) => {
-    const payement = await Command.find()
+const getPayment = async (req, res) => {
+    const payement = await Payement.find()
 
     res.send(payement)
 }
 
 module.exports = {
-    getCommand
+    getPayment
 }
