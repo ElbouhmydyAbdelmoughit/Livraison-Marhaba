@@ -6,7 +6,7 @@ const AuthPrivateRoutes = () => {
   if(localStorage.getItem('username')) {var username = true}
   if(localStorage.getItem('role')) {var role = true}
 
-  const url = `/login`
+  const url = `/`
 
   return (
     (token && email && role && username) ? <Outlet/> : <Navigate to={url}/>
