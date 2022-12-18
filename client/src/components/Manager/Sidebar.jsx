@@ -5,10 +5,11 @@ import { BiUserCircle } from "react-icons/bi";
 export default function SidebarM() {
     const menus = [
         { name: "Dashboard", link: "/statistique", icon: MdOutlineDashboard },
-        { name: "Commande", link: "/", icon: MdOutlineDeliveryDining },
-        { name: "Payement", link: "/", icon: MdOutlineDeliveryDining },
-        { name: "Users", link: "/", icon: BiUserCircle },
-    ];
+        { name: "Command", link: "/command", icon: MdOutlineDeliveryDining },
+        { name: "Payement", link: "/payement", icon: MdOutlineDeliveryDining },
+        { name: "Users", link: "/user", icon: BiUserCircle },
+    ]
+    
   return (
     <Sidebar menus={menus}/>
   )
