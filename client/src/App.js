@@ -13,6 +13,7 @@ import Produit from "./components/Manager/Produit";
 import Category from "./components/Manager/Category";
 import Statistique from "./components/Manager/Statistique";
 import Payment from "./components/Manager/payment";
+import Command from "./components/Manager/Command";
 import Manager from "./components/Manager/Manager";
 import Livreur from "./components/Livreur/Livreur";
 import Client from "./components/Client/Client";
@@ -59,6 +60,7 @@ const App = () => {
             <Route path="/Produit" element={<Produit />} />
             <Route path="/Category" element={<Category />} />
             <Route path="/Payment" element={<Payment />} />
+            <Route path="/Command" element={<Command />} />
             <Route path="/Manager" element={<Manager />} />
           </Route>
           {/* User client */}

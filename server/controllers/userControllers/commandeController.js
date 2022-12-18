@@ -11,14 +11,13 @@ const Role = db.role;
 const Status = db.status;
 const User = db.user;
 
-const getCommand = async()=>{
 
+const getCommand = async (req, res) => {
+    const payement = await Command.find()
+
+    res.send(payement)
 }
-const addCommand = async()=>{
-    const addedProduct = Produit.findById(req.params.produit)
 
-    Command.save(addedProduct)
-}
-const updateCommand = async()=>{
-
+module.exports = {
+    getCommand
 }

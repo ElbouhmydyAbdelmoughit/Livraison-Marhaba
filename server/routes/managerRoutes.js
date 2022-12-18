@@ -8,6 +8,7 @@ const userControllers = require('../controllers/userControllers/userControllers'
 const produitControllers = require('../controllers/userControllers/produitControllers');
 const categorieControllers = require('../controllers/userControllers/categorieControllers');
 const paymentControllers = require('../controllers/userControllers/paymentControllers');
+const commandeController = require('../controllers/userControllers/commandeController');
 const tryCatch = require('../middlewares/tryCatch');
 const errorHandller = require('../middlewares/errorHandller');
 
@@ -25,9 +26,10 @@ router.post('/add-categorie', tryCatch(categorieControllers.addCategorie));
 router.post('/findCategorie', tryCatch(categorieControllers.findCategorie));
 router.put('/updateCategorie/:id', tryCatch(categorieControllers.updateCategorie));
 router.delete('/deleteCategorie/:id', tryCatch(categorieControllers.deleteCategorie));
-
 // Routes of payment
 router.get('/payment', tryCatch(paymentControllers.getPayment));
+// Routes of command
+router.get('/command', tryCatch(commandeController.getCommand));
 
 // Error handller
 router.use(errorHandller)
