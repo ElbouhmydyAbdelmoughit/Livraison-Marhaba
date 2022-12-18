@@ -6,7 +6,7 @@ import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { BiReset } from "react-icons/bi";
 import Generator from "../../helpes/Generator"
 import { ToastContainer } from "react-toastify"
-import SidebarM from './Sidebar';
+import Sidebar from './Sidebar';
 
 function Produit() {
     const [produit, setProduit] = useState([])
@@ -79,7 +79,7 @@ function Produit() {
 
     return (
         <div className="flex w-screen">
-            <SidebarM />
+            <Sidebar />
             <main className="w-full h-screen">
                 <div className="relative w-full h-screen p-5 shadow-md overflw-x-auto sm:rounded-lg">
                     <div className="bg-white py-7">
