@@ -57,7 +57,7 @@ export default function Repas() {
               <p className="mt-1 text-lg font-medium text-gray-900">{p.title}</p>
                 <BsCartPlus />
               </div>
-              <p className="mt-1 text-sm">{p.categorie[0].name}</p>
+              {/* <p className="mt-1 text-sm">{p.categorie[0].name}</p> */}
               <p className="mt-1 text-sm text-gray-900">{p.description}</p>
               <p className="mt-1 text-lg font-medium text-gray-900">{p.price} DH</p>
             </a>
