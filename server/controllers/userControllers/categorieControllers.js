@@ -26,36 +26,21 @@ const addCategorie = async (req, res) => {
     const category = await Categorie.create({
       name: name,
     });
-    if (category) res.send(category);
     if (!category) res.send("Error, you can to add user");
+    if (category) res.json({message: `category ${category.name} is added`});
   }
 };
 
-const findCategorie = async (req, res) => {
-  const findUser = await Categorie.find();
-  if (!findUser) res.send("Error");
-  res.json(findUser);
-};
-
-const findOneCategorie = async (req, res) => {
-  const id = req.params.id
-  const findOneUser = await Categorie.findOne({_id:id})
-  if(!findOneUser) res.send('"Error')
-  res.json(findOneUser)
-}
-
 const updateCategorie = async (req, res) => {
-  const user = await Categorie.findById(req.params.id);
-  if (!user) throw Error("User not found");
-
-  const update_user = await Categorie.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    {
-      new: true,
-    }
-  );
-  res.json(update_user);
+  const id = req.params.id
+  const name = req.body.name
+  if (!name) res.send("content can not be empty");
+  const find_categorie = await Categorie.findById(id);
+  if (!find_categorie) throw Error("User not found");
+  const second_categorie = await Categorie.findOne({name: name})
+  if (second_categorie) throw Error(`${name} is already existed`);
+  const update_user = await Categorie.findByIdAndUpdate({_id: id}, {name: name});
+  res.json({message: `Categorie ${name} is updated`});
 };
 
 const deleteCategorie = async (req, res) => {
@@ -68,8 +53,6 @@ const deleteCategorie = async (req, res) => {
 module.exports = {
   getCategorie,
   addCategorie,
-  findCategorie,
-  findOneCategorie,
   updateCategorie,
   deleteCategorie,
 }

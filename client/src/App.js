@@ -10,7 +10,6 @@ import Register from "./components/Register/Register";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormForgotPassword from "./components/FormForgotPassword/FormForgotPassword";
 import Produit from "./components/Manager/Produit";
-import Update from "./components/Manager/Update";
 import Category from "./components/Manager/Category";
 import Statistique from "./components/Manager/Statistique";
 import Manager from "./components/Manager/Manager";
