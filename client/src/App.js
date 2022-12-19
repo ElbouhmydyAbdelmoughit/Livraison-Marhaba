@@ -10,6 +10,7 @@ import Register from "./components/Register/Register";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormForgotPassword from "./components/FormForgotPassword/FormForgotPassword";
 import Produit from "./components/Manager/Produit";
+import Update from "./components/Manager/Update";
 import Category from "./components/Manager/Category";
 import Statistique from "./components/Manager/Statistique"
 import Manager from "./components/Manager/Manager"
@@ -57,7 +58,7 @@ const App = () => {
             <Route path="/Statistique" element={<Statistique />} />
             <Route path="/Produit" element={<Produit />} />
             <Route path="/Category" element={<Category />} />
-            <Route path="/Update" element={<Update />} />
+            <Route path="/Update/:id" element={<Update />} />
             <Route path="Manager" element={<Manager />} />
           </Route>
           {/* User client */}

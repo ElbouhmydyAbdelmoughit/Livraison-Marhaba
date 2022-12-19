@@ -22,6 +22,7 @@ router.delete('/delet-produit/:id/:status', tryCatch(produitControllers.deletPro
 router.get('/categorie', tryCatch(categorieControllers.getCategorie));
 router.post('/add-categorie', tryCatch(categorieControllers.addCategorie));
 router.post('/findCategorie', tryCatch(categorieControllers.findCategorie));
+router.get('/findOneCategorie/:id', tryCatch(categorieControllers.findOneCategorie));
 router.put('/updateCategorie/:id', tryCatch(categorieControllers.updateCategorie));
 router.delete('/deleteCategorie/:id', tryCatch(categorieControllers.deleteCategorie));
 // Error handller

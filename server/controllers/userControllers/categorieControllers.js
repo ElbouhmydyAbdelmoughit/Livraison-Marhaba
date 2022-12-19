@@ -37,6 +37,13 @@ const findCategorie = async (req, res) => {
   res.json(findUser);
 };
 
+const findOneCategorie = async (req, res) => {
+  const id = req.params.id
+  const findOneUser = await Categorie.findOne({_id:id})
+  if(!findOneUser) res.send('"Error')
+  res.json(findOneUser)
+}
+
 const updateCategorie = async (req, res) => {
   const user = await Categorie.findById(req.params.id);
   if (!user) throw Error("User not found");
@@ -62,6 +69,7 @@ module.exports = {
   getCategorie,
   addCategorie,
   findCategorie,
+  findOneCategorie,
   updateCategorie,
   deleteCategorie,
 };
