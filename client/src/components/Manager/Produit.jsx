@@ -6,7 +6,7 @@ import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { BiReset } from "react-icons/bi";
 import Generator from "../../helpes/Generator"
 import { ToastContainer } from "react-toastify"
-import Sidebar from './Sidebar';
+import Sidebar from './Sidebar'
 
 function Produit() {
     const [produit, setProduit] = useState([])
