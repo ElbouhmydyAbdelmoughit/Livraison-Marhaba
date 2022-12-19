@@ -14,7 +14,7 @@ const errorHandller = require('../middlewares/errorHandller');
 
 // Route of statistique
 router.get('/', tryCatch(statistiqueControllers.StatistiqueManager));
-router.get('/get-user', tryCatch(userControllers.getUser));
+router.get('/get-users', tryCatch(userControllers.getUser));
 // Routes of produit
 router.get('/produit', tryCatch(produitControllers.getProduit));
 router.post('/add-produit', upload.any('image'), tryCatch(produitControllers.addProduit));

@@ -15,8 +15,9 @@ const Status = db.status;
 const User = db.user;
 
 const getUser = async (req, res) => {
-    const get_users = await User.find()
-    res.json(get_users)
+    const get_users = await User.find().populate('roles')
+    let getUser = get_users.filter(role => role.roles[0].name == 'client' || role.roles[0].name == 'livreur')
+    res.json(getUser)
 }
 
 const resetPassword = async (req, res) => {
