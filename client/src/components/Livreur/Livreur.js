@@ -4,12 +4,13 @@ import { IoIosAdd } from "react-icons/io";
 import Generator from "../../helpes/Generator";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
-import env from "react-dotenv";
+// import env from "react-dotenv";
 
 export default function Livreur() {
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  let [users,setUsers]= useState([])
   const data = { username, email };
   console.log("username :" + username, "email :" + email);
   const handleSubmit = (e) => {
@@ -26,9 +27,17 @@ export default function Livreur() {
         console.log(err);
       });
   };
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/manager/get-users`)
+    .then((res)=>{
+        setUsers(users = res.data)
+    })
+    .catch((err)=>{
+      Generator('error'.err.message)
+    })
   return (
-    <div className="overflow-x-auto relative shadow-md sm:rounded-lg w-full h-screen">
-      <div className="flex justify-between items-center py-4 bg-white dark:bg-gray-800">
+    <div className="overflow-x-auto relative shadow-md sm:rounded-lg w-full h-screen px-3">
+      <div className="flex justify-between items-center py-4 bg-white dark:bg-gray-800 ">
         <div className="ml-2">
           <h1>Bonjour Admin</h1>
         </div>
@@ -71,10 +80,10 @@ export default function Livreur() {
               </div>
             </th>
             <th scope="col" className="py-3 px-6">
-              Name
+              Name & Email
             </th>
             <th scope="col" className="py-3 px-6">
-              Position
+              Role
             </th>
             <th scope="col" className="py-3 px-6">
               Status
@@ -84,6 +93,7 @@ export default function Livreur() {
             </th>
           </tr>
         </thead>
+        {users.map((user,i)=>(
         <tbody>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <td className="p-4 w-4">
@@ -108,189 +118,34 @@ export default function Livreur() {
               alt="image"
             /> */}
               <div className="pl-3">
-                <div className="text-base font-semibold">Neil Sims</div>
+                <div className="text-base font-semibold">{user.username}</div>
                 <div className="font-normal text-gray-500">
-                  neil.sims@flowbite.com
+                  {user.email}
                 </div>
               </div>
             </th>
-            <td className="py-4 px-6">React Developer</td>
+            <td className="py-4 px-6">{user.roles[0].name}</td>
             <td className="py-4 px-6">
+            {user.status?(
               <div className="flex items-center">
                 <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>{" "}
-                Online
+                Authorizde
               </div>
-            </td>
-            <td className="py-4 px-6">
-              {/* <!-- Modal toggle --> */}
-              Edit user
-            </td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <td className="p-4 w-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-2"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label htmlFor="checkbox-table-search-2" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th
-              scope="row"
-              className="flex items-center py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              {/* <img
-              className="w-10 h-10 rounded-full"
-              src={foodIcon}
-              alt="image"
-            /> */}
-              <div className="pl-3">
-                <div className="text-base font-semibold">Bonnie Green</div>
-                <div className="font-normal text-gray-500">
-                  bonnie@flowbite.com
-                </div>
-              </div>
-            </th>
-            <td className="py-4 px-6">Designer</td>
-            <td className="py-4 px-6">
-              <div className="flex items-center">
-                <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>{" "}
-                Online
-              </div>
-            </td>
-            <td className="py-4 px-6">
-              {/* <!-- Modal toggle --> */}
-              Edit user
-            </td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <td className="p-4 w-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-2"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label htmlFor="checkbox-table-search-2" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th
-              scope="row"
-              className="flex items-center py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              {/* <img
-              className="w-10 h-10 rounded-full"
-              src=""
-              alt="Jese image"
-            /> */}
-              <div className="pl-3">
-                <div className="text-base font-semibold">Jese Leos</div>
-                <div className="font-normal text-gray-500">
-                  jese@flowbite.com
-                </div>
-              </div>
-            </th>
-            <td className="py-4 px-6">Vue JS Developer</td>
-            <td className="py-4 px-6">
-              <div className="flex items-center">
-                <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>{" "}
-                Online
-              </div>
-            </td>
-            <td className="py-4 px-6">
-              {/* <!-- Modal toggle --> */}
-              Edit user
-            </td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <td className="p-4 w-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-2"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label htmlFor="checkbox-table-search-2" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th
-              scope="row"
-              className="flex items-center py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              {/* <img
-              className="w-10 h-10 rounded-full"
-              src={foodIcon}
-              alt="Jese image"
-            /> */}
-              <div className="pl-3">
-                <div className="text-base font-semibold">Thomas Lean</div>
-                <div className="font-normal text-gray-500">
-                  thomes@flowbite.com
-                </div>
-              </div>
-            </th>
-            <td className="py-4 px-6">UI/UX Engineer</td>
-            <td className="py-4 px-6">
-              <div className="flex items-center">
-                <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>{" "}
-                Online
-              </div>
-            </td>
-            <td className="py-4 px-6">
-              {/* <!-- Modal toggle --> */}
-              Edit user
-            </td>
-          </tr>
-          <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <td className="p-4 w-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-3"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label htmlFor="checkbox-table-search-3" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th
-              scope="row"
-              className="flex items-center py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              {/* <img
-              className="w-10 h-10 rounded-full"
-              src={foodIcon}
-              alt="Jese image"
-            /> */}
-              <div className="pl-3">
-                <div className="text-base font-semibold">Leslie Livingston</div>
-                <div className="font-normal text-gray-500">
-                  leslie@flowbite.com
-                </div>
-              </div>
-            </th>
-            <td className="py-4 px-6">SEO Specialist</td>
-            <td className="py-4 px-6">
+              ): (
               <div className="flex items-center">
                 <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
-                Offline
+                Blocked
               </div>
+              )}
             </td>
             <td className="py-4 px-6">
               {/* <!-- Modal toggle --> */}
-              Edit user
+              <button className="btn border bg-red-600 text-white rounded px-2 py-1 font-semibold hover: border-red-600 hover:bg-white hover:text-red-600">Banne user</button>
             </td>
+           
           </tr>
         </tbody>
+        ))}
       </table>
       {showModal ? (
         <>
