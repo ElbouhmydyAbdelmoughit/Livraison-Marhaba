@@ -1,9 +1,8 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
-import { AiOutlineShopping } from "react-icons/ai";
-// import MailIcon from '@mui/icons-material/Mail';
-// import { Badge } from "@mui/material/Badge";
+import { FaShoppingBag } from "react-icons/fa";
+import  Badge  from "@mui/material/Badge";
 
 
 export default function Header() {
@@ -15,7 +14,9 @@ export default function Header() {
         </a>
         <div className="flex justify-center items-center gap-x-8 md:order-2">
           <Link to={"/Cart"}>
-            <AiOutlineShopping className="text-2xl text-amber-500 hover:text-black" />
+            <Badge badgeContent={4} color="error">
+            <FaShoppingBag className="text-2xl text-black hover:text-amber-500" />
+          </Badge>
           </Link>
           <Link to={"/Login"}>
             <p className="btn text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-amber-400 dark:hover:bg-amber-600 dark:focus:ring-amber-700">
