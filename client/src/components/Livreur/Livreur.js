@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+// import { useParams } from "react-router-dom";
 import { IoIosAdd } from "react-icons/io";
 import Generator from "../../helpes/Generator";
 import { ToastContainer } from "react-toastify";
@@ -10,9 +11,9 @@ export default function Livreur() {
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  let [users,setUsers]= useState([])
+  let [users, setUsers] = useState([]);
+
   const data = { username, email };
-  console.log("username :" + username, "email :" + email);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("data: " + data);
@@ -29,12 +30,23 @@ export default function Livreur() {
   };
   axios
     .get(`${process.env.REACT_APP_API_URL}/manager/get-users`)
-    .then((res)=>{
-        setUsers(users = res.data)
+    .then((res) => {
+      setUsers((users = res.data));
     })
-    .catch((err)=>{
-      Generator('error'.err.message)
-    })
+    .catch((err) => {
+      Generator("error".err.message);
+    });
+
+  const handleBan = (e) => {
+    const id = e.target.value;
+    e.preventDefault();
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/manager/user/${id}`)
+      .then((res) => {})
+      .catch((err) => {
+        Generator("error".err.message);
+      });
+  };
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg w-full h-screen px-3">
       <div className="flex justify-between items-center py-4 bg-white dark:bg-gray-800 ">
@@ -56,10 +68,7 @@ export default function Livreur() {
       </div>
       <div className="flex justify-between items-center py-4 bg-white dark:bg-gray-800 ">
         <h3 className="ml-2">Le tableau des livreurs</h3>
-        <button
-          className="bg-amber-500 flex text-white mr-4 px-4 py-1 rounded-md font-bold hover:text-amber-500 hover:bg-white border-2 border-amber-500"
-          onClick={() => setShowModal(true)}
-        >
+        <button className="bg-amber-500 flex text-white mr-4 px-4 py-1 rounded-md font-bold hover:text-amber-500 hover:bg-white border-2 border-amber-500" onClick={() => setShowModal(true)}>
           <IoIosAdd size={26} className="pt-1" />
           <span>Ajouter</span>
         </button>
@@ -93,58 +102,47 @@ export default function Livreur() {
             </th>
           </tr>
         </thead>
-        {users.map((user,i)=>(
-        <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <td className="p-4 w-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-table-search-1"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </td>
-            <th
-              scope="row"
-              className="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              {/* <img
-              src={foodIcon}
-              className="w-10 h-10 rounded-full"
-              alt="image"
-            /> */}
-              <div className="pl-3">
-                <div className="text-base font-semibold">{user.username}</div>
-                <div className="font-normal text-gray-500">
-                  {user.email}
+        {users.map((user, i) => (
+          <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <td className="p-4 w-4">
+                <div className="flex items-center">
+                  <input
+                    id="checkbox-table-search-1"
+                    type="checkbox"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  />
+                  <label htmlFor="checkbox-table-search-1" className="sr-only">
+                    checkbox
+                  </label>
                 </div>
-              </div>
-            </th>
-            <td className="py-4 px-6">{user.roles[0].name}</td>
-            <td className="py-4 px-6">
-            {user.status?(
-              <div className="flex items-center">
-                <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>{" "}
-                Authorizde
-              </div>
-              ): (
-              <div className="flex items-center">
-                <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
-                Blocked
-              </div>
-              )}
-            </td>
-            <td className="py-4 px-6">
-              {/* <!-- Modal toggle --> */}
-              <button className="btn border bg-red-600 text-white rounded px-2 py-1 font-semibold hover: border-red-600 hover:bg-white hover:text-red-600">Banne user</button>
-            </td>
-           
-          </tr>
-        </tbody>
+              </td>
+              <th scope="row" className="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
+                <div className="pl-3">
+                  <div className="text-base font-semibold">{user.username}</div>
+                  <div className="font-normal text-gray-500">{user.email}</div>
+                </div>
+              </th>
+              <td className="py-4 px-6">{user.roles[0].name}</td>
+              <td className="py-4 px-6">
+                <div className="flex items-center">
+                  <div className={(user.status && "h-2.5 w-2.5 rounded-full bg-green-400 mr-2") || "h-2.5 w-2.5 rounded-full bg-red-500 mr-2"}></div> {(user.status && "Authorizde") || "Blocked"}
+                </div>
+              </td>
+              <td className="py-4 px-6">
+                <button
+                  value={user._id}
+                  onClick={handleBan}
+                  className={
+                    (user.status && "btn border bg-red-600 text-white rounded px-2 py-1 font-semibold hover: border-red-600 hover:bg-white hover:text-red-600") ||
+                    "btn border bg-green-600 text-white rounded px-2 py-1 font-semibold hover: border-green-600 hover:bg-white hover:text-green-600"
+                  }
+                >
+                  {(user.status && "Banne user") || "Unbanne user"}
+                </button>
+              </td>
+            </tr>
+          </tbody>
         ))}
       </table>
       {showModal ? (
@@ -155,30 +153,21 @@ export default function Livreur() {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t ">
-                  <h3 className="text-3xl font-semibold">
-                    Ajouter un nouveau Livreur
-                  </h3>
+                  <h3 className="text-3xl font-semibold">Ajouter un nouveau Livreur</h3>
                   <button
                     className="p-1 bg-transparent border-0 text-gray-300 opacity-1 float-right text-3xl leading-none font-semibold outline-none focus:outline-none ml-8"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className=" text-gray-300 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      x
-                    </span>
+                    <span className=" text-gray-300 h-6 w-6 text-2xl block outline-none focus:outline-none">x</span>
                   </button>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <form
-                    className="my-4 text-slate-500 text-lg leading-relaxed"
-                    onSubmit={handleSubmit}
-                  >
+                  <form className="my-4 text-slate-500 text-lg leading-relaxed" onSubmit={handleSubmit}>
                     <div className="flex flex-col">
                       <div>
                         <label htmlFor="prenom" className="mb-2">
-                          <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
-                            Prenom
-                          </span>
+                          <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">Prenom</span>
                         </label>
                         <input
                           type="text"
@@ -193,9 +182,7 @@ export default function Livreur() {
 
                       <div>
                         <label htmlFor="email" className="mb-2">
-                          <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
-                            Email
-                          </span>
+                          <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">Email</span>
                         </label>
                         <input
                           type="email"
