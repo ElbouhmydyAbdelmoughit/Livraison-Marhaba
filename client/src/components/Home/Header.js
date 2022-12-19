@@ -2,6 +2,9 @@ import React from "react";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { AiOutlineShopping } from "react-icons/ai";
+// import MailIcon from '@mui/icons-material/Mail';
+// import { Badge } from "@mui/material/Badge";
+
 
 export default function Header() {
   return (
