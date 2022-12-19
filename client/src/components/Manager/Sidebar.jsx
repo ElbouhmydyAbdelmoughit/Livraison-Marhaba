@@ -1,15 +1,18 @@
 import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
-import { MdOutlineDashboard, MdOutlineDeliveryDining } from "react-icons/md";
-import { BiLogOut, BiUserCircle } from "react-icons/bi";
+import { MdOutlineDashboard, MdOutlineDeliveryDining, MdOutlineNoMeals, MdOutlineCategory, MdOutlinePayment } from "react-icons/md";
+import {TfiStatsUp} from "react-icons/tfi"
+import { BiUserCircle } from "react-icons/bi";
 export default function SidebarM() {
     const menus = [
-        { name: "Dashboard", link: "/statistique", icon: MdOutlineDashboard },
-        { name: "Commande", link: "/", icon: MdOutlineDeliveryDining },
-        { name: "Payement", link: "/", icon: MdOutlineDeliveryDining },
-        { name: "Users", link: "/", icon: BiUserCircle },
-        { name: "logout", link: "/", icon: BiLogOut, margin: true },
-    ];
+        { name: "Statistique", link: "/statistique", icon: TfiStatsUp },
+        { name: "Command", link: "/Command", icon: MdOutlineDeliveryDining },
+        { name: "Payement", link: "/payement", icon: MdOutlinePayment },
+        { name: "Livreur", link: "/Livreur", icon: BiUserCircle },
+        { name: "Produit", link: "/Produit", icon: MdOutlineNoMeals },
+        { name: "Category", link: "/Category", icon: MdOutlineCategory },
+    ]
+    
   return (
     <Sidebar menus={menus}/>
   )

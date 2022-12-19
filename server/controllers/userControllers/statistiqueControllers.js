@@ -14,7 +14,7 @@ const Role = db.role;
 const Status = db.status;
 const User = db.user;
 
-const Statistique = async (req, res) => {
+const StatistiqueManager = async (req, res) => {
     const user = await User.aggregate([
         { $group: { _id: null, sum: { $count: {} } } }
     ])
@@ -30,7 +30,6 @@ const Statistique = async (req, res) => {
     const produit = await Produit.aggregate([
         { $group: { _id: null, sum: { $count: {} } } }
     ])
-
     let n_user = 0
     let n_command = 0
     let n_payement = 0
@@ -52,5 +51,37 @@ const Statistique = async (req, res) => {
     })
 }
 
+const StatistiqueLivreur = async (req, res) => {
+    const command = await Command.aggregate([
+        { $group: { _id: null, sum: { $count: {} } } }
+    ])
 
-module.exports = {Statistique}
+    let command_livreur = 0
+
+    if(command_livreur.length === 0) {command_livreur = 0} else {command_livreur = command[0].sum}
+
+    res.json({
+        command: command_livreur
+    })
+}
+
+const StatistiqueClient = async (req, res) => {
+    const command = await Command.aggregate([
+        { $group: { _id: null, sum: { $count: {} } } }
+    ])
+
+    let command_client = 0
+
+    if(command_client.length === 0) {command_client = 0} else {command_client = command[0].sum}
+
+    res.json({
+        command: command_client
+    })
+}
+
+
+module.exports = {
+    StatistiqueManager,
+    StatistiqueLivreur,
+    StatistiqueClient
+}

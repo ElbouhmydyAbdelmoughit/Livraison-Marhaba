@@ -12,8 +12,8 @@ import FormForgotPassword from "./components/FormForgotPassword/FormForgotPasswo
 import Produit from "./components/Manager/Produit";
 import Update from "./components/Manager/Update";
 import Category from "./components/Manager/Category";
-import Statistique from "./components/Manager/Statistique"
-import Manager from "./components/Manager/Manager"
+import Statistique from "./components/Manager/Statistique";
+import Manager from "./components/Manager/Manager";
 import Livreur from "./components/Livreur/Livreur";
 import Client from "./components/Client/Client";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
@@ -24,9 +24,8 @@ import RolePrivateRoutes from "./components/PrivateRoutes/RolePrivateRoutes";
 import UserPrivateRoutes from "./components/PrivateRoutes/UserPrivateRoutes";
 
 import { Provider } from "react-redux";
-import store from "./store";
 import Cart from "./components/Cart/Cart";
-
+import store from "./store";
 const App = () => {
   window.addEventListener("storage", () => {
     axios
@@ -41,10 +40,12 @@ const App = () => {
   });
 
   return (
+    
+      <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Auth */}
+        <Route path="/" element={<Home />}/>
+         {/* Auth */}
         <Route element={<UserPrivateRoutes />}>
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />
@@ -52,30 +53,29 @@ const App = () => {
           <Route path="Form-Forgot-Password" element={<FormForgotPassword />} />
         </Route>
         {/* User manager */}
-        {/* <Provider store={store}> */}
         <Route element={<AuthPrivateRoutes />}>
           <Route element={<RolePrivateRoutes role="manager" />}>
             <Route path="/Statistique" element={<Statistique />} />
-            <Route path="/Produit" element={<Produit />} />
+            <Route path="/Produit" element={<Produit />} /> 
             <Route path="/Category" element={<Category />} />
-            <Route path="/Update/:id" element={<Update />} />
             <Route path="Manager" element={<Manager />} />
           </Route>
           {/* User client */}
           <Route element={<RolePrivateRoutes role="client" />}>
-            <Route path="Client" element={<Client />} />
-            <Route path="Cart" element={<Cart />} />
-          </Route>
-          {/* User livreur */}
+              <Route path="Client" element={<Client />} />
+              <Route path="Cart" element={<Cart />} /> 
+          </Route> 
+          {/* User livreur */} 
           <Route element={<RolePrivateRoutes role="livreur" />}>
-            <Route path="Livreur" element={<Livreur />} />
-          </Route>
-          <Route path="Reset-Password" element={<ResetPassword />} />
-        </Route>
-        {/* </Provider> */}
-        <Route path="*" element={<ERROR404 />} />
-      </Routes>
+            <Route path="Livreur" element={<Livreur />} /> 
+          </Route> 
+          <Route path="Reset-Password" element={<ResetPassword />} /> 
+        </Route> 
+        <Route path="*" element={<ERROR404 />} /> 
+      </Routes> 
     </BrowserRouter>
+  </Provider>
+   
   );
 };
 

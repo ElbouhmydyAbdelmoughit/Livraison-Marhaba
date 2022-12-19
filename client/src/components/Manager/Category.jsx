@@ -3,12 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import Sidebar from '../Sidebar/Sidebar'
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { MdOutlineDashboard, MdOutlineDeliveryDining } from "react-icons/md";
-// import { AiOutlineUser } from "react-icons/ai";
-import { MdDeleteOutline } from "react-icons/md";
-import { FiEdit2 } from "react-icons/fi"
-import { BiLogOut, BiUserCircle } from "react-icons/bi";
-import Update from './Update'
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import SidebarM from './Sidebar';
+
 // import Generator from "../../helpes/Generator"
 // import { ToastContainer } from "react-toastify"
 
@@ -68,7 +65,7 @@ function Category() {
 
         
         <div className="flex w-screen">
-            <Sidebar menus={menus} />
+            <SidebarM />
             <main className="w-full h-screen">
                 <div className="relative w-full h-screen p-5 shadow-md overflw-x-auto sm:rounded-lg">
                     <div className="bg-white py-7">
