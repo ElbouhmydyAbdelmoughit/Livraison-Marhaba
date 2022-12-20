@@ -33,18 +33,23 @@ function Command() {
                                     <th scope="col" className="px-6 py-3">Client</th>
                                     <th scope="col" className="px-6 py-3">Livreur</th>
                                     <th scope="col" className="px-6 py-3">Produit</th>
+                                    <th scope="col" className="px-6 py-3">quantite</th>
+                                    <th scope="col" className="px-6 py-3">Price</th>
+                                    <th scope="col" className="px-6 py-3">Total</th>
                                     <th scope="col" className="px-6 py-3">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {command.map((p, i) => (
+                                {/* {command.map((p, i) => (
                                     <tr className="bg-white border-b hover:bg-gray-50" key={i}>
-                                        {/* <td className="w-4 p-4">{p.client}</td>
+                                        <td className="w-4 p-4">{p.client}</td>
                                         <td className="w-4 p-4">{p.livreur}</td>
-                                        <td className="w-4 p-4">{p.produit}</td>
-                                        <td className="w-4 p-4">{p.status}</td> */}
+                                        <td className="w-4 p-4">{p.Quantite}</td>
+                                        <td className="w-4 p-4">{p.price}</td>
+                                        <td className="w-4 p-4">{p.total}</td>
+                                        <td className="w-4 p-4">{p.status}</td>
                                     </tr>
-                                ))}
+                                ))} */}
                             </tbody>
                         </table>
                     </div>
