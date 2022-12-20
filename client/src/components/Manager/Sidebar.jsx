@@ -6,11 +6,11 @@ import { BiUserCircle } from "react-icons/bi";
 export default function SidebarM() {
     const menus = [
         { name: "Statistique", link: "/statistique", icon: TfiStatsUp },
-        { name: "Command", link: "/Command", icon: MdOutlineDeliveryDining },
-        { name: "Payement", link: "/payement", icon: MdOutlinePayment },
-        { name: "Livreur", link: "/Livreur", icon: BiUserCircle },
+        { name: "Users", link: "/Users", icon: BiUserCircle },
         { name: "Produit", link: "/Produit", icon: MdOutlineNoMeals },
         { name: "Category", link: "/Category", icon: MdOutlineCategory },
+        { name: "Command", link: "/Command", icon: MdOutlineDeliveryDining },
+        { name: "Payement", link: "/Payement", icon: MdOutlinePayment },
     ]
     
   return (
