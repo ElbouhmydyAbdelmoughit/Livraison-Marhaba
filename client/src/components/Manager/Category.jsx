@@ -2,6 +2,7 @@ import React from 'react'
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai"
+import { BiReset } from "react-icons/bi"
 import Sidebar from './Sidebar'
 
 import Generator from "../../helpes/Generator"
@@ -34,8 +35,7 @@ function Category() {
         else Generator("error", add_categorie.data)
     }
     
-    const onDelete = async (id,e) => {
-        e.preventDefault()
+    const onDelete = async (id) => {
         const delete_categorie = await axios.delete(`http://localhost:2000/manager/deleteCategorie/${id}`)
         if (delete_categorie.data.message) {
             Generator("success", delete_categorie.data.message)
@@ -83,10 +83,15 @@ function Category() {
                                 {category.map((data, i) => (
                                     <tr className="bg-white border-b hover:bg-gray-50" key={i}>
                                         <td className="w-4 p-4">{data.name}</td>
-                                        <td className="w-4 p-4 text-gray-500">
+                                        <td className={`w-4 p-4 text-gray-500  ${!(data.status) ? 'hidden' : ''}`}>
                                             <div className='flex justify-evenly'>
-                                                <button type='button' button onClick={() => {setUpdatName(data);setUpdatModal(true)}} className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
-                                                <button type='button' onClick={(e) => onDelete(data._id,e)} className='text-xl hover:text-amber-500'><AiOutlineDelete /></button>
+                                                <button type='button' onClick={() => {setUpdatName(data);setUpdatModal(true)}} className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
+                                                <button type='button' onClick={(e) => {e.preventDefault(); onDelete(data._id)}} className='text-xl hover:text-amber-500'><AiOutlineDelete /></button>
+                                            </div>
+                                        </td>
+                                        <td className={`w-4 p-4 text-gray-500 ${(data.status) ? 'hidden' : ''}`}>
+                                            <div className='flex justify-evenly'>
+                                                <button type='button' onClick={(e) => {e.preventDefault();  onDelete(data._id)}} className='text-xl hover:text-amber-500'><BiReset /></button>
                                             </div>
                                         </td>
                                     </tr>
