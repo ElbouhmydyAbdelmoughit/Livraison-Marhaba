@@ -24,8 +24,9 @@ const addProduit = async (req, res) => {
     const categorie = await Categorie.findOne({name: body.categorie})
     if (!categorie) throw Error("Invalid Category")
     let images = []
+    const url = req.protocol + '://' + req.get('host')
     req.files.forEach(e=>{
-        images.push(e.filename)
+        images.push(url + '/public/' + e.filename)
     })
     const add_produit = await Produit.create({
         ...body,
