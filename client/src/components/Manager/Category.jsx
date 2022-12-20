@@ -3,7 +3,6 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai"
 import Sidebar from './Sidebar'
-
 import Generator from "../../helpes/Generator"
 import { ToastContainer } from "react-toastify"
 
