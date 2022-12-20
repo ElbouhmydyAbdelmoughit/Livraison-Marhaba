@@ -66,7 +66,7 @@ function Category() {
                     <div className="bg-white py-7">
                         <div className="flex items-center justify-between py-4">
                             <h1 className="ml-2 text-xl font-bold">Category</h1>
-                            <input type="text" id="table-search-users" className="block w-40 p-2 pl-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search For meal" />
+                            {/* <input type="text" id="table-search-users" className="block w-40 p-2 pl-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search For meal" /> */}
                             <button className="flex px-4 py-1 mr-4 font-bold text-white border-2 rounded-md bg-amber-500 hover:text-amber-500 hover:bg-white border-amber-500">
                                 {/* <IoIosAdd size={26} className="pt-1" /> */}
                                 <button type='button' onClick={() => setShowModal(true)}>Add Category</button>
