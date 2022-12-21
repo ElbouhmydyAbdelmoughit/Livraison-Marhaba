@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 export default function Repas() {
   const [data, setData] = useState([]);
   const [produit, setProduit] = useState([]);
+  const [images, setImages] = useState([]);
 
   const handleClick = (product) => {
     data.push(product);
@@ -41,7 +42,9 @@ export default function Repas() {
           {produit.map((p) => (
             <a key={p.id} href={p.href} className="group" onClick={handleClick}>
               <div className="aspect-w-1 aspect-h-1 w-full h-72 overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-                <img source={{uri: p.image}} alt={p.image} className="h-full w-full object-cover object-center group-hover:opacity-75" />
+                <img 
+                src={process.env.REACT_APP_API_URL+'/'+p.image}
+                alt={p.image} className="h-full w-full object-cover object-center group-hover:opacity-75" />
               </div>
               <div className="flex mt-4 justify-between">
                 <p className="mt-1 text-lg font-medium text-gray-900">{p.title}</p>
