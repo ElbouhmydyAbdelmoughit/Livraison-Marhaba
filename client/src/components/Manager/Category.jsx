@@ -56,7 +56,6 @@ function Category() {
         else Generator("error", update_categorie.data)
     }
 
-
     return (
         <div className="flex w-screen">
             <Sidebar />
