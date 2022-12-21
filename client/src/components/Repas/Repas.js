@@ -6,8 +6,10 @@ import ananas from "../../assets/images/ananas.jpg";
 import axios from "axios";
 import { BsCartPlus } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Repas() {
+
   const [data, setData] = useState([]);
   const [produit, setProduit] = useState([]);
   const [images, setImages] = useState([]);
@@ -33,6 +35,12 @@ export default function Repas() {
     setProduit(get_produit.data.produit);
   };
 
+  const dispatch = useDispatch()
+
+  const Send = (e) =>{
+    console.log(e)
+  } 
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -48,7 +56,7 @@ export default function Repas() {
               </div>
               <div className="flex mt-4 justify-between px-3">
                 <p className="mt-1 text-lg font-medium text-gray-900">{p.title}</p>
-                <BsCartPlus />
+                <BsCartPlus onClick={() => Send(p)} style={{fontSize:"1.7rem", cursor:"pointer"}} className="hover:text-amber-500"/>
               </div>
               {/* <p className="mt-1 text-sm">{p.categorie[0].name}</p> */}
               <p className="mt-1 text-sm text-gray-900 px-3">{p.description}</p>

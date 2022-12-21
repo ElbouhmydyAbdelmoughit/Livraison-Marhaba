@@ -6,8 +6,14 @@ import {RiSecurePaymentLine} from 'react-icons/ri'
 // import delivery from '../../assets/images/deliveryman.jpg'
 // import mobile from '../../assets/images/mobile.jpg'
 import Repas from '../Repas/Repas'
+import {useSelector} from "react-redux"
+
 
 export default function Hero() {
+
+  const getData = useSelector((state) => state.cartreducer)
+  console.log(getData)
+
   return (
     <div className='pt-12'>
       <p className='text-center font-bold text-4xl' id='about'>About</p>
