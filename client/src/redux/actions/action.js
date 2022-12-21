@@ -1,7 +1,6 @@
-const  ADD = (item)=>{
+export const ADD = (item) => {
   return {
-    type:"ADD_CART",
-    payload:item
+      type: "ADD_CART",
+      payload: item
   }
 }
-export default ADD
