@@ -10,7 +10,8 @@ const Payement = mongoose.model(
         }
       ],
     adresse: String,
-    price: String
+    price: String,
+    mode: String
   })
 );
 
