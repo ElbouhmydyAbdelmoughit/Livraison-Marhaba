@@ -44,11 +44,14 @@ const updateCategorie = async (req, res) => {
 };
 
 const deleteCategorie = async (req, res) => {
-  const user = await Categorie.findById(req.params.id);
-  if (!user) throw Error("your user is not deleted");
-  await user.remove();
-  res.json({ message: "delete successfully" });
-};
+  const id = req.params.id
+  const find_categorie = await Categorie.findById(id)
+  if(!find_categorie) throw Error('Error, Product not found')
+  if(find_categorie.status) await Categorie.findByIdAndUpdate(id, { status: false });
+  if(!find_categorie.status) await Categorie.findByIdAndUpdate(id, { status: true });
+  if(find_categorie.status) res.json({message: 'delete successfully'})
+  if(!find_categorie.status) res.json({message: 'reset successfully'})
+}
 
 module.exports = {
   getCategorie,

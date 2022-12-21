@@ -2,6 +2,7 @@ import React from 'react'
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai"
+import { BiReset } from "react-icons/bi"
 import Sidebar from './Sidebar'
 import Generator from "../../helpes/Generator"
 import { ToastContainer } from "react-toastify"
@@ -33,8 +34,7 @@ function Category() {
         else Generator("error", add_categorie.data)
     }
     
-    const onDelete = async (id,e) => {
-        e.preventDefault()
+    const onDelete = async (id) => {
         const delete_categorie = await axios.delete(`http://localhost:2000/manager/deleteCategorie/${id}`)
         if (delete_categorie.data.message) {
             Generator("success", delete_categorie.data.message)
@@ -65,7 +65,7 @@ function Category() {
                     <div className="bg-white py-7">
                         <div className="flex items-center justify-between py-4">
                             <h1 className="ml-2 text-xl font-bold">Category</h1>
-                            <input type="text" id="table-search-users" className="block w-40 p-2 pl-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search For meal" />
+                            {/* <input type="text" id="table-search-users" className="block w-40 p-2 pl-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search For meal" /> */}
                             <button className="flex px-4 py-1 mr-4 font-bold text-white border-2 rounded-md bg-amber-500 hover:text-amber-500 hover:bg-white border-amber-500">
                                 {/* <IoIosAdd size={26} className="pt-1" /> */}
                                 <button type='button' onClick={() => setShowModal(true)}>Add Category</button>
@@ -82,10 +82,15 @@ function Category() {
                                 {category.map((data, i) => (
                                     <tr className="bg-white border-b hover:bg-gray-50" key={i}>
                                         <td className="w-4 p-4">{data.name}</td>
-                                        <td className="w-4 p-4 text-gray-500">
+                                        <td className={`w-4 p-4 text-gray-500  ${!(data.status) ? 'hidden' : ''}`}>
                                             <div className='flex justify-evenly'>
-                                                <button type='button' button onClick={() => {setUpdatName(data);setUpdatModal(true)}} className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
-                                                <button type='button' onClick={(e) => onDelete(data._id,e)} className='text-xl hover:text-amber-500'><AiOutlineDelete /></button>
+                                                <button type='button' onClick={() => {setUpdatName(data);setUpdatModal(true)}} className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
+                                                <button type='button' onClick={(e) => {e.preventDefault(); onDelete(data._id)}} className='text-xl hover:text-amber-500'><AiOutlineDelete /></button>
+                                            </div>
+                                        </td>
+                                        <td className={`w-4 p-4 text-gray-500 ${(data.status) ? 'hidden' : ''}`}>
+                                            <div className='flex justify-evenly'>
+                                                <button type='button' onClick={(e) => {e.preventDefault();  onDelete(data._id)}} className='text-xl hover:text-amber-500'><BiReset /></button>
                                             </div>
                                         </td>
                                     </tr>
