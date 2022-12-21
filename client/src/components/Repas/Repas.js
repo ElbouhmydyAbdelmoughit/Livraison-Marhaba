@@ -56,7 +56,7 @@ export default function Repas() {
               </div>
               <div className="flex mt-4 justify-between">
                 <p className="mt-1 text-lg font-medium text-gray-900">{p.title}</p>
-                <BsCartPlus onClick={() => Send(p)} style={{fontSize:"1.7rem"}}/>
+                <BsCartPlus onClick={() => Send(p)} style={{fontSize:"1.7rem", cursor:"pointer"}} className="hover:text-amber-500"/>
               </div>
               {/* <p className="mt-1 text-sm">{p.categorie[0].name}</p> */}
               <p className="mt-1 text-sm text-gray-900">{p.description}</p>
