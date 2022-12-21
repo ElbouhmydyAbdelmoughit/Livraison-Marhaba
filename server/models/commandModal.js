@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const ItemSchema = new mongoose.Schema({
+const Command= mongoose.model(
+  "Command",
+  new mongoose.Schema({
   client: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -22,8 +24,13 @@ const ItemSchema = new mongoose.Schema({
     type: Number,
     min:[1, 'Quantity can not be less then 1.']
   },
-  price: Number,
   total: Number,
+  payement:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref: "payements"
+    }
+  ],
   status: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -32,16 +39,6 @@ const ItemSchema = new mongoose.Schema({
   ],
 })
 
-const Command = mongoose.model(
-  "Command",
-  new mongoose.Schema({
-    items:[ItemSchema],
-    subTotal:{
-      default:0,
-      type: Number
-    }
-
-  })
 );
 
 module.exports = Command;
