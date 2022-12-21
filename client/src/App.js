@@ -11,7 +11,7 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import FormForgotPassword from "./components/FormForgotPassword/FormForgotPassword";
 import Produit from "./components/Manager/Produit";
 import Command from "./components/Manager/Command";
-import Payment from "./components/Payment/Payment"
+import Payment from "./components/Manager/Payment";
 import Category from "./components/Manager/Category";
 import Statistique from "./components/Manager/Statistique";
 import Manager from "./components/Manager/Manager";
@@ -56,7 +56,7 @@ const App = () => {
             <Route path="/Statistique" element={<Statistique />} />
             <Route path="/Produit" element={<Produit />} /> 
             <Route path="/Command" element={<Command />} />
-            <Route path="/Payement" element={<Payement />} />
+            <Route path="/Payement" element={<Payment />} />
             <Route path="/Category" element={<Category />} />
             <Route path="/users" element={<Manager />} />
           </Route>
