@@ -200,7 +200,9 @@ function Produit() {
                                             <select value={edit_produit.categorie} onChange={onChangeEdit} name="categorie" id="categorie" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                                                 <option value=''>Select categorie</option>
                                                 {categorie.map((c, i) => (
-                                                    <option value={c.name}>{c.name}</option>
+                                                    <option value={c.name} 
+                                                    selected={(c.name===edit_produit.categorie)?console.log(c.name,edit_produit.categorie):''}
+                                                    >{c.name}</option>
                                                 ))}
                                             </select>
                                         </div>
