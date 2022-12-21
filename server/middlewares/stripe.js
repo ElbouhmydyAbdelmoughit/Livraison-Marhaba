@@ -15,11 +15,11 @@ const stripePayment = async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: 'http://localhost:3000/',
-      cancel_url: 'http://localhost:3000/login',
+      success_url: 'http://localhost:3000/checkout-session',
+      cancel_url: 'http://localhost:3000/Cart',
     });
   
-    res.send(303, session.url);
+    res.send({url:session.url});
   };
 module.exports ={
     stripePayment
