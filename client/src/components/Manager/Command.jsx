@@ -71,10 +71,11 @@ function Command() {
                                         <td className="w-4 p-4">{c.produit[0].title}</td>
                                         <td className="w-4 p-4">{c.quantite}</td>
                                         <td className="w-4 p-4">{c.produit[0].price}</td>
-                                        <td className="w-4 p-4">{(c.produit[0].price)*(c.quantite)}</td>
-                                        <td className="w-4 p-4">{c.status[0].name}</td>
-                                        <td className={`w-4 p-4 ${(c.livreur.length !== 0) ? 'hidden' : ''}`}>
-                                            <div className='font-bold text-red-600 border-2 border-red-600 solide'>NEW</div>
+                                        <td className="w-4 p-4">{(c.produit[0].price) * (c.quantite)}</td>
+                                        <td className="w-4 p-4">
+                                            {(c.livreur.length !== 0) ? c.status[0].name :
+                                                <div className='font-bold text-red-600 border-2 border-red-600 solide'>NEW</div>
+                                            }
                                         </td>
                                     </tr>
                                 ))}
