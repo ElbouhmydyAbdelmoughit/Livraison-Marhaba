@@ -55,11 +55,11 @@ export default function Repas() {
                   alt={p.image}
                 />
               </div>
-              <div className="p-4">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
-                <p className="mb-2 font-normal text-gray-700">{p.description}</p>
-                <p className="mb-2 font-normal text-gray-500">{p.categorie[0].name}</p>
-                <button type="button" className="inline-flex items-center px-3 px-12 py-2 text-white rounded ftext-center ont-medium ptext-sm bg-amber-500">
+              <div className="p-3">
+                <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
+                <p className="mb-1 font-normal text-gray-700">{p.description}</p>
+                <p className="mb-1 font-normal text-gray-500">{p.categorie[0].name}</p>
+                <button type="button" className="inline-flex items-center px-10 py-2 text-center text-white rounded ont-medium ptext-sm bg-amber-500">
                   Add to card
                 </button>
               </div>
