@@ -7,6 +7,7 @@ import axios from "axios";
 import { BsCartPlus } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import {ADD} from "../../redux/actions/action"
 
 export default function Repas() {
   const [data, setData] = useState([]);
@@ -38,9 +39,11 @@ export default function Repas() {
 
   const dispatch = useDispatch();
 
+
   const Send = (e) => {
     console.log(e)
   }
+
 
   return (
     <div className="bg-white">
@@ -60,6 +63,7 @@ export default function Repas() {
               <div className="p-2">
                 <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
                 <p className="flex gap-1 mb-1 font-normal text-gray-700 align-center">Price: <span className="font-bold">{p.price} DH</span></p>
+
                 <p className="mb-1 text-sm text-gray-700">{p.description}</p>
               </div>
               <div className="flex justify-center my-2">
