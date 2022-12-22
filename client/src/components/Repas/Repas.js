@@ -50,7 +50,7 @@ export default function Repas() {
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {produit.map((p) => (
             <div className="bg-white border rounded-lg hover:shadow-md">
-              <div className="w-full overflow-hidden bg-gray-200 rounded-lg aspect-w-1 aspect-h-1 h-72 xl:aspect-w-7 xl:aspect-h-8">
+              <div className="w-full overflow-hidden bg-gray-200 rounded-lg h-52 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
                 <img className="rounded-t-lg hover:opacity-75"
                   src={process.env.REACT_APP_API_URL + '/' + p.image}
                   alt={p.image}
