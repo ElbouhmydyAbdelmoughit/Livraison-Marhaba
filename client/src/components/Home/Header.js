@@ -3,9 +3,14 @@ import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { FaShoppingBag } from "react-icons/fa";
 import  Badge  from "@mui/material/Badge";
+import {useSelector} from "react-redux"
 
 
 export default function Header() {
+  const getData = useSelector((state) => state.cartreducer.carts)
+  console.log(getData)
+
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -14,7 +19,7 @@ export default function Header() {
         </a>
         <div className="flex justify-center items-center gap-x-8 md:order-2">
           <Link to={"/Cart"}>
-            <Badge badgeContent={4} color="error">
+            <Badge badgeContent={getData.length} color="error">
               <FaShoppingBag className="text-2xl text-black hover:text-amber-500" />
             </Badge>
           </Link>
