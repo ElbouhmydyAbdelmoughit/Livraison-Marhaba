@@ -32,6 +32,8 @@ router.delete("/deleteCategorie/:id", tryCatch(categorieControllers.deleteCatego
 router.get("/payment", tryCatch(paymentControllers.getPayment));
 // Routes of command
 router.get("/command", tryCatch(commandeController.getCommand));
+router.post("/assign-command", tryCatch(commandeController.assignCommand));
+router.post("/add-command", tryCatch(commandeController.addCommand));
 
 // Error handller
 router.use(errorHandller);
