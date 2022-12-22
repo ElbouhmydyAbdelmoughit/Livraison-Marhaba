@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function Repas() {
-
   const [data, setData] = useState([]);
   const [produit, setProduit] = useState([]);
   const [images, setImages] = useState([]);
@@ -31,15 +30,17 @@ export default function Repas() {
   }, []);
 
   const getProduit = async () => {
-    const get_produit = await axios.get(`${process.env.REACT_APP_API_URL}/manager/produit`);
+    const get_produit = await axios.get(
+      `${process.env.REACT_APP_API_URL}/manager/produit`
+    );
     setProduit(get_produit.data.produit);
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const Send = (e) => {
+  const Send = (e) =>{
     console.log(e)
-  }
+  } 
 
   return (
     <div className="bg-white">
@@ -63,7 +64,10 @@ export default function Repas() {
                   Add to card
                 </button>
               </div>
-            </div>
+              {/* <p className="mt-1 text-sm">{p.categorie[0].name}</p> */}
+              <p className="mt-1 text-sm text-gray-900 px-3">{p.description}</p>
+              <p className="mt-1 text-lg font-medium text-gray-900 px-3">{p.price} DH</p>
+            </a>
           ))}
         </div>
       </div >
