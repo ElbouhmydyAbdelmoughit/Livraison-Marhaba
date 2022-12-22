@@ -60,14 +60,11 @@ export default function Repas() {
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
                 <p className="mb-2 font-normal text-gray-700">{p.description}</p>
                 <p className="mb-2 font-normal text-gray-500">{p.categorie[0].name}</p>
-                <button type="button" className="inline-flex items-center px-3 px-12 py-2 text-white rounded ftext-center ont-medium ptext-sm bg-amber-500">
+                <button type="button" className="inline-flex items-center px-12 py-2 text-white rounded ftext-center ont-medium ptext-sm bg-amber-500">
                   Add to card
                 </button>
               </div>
-              {/* <p className="mt-1 text-sm">{p.categorie[0].name}</p> */}
-              <p className="mt-1 text-sm text-gray-900 px-3">{p.description}</p>
-              <p className="mt-1 text-lg font-medium text-gray-900 px-3">{p.price} DH</p>
-            </a>
+            </div>
           ))}
         </div>
       </div >
