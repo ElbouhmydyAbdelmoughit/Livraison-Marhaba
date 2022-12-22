@@ -48,7 +48,7 @@ export default function Repas() {
 
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {produit.map((p) => (
-            <div className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md">
+            <div className="bg-white border rounded-lg hover:shadow-md">
               <div className="w-full overflow-hidden bg-gray-200 rounded-lg aspect-w-1 aspect-h-1 h-72 xl:aspect-w-7 xl:aspect-h-8">
                 <img className="rounded-t-lg hover:opacity-75"
                   src={process.env.REACT_APP_API_URL + '/' + p.image}
@@ -59,7 +59,7 @@ export default function Repas() {
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
                 <p className="mb-2 font-normal text-gray-700">{p.description}</p>
                 <p className="mb-2 font-normal text-gray-500">{p.categorie[0].name}</p>
-                <button type="button" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-amber-500">
+                <button type="button" className="inline-flex items-center px-3 px-12 py-2 text-white rounded ftext-center ont-medium ptext-sm bg-amber-500">
                   Add to card
                 </button>
               </div>
