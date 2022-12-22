@@ -52,22 +52,33 @@ const Cart = () => {
           </h1>
         </div>
         <hr/>
-        <div className="products mt-5 ml-5 px-3 py-5" style={{width:"50vw"}}>
+        <div className="products mt-5 ml-5 px-3 py-5">
             {
               mealData.map((meal) => 
-          <div className="product hover:shadow rounded py-5 px-5 my-5 bg-gray-100">
+          <div className="product hover:shadow rounded py-5 px-5 my-5 bg-gray-100" style={{width:"50vw"}}>
                 <div className="product" >
                   <div className="image">
                     <img src={meal.image} alt="" />
                   </div>
                   <div className="title flex flex-col">
                     <p className="font-bold"> {meal.title} </p>
-                    <p className="font-normal flex-wrap"> {meal.description} </p>
+                    <p className="font-normal text-gray-500 flex-wrap"> {meal.description} </p>
+                    <p className="font-bold">Price : {meal.price} DHs</p>
                   </div>
                 </div>
-              
           </div>
             )}
+            <hr />
+            <button className="bg-amber-500 text-white py-2 px-10 rounded my-3"> Commande</button>
+            <table className="hover:table-fixed">
+              <thead>
+                <tr>
+                  <th>Song</th>
+                  <th>Artist</th>
+                  <th>Year</th>
+                </tr>
+              </thead>
+            </table>
         </div>
       </div>
     </div>
@@ -113,11 +124,9 @@ const Cart = () => {
         classNameName="flex flex-col my-auto items-center"
         style={{ width: "100h", height: "100vh" }}
       >
+        
         <img
-          src={image}
-          classNameName="w-48 h-48 mb-4"
-          alt="image for null products"
-        />
+          src={image} classNameName="w-48 h-48 mb-4"/>
         <Link
           to={"/"}
           classNameName="bg-[#f59e0b] rounded-full py-2 px-20 mt-9 font-bold text-white hover:bg-[#000] hover:text-[#f59e0b] "
