@@ -2,9 +2,12 @@ import React from 'react'
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Sidebar from './Sidebar'
+import Generator from "../../helpes/Generator"
+import { ToastContainer } from "react-toastify"
 
 function Command() {
     const [command, setCommand] = useState([])
+    const [livreur, setLivreur] = useState([])
     useEffect(() => {
         try {
             getCommand()
@@ -14,7 +17,18 @@ function Command() {
     }, []);
     const getCommand = async () => {
         const get_command = await axios.get(`${process.env.REACT_APP_API_URL}/manager/command`)
-        setCommand(get_command.data)
+        setCommand(get_command.data.command)
+        setLivreur(get_command.data.livreur)
+    }
+
+    const onChange = async (l, c) => {
+        const assign_command = await axios.post(`${process.env.REACT_APP_API_URL}/manager/assign-command`, { c, l })
+        console.log(assign_command.data)
+        if (assign_command.data.message) {
+            Generator("success", assign_command.data.message)
+            setTimeout(() => { window.location.reload(false) }, "1000")
+        }
+        else Generator("error", assign_command.data)
     }
 
     return (
@@ -33,29 +47,44 @@ function Command() {
                                     <th scope="col" className="px-6 py-3">Client</th>
                                     <th scope="col" className="px-6 py-3">Livreur</th>
                                     <th scope="col" className="px-6 py-3">Produit</th>
-                                    <th scope="col" className="px-6 py-3">quantite</th>
+                                    <th scope="col" className="px-6 py-3">Quantite</th>
                                     <th scope="col" className="px-6 py-3">Price</th>
                                     <th scope="col" className="px-6 py-3">Total</th>
                                     <th scope="col" className="px-6 py-3">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {command.map((p, i) => (
-                                    <tr className="bg-white border-b hover:bg-gray-50" key={i}>
-                                        <td className="w-4 p-4">{p.client}</td>
-                                        <td className="w-4 p-4">{p.livreur}</td>
-                                        <td className="w-4 p-4">{p.Quantite}</td>
-                                        <td className="w-4 p-4">{p.price}</td>
-                                        <td className="w-4 p-4">{p.total}</td>
-                                        <td className="w-4 p-4">{p.status}</td>
+                                {console.log(command)}
+                                {command.map((c, i) => (
+                                    <tr className="bg-white border-b hover:bg-gray-50">
+                                        <td className="w-4 p-4">{c.client[0].username}</td>
+                                        <td className="w-4 p-4">
+                                            {(c.livreur.length !== 0) ? c.livreur[0].username :
+                                                <select className='px-3 py-1 bg-gray-50' onChange={(e) => { onChange(e.target.value, c._id) }} name="id">
+                                                    <option value=''>Select Livreur</option>
+                                                    {livreur.map((l) => (
+                                                        <option value={l._id}>{l.username}</option>
+                                                    ))}
+                                                </select>
+                                            }
+                                        </td>
+                                        <td className="w-4 p-4">{c.produit[0].title}</td>
+                                        <td className="w-4 p-4">{c.quantite}</td>
+                                        <td className="w-4 p-4">{c.produit[0].price}</td>
+                                        <td className="w-4 p-4">{(c.produit[0].price)*(c.quantite)}</td>
+                                        <td className="w-4 p-4">{c.status[0].name}</td>
+                                        <td className={`w-4 p-4 ${(c.livreur.length !== 0) ? 'hidden' : ''}`}>
+                                            <div className='font-bold text-red-600 border-2 border-red-600 solide'>NEW</div>
+                                        </td>
                                     </tr>
-                                ))} */}
+                                ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </main>
-        </div>
+            </main >
+            <ToastContainer />
+        </div >
     )
 }
 

@@ -23,6 +23,7 @@ function Produit() {
             console.log(error)
         }
     }, []);
+    
     const getProduit = async () => {
         const get_produit = await axios.get(`${process.env.REACT_APP_API_URL}/manager/produit`)
         setProduit(get_produit.data.produit)
