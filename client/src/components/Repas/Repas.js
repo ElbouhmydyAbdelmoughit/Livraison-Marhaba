@@ -41,7 +41,7 @@ export default function Repas() {
 
 
   const Send = (e) => {
-    console.log(e)
+    dispatch(ADD(e))
   }
 
 
@@ -67,7 +67,7 @@ export default function Repas() {
                 <p className="mb-1 text-sm text-gray-700">{p.description}</p>
               </div>
               <div className="flex justify-center my-2">
-                <button type="button" className="px-10 py-2 text-center text-white rounded bg-amber-500">Add To Card</button>
+                <button type="button" onClick={() =>Send(p)} className="px-10 py-2 text-center text-white rounded bg-amber-500">Add To Card</button>
               </div>
             </div>
           ))}
