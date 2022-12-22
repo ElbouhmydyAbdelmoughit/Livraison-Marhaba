@@ -5,6 +5,7 @@ import Sidebar from './Sidebar'
 
 function Command() {
     const [command, setCommand] = useState([])
+    const [livreur, setLivreur] = useState([])
     useEffect(() => {
         try {
             getCommand()
@@ -14,7 +15,13 @@ function Command() {
     }, []);
     const getCommand = async () => {
         const get_command = await axios.get(`${process.env.REACT_APP_API_URL}/manager/command`)
-        setCommand(get_command.data)
+        setCommand(get_command.data.command)
+        setLivreur(get_command.data.livreur)
+    }
+
+    const onChange = (e) => {
+        const value = e.target.value;
+        // const get_command = await axios.get(`${process.env.REACT_APP_API_URL}/manager/command`)
     }
 
     return (
@@ -33,29 +40,42 @@ function Command() {
                                     <th scope="col" className="px-6 py-3">Client</th>
                                     <th scope="col" className="px-6 py-3">Livreur</th>
                                     <th scope="col" className="px-6 py-3">Produit</th>
-                                    <th scope="col" className="px-6 py-3">quantite</th>
+                                    <th scope="col" className="px-6 py-3">Quantite</th>
                                     <th scope="col" className="px-6 py-3">Price</th>
                                     <th scope="col" className="px-6 py-3">Total</th>
                                     <th scope="col" className="px-6 py-3">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {command.map((p, i) => (
-                                    <tr className="bg-white border-b hover:bg-gray-50" key={i}>
-                                        <td className="w-4 p-4">{p.client}</td>
-                                        <td className="w-4 p-4">{p.livreur}</td>
-                                        <td className="w-4 p-4">{p.Quantite}</td>
-                                        <td className="w-4 p-4">{p.price}</td>
-                                        <td className="w-4 p-4">{p.total}</td>
-                                        <td className="w-4 p-4">{p.status}</td>
+                                {command.map((c, i) => (
+                                    <tr className="bg-white border-b hover:bg-gray-50">
+                                        <td className="w-4 p-4">{c.client[0].username}</td>
+                                        <td className="w-4 p-4">{(c.livreur) ? c.livreur[0].username :
+                                            <select className='px-3 py-1 bg-gray-50' onChange={onChange} name="id">
+                                                <option value=''>Livreur</option>
+                                                {livreur.map((l) => (
+                                                    <option value={l._id}>{l.username}</option>
+                                                ))}
+                                            </select>
+                                        }</td>
+                                        <td className="w-4 p-4">{c.produit[0].title}</td>
+                                        <td className="w-4 p-4">{c.quantite}</td>
+                                        <td className="w-4 p-4">{c.produit[0].price}</td>
+                                        <td className="w-4 p-4">{c.total}</td>
+                                        <td className="w-4 p-4">{c.status[0].name}</td>
+                                        <td className="w-4 p-4">
+                                            {(c.livreur) ? c.livreur[0].username :
+                                                <div className='font-bold text-red-600 border-2 border-red-600 solide'>NEW</div>
+                                            }
+                                        </td>
                                     </tr>
-                                ))} */}
+                                ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </main>
-        </div>
+            </main >
+        </div >
     )
 }
 
