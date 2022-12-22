@@ -7,6 +7,7 @@ import axios from "axios";
 import { BsCartPlus } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import {ADD} from "../../redux/actions/action"
 
 export default function Repas() {
   const [data, setData] = useState([]);
@@ -38,8 +39,10 @@ export default function Repas() {
 
   const dispatch = useDispatch();
 
-  const Send = (e) =>{
-    console.log(e)
+  const Send = (element) =>{
+    console.log(element)
+
+    dispatch(ADD(element))
   } 
 
   return (
@@ -60,7 +63,9 @@ export default function Repas() {
                 <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
                 <p className="flex gap-1 mb-1 font-normal text-gray-700 align-center">Price: <span className="font-bold">{p.price} DH</span></p>
                 <p className="mb-1 font-normal text-gray-700">{p.description}</p>
-                <button type="button" className="inline-flex items-center px-10 py-2 mt-2 text-white rounded ftext-center ont-medium ptext-sm bg-amber-500">
+                <button type="button" className="inline-flex items-center px-10 py-2 mt-2 text-white rounded ftext-center ont-medium ptext-sm bg-amber-500"
+                onClick={() =>Send(p)}
+                >
                   Add to card
                 </button>
               </div>
