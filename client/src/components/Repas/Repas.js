@@ -39,11 +39,11 @@ export default function Repas() {
 
   const dispatch = useDispatch();
 
-  const Send = (element) =>{
-    console.log(element)
 
-    dispatch(ADD(element))
-  } 
+  const Send = (e) => {
+    console.log(e)
+  }
+
 
   return (
     <div className="bg-white">
@@ -53,21 +53,21 @@ export default function Repas() {
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {produit.map((p) => (
             <div className="bg-white border rounded-lg hover:shadow-md">
-              <div className="w-full overflow-hidden bg-gray-200 rounded-lg h-52 aspect-w-1 aspect-h-1 xl:aspect-w-7 xl:aspect-h-8">
+              <div className="w-full overflow-hidden bg-gray-200 rounded-lg">
                 <img className="rounded-t-lg hover:opacity-75"
+                  style={{ 'background-attachment': 'fixed', 'background-position': 'center', 'background-size': 'cover' }}
                   src={process.env.REACT_APP_API_URL + '/' + p.image}
                   alt={p.image}
                 />
               </div>
-              <div className="p-3">
+              <div className="p-2">
                 <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
                 <p className="flex gap-1 mb-1 font-normal text-gray-700 align-center">Price: <span className="font-bold">{p.price} DH</span></p>
-                <p className="mb-1 font-normal text-gray-700">{p.description}</p>
-                <button type="button" className="inline-flex items-center px-10 py-2 mt-2 text-white rounded ftext-center ont-medium ptext-sm bg-amber-500"
-                onClick={() =>Send(p)}
-                >
-                  Add to card
-                </button>
+
+                <p className="mb-1 text-sm text-gray-700">{p.description}</p>
+              </div>
+              <div className="flex justify-center my-2">
+                <button type="button" className="px-10 py-2 text-center text-white rounded bg-amber-500">Add To Card</button>
               </div>
             </div>
           ))}
