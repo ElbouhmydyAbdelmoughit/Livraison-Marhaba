@@ -1,15 +1,15 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import { FaShoppingBag } from "react-icons/fa";
 import  Badge  from "@mui/material/Badge";
 import {useSelector} from "react-redux"
-
+import {reactLocalStorage} from "reactjs-localstorage"
 
 export default function Header() {
   const getData = useSelector((state) => state.cartreducer.carts)
-  console.log(getData)
-
+  reactLocalStorage.set("mealData",JSON.stringify(getData))
+  console.log(getData.length)
 
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">

@@ -41,7 +41,6 @@ export default function Repas() {
 
 
   const Send = (e) => {
-    // console.log(e)
     dispatch(ADD(e))
   }
 

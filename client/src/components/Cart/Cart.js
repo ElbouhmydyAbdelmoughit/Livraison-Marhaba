@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 import image from '../../assets/images/S1cd1579e3c2b4cc09c24c28ec64581af5.png_.webp'
 import logo from "../../assets/images/logo.png";
 import {HiMenuAlt3} from "react-icons/hi"
+import {reactLocalStorage} from "reactjs-localstorage"
 
 const Cart = () => {
+
+  const mealData = JSON.parse(reactLocalStorage.get('mealData'))
+
   const test = false
   return (
-    (test)? 
+    (mealData.length > 0)? 
     <div>
       <div>
       <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 shadow">
