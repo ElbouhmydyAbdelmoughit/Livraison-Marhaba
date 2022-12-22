@@ -51,7 +51,7 @@ function Command() {
                                     <tr className="bg-white border-b hover:bg-gray-50">
                                         <td className="w-4 p-4">{c.client[0].username}</td>
                                         <td className="w-4 p-4">{(c.livreur) ? c.livreur[0].username :
-                                            <select className='bg-gray-50' onChange={onChange} name="id">
+                                            <select className='px-3 py-1 bg-gray-50' onChange={onChange} name="id">
                                                 <option value=''>Livreur</option>
                                                 {livreur.map((l) => (
                                                     <option value={l._id}>{l.username}</option>
