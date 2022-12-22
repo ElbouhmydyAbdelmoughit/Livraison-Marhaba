@@ -1,12 +1,8 @@
 import React from "react";
-import rice from "../../assets/images/rice.jpg";
-import cake from "../../assets/images/cake.jpg";
-import plate from "../../assets/images/plate.jpg";
-import ananas from "../../assets/images/ananas.jpg";
 import axios from "axios";
-import { BsCartPlus } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import {ADD} from "../../redux/actions/action"
 
 export default function Repas() {
   const [data, setData] = useState([]);
@@ -38,9 +34,11 @@ export default function Repas() {
 
   const dispatch = useDispatch();
 
+
   const Send = (e) => {
-    console.log(e)
+    dispatch(ADD(e))
   }
+
 
   return (
     <div className="bg-white">
@@ -60,10 +58,11 @@ export default function Repas() {
               <div className="px-3 py-2">
                 <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
                 <p className="flex gap-1 mb-1 font-normal text-gray-700 align-center">Price: <span className="font-bold">{p.price} DH</span></p>
+
                 <p className="mb-1 text-sm text-gray-700">{p.description}</p>
               </div>
               <div className="flex justify-center my-2">
-                <button type="button" className="px-10 py-2 text-center text-white rounded bg-amber-500">Add To Card</button>
+                <button type="button" onClick={() =>Send(p)} className="px-10 py-2 text-center text-white rounded bg-amber-500">Add To Card</button>
               </div>
             </div>
           ))}

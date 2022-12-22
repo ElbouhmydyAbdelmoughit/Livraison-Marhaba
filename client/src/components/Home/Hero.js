@@ -2,17 +2,11 @@ import React from 'react'
 import {TbMailFast} from 'react-icons/tb'
 import {IoFastFoodOutline} from 'react-icons/io5'
 import {RiSecurePaymentLine} from 'react-icons/ri'
-// import food from '../../assets/images/mozarela.jpg'
-// import delivery from '../../assets/images/deliveryman.jpg'
-// import mobile from '../../assets/images/mobile.jpg'
 import Repas from '../Repas/Repas'
-import {useSelector} from "react-redux"
+
 
 
 export default function Hero() {
-
-  const getData = useSelector((state) => state.cartreducer)
-  console.log(getData)
 
   return (
     <div className='pt-12'>
@@ -35,29 +29,6 @@ export default function Hero() {
       </div>
       <p className='text-center font-bold text-4xl' id='services'>Services</p>
       <hr className="my-2 mx-auto w-48 h-1 bg-amber-400 rounded border-0 dark:bg-gray-700"></hr>
-      {/* <div className='flex flex-col md:flex-row md:flex-wrap lg:flex-row  md:justify-center items-center gap-x-20 mt-8 gap-y-10 lg:gap-y-0 mb-12'>
-      <div className='w-72 h-72'>
-          <img 
-            className='w-full h-full rounded-xl'
-            src={mobile} 
-            alt='mobile'         
-          />
-        </div>
-        <div className='w-72 h-72'>
-          <img 
-            className='w-full h-full rounded-xl'
-            src={food} 
-            alt='food'         
-          />
-        </div>
-        <div className='w-72 h-72 md:item-center'>
-          <img 
-          className='w-full h-full rounded-xl'
-          src={delivery}
-          alt='delivery'
-          />
-        </div>
-      </div> */}
       <Repas />
     </div>
   )
