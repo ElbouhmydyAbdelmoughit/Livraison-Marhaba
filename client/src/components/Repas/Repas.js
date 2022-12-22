@@ -1,10 +1,5 @@
 import React from "react";
-import rice from "../../assets/images/rice.jpg";
-import cake from "../../assets/images/cake.jpg";
-import plate from "../../assets/images/plate.jpg";
-import ananas from "../../assets/images/ananas.jpg";
 import axios from "axios";
-import { BsCartPlus } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {ADD} from "../../redux/actions/action"

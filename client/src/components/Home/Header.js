@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
-import { json, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import { FaShoppingBag } from "react-icons/fa";
 import  Badge  from "@mui/material/Badge";
 import {useSelector} from "react-redux"
