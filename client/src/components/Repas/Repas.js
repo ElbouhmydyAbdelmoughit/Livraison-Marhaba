@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function Repas() {
-
   const [data, setData] = useState([]);
   const [produit, setProduit] = useState([]);
   const [images, setImages] = useState([]);
@@ -31,15 +30,17 @@ export default function Repas() {
   }, []);
 
   const getProduit = async () => {
-    const get_produit = await axios.get(`${process.env.REACT_APP_API_URL}/manager/produit`);
+    const get_produit = await axios.get(
+      `${process.env.REACT_APP_API_URL}/manager/produit`
+    );
     setProduit(get_produit.data.produit);
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const Send = (e) => {
+  const Send = (e) =>{
     console.log(e)
-  }
+  } 
 
   return (
     <div className="bg-white">
@@ -59,7 +60,7 @@ export default function Repas() {
                 <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
                 <p className="mb-1 font-normal text-gray-700">{p.description}</p>
                 <p className="mb-1 font-normal text-gray-500">{p.categorie[0].name}</p>
-                <button type="button" className="inline-flex items-center px-10 py-2 text-center text-white rounded ont-medium ptext-sm bg-amber-500">
+                <button type="button" className="inline-flex items-center px-10 py-2 text-white rounded ftext-center ont-medium ptext-sm bg-amber-500">
                   Add to card
                 </button>
               </div>
