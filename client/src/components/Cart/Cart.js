@@ -4,10 +4,34 @@ import logo from "../../assets/images/logo.png";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdDeleteOutline } from "react-icons/md";
 import { reactLocalStorage } from "reactjs-localstorage";
+import { useDispatch } from "react-redux";
+import { useState ,useEffect} from "react";
+import  {DLT}  from "../../redux/actions/action" 
 
 const Cart = () => {
+
   const mealData = JSON.parse(reactLocalStorage.get("mealData"));
-  console.log(mealData);
+  const [price,setPrice] = useState(0);
+  console.log(price)
+
+  const dispatch = useDispatch();
+
+
+  const Delete = (_id) => {
+    dispatch(DLT(_id))
+  }
+
+  const total = ()=>{
+    let price = 0;
+    mealData.map((ele,k)=>{
+        price = ele.price  + price
+    });
+    setPrice(price);
+};
+
+useEffect(()=>{
+    total();
+},[total])
 
   return mealData.length > 0 ? (
     <div className="flex flex-col">
@@ -66,14 +90,14 @@ const Cart = () => {
                 <div className="title flex flex-col ml-3 w-full">
                   <div className="flex justify-between w-full">
                     <p className="font-bold"> {meal.title} </p>
-                    <button>
-                      <MdDeleteOutline className="text-xl text-black hover:text-red-500" />
-                    </button>
+                    <p onClick={() => Delete(meal._id)}>
+                      <MdDeleteOutline className="text-xl text-black hover:text-red-500" style={{fontSize:"1.7rem",cursor:"pointer"}}/>
+                    </p>
                   </div>
                   <div className="flex-wrap md:flex md:justify-between w-full my-4">
                     <p className="font-normal text-gray-500 flex-wrap">
-                      {" "}
-                      {meal.description}{" "}
+                      
+                      {meal.description}
                     </p>
                     <div className="flex">
                       <button className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full">
@@ -97,7 +121,7 @@ const Cart = () => {
               Commande
             </button>
             <div className="total">
-              <p className="font-bold" style={{textAlign:"end"}}>Total : 0 DHs</p>
+              <p className="font-bold" style={{textAlign:"end"}}>Total : {price} DHs</p>
             </div>
           </div>
         </div>
