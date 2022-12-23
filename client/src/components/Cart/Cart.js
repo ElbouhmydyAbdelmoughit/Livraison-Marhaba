@@ -5,19 +5,33 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { MdDeleteOutline } from "react-icons/md";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { useDispatch } from "react-redux";
+import { useState ,useEffect} from "react";
 import  {DLT}  from "../../redux/actions/action" 
 
 const Cart = () => {
+
   const mealData = JSON.parse(reactLocalStorage.get("mealData"));
-  // console.log(mealData);
+  const [price,setPrice] = useState(0);
+  console.log(price)
 
   const dispatch = useDispatch();
 
 
   const Delete = (_id) => {
     dispatch(DLT(_id))
-    console.log(_id)
   }
+
+  const total = ()=>{
+    let price = 0;
+    mealData.map((ele,k)=>{
+        price = ele.price  + price
+    });
+    setPrice(price);
+};
+
+useEffect(()=>{
+    total();
+},[total])
 
   return mealData.length > 0 ? (
     <div className="flex flex-col">
@@ -107,7 +121,7 @@ const Cart = () => {
               Commande
             </button>
             <div className="total">
-              <p className="font-bold" style={{textAlign:"end"}}>Total : 0 DHs</p>
+              <p className="font-bold" style={{textAlign:"end"}}>Total : {price} DHs</p>
             </div>
           </div>
         </div>
