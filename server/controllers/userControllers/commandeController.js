@@ -15,7 +15,7 @@ const User = db.user;
 
 const getCommand = async (req, res) => {
   const find_role_livreur = await Role.find({ name: 'livreur' })
-  const livreur = await User.find({ role: find_role_livreur })
+  const livreur = await User.find({ roles: find_role_livreur })
   const command = await Command.find()
     .populate({ path: 'produit', model: Produit })
     .populate({ path: 'client', model: User })
@@ -34,12 +34,11 @@ const addCommand = async (req, res) => {
   if (!find_produit) throw Error("Produit not find")
   const add_command = await Command.create({
     client: body.client,
-    livreur: [{}],
     produit: body.produit,
     quantite: body.quantite,
     status: find_status_demende._id,
   })
-  res.json({message: `La command ${add_command._id} assigned a livreur ${find_client.username}`})
+  res.json({message: `Your command is add: ${add_command._id}`})
 }
 const assignCommand = async (req, res) => {
   const command = req.body.c

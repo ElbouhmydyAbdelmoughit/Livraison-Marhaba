@@ -48,8 +48,8 @@ export default function Livreur() {
       });
   };
   return (
-    <div className="overflow-x-auto relative shadow-md sm:rounded-lg w-full h-screen px-3">
-      <div className="flex justify-between items-center py-4 bg-white dark:bg-gray-800 ">
+    <div className="relative w-full h-screen px-3 overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="flex items-center justify-between py-4 bg-white dark:bg-gray-800 ">
         <div className="ml-2">
           <h1>Bonjour Admin</h1>
         </div>
@@ -57,18 +57,18 @@ export default function Livreur() {
           Search
         </label>
         <div className="relative mr-4">
-          <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"></div>
           <input
             type="text"
             id="table-search-users"
-            className="block p-2 pl-8 w-40 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-40 p-2 pl-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search For user"
           />
         </div>
       </div>
-      <div className="flex justify-between items-center py-4 bg-white dark:bg-gray-800 ">
+      <div className="flex items-center justify-between py-4 bg-white dark:bg-gray-800 ">
         <h3 className="ml-2">Le tableau des livreurs</h3>
-        <button className="bg-amber-500 flex text-white mr-4 px-4 py-1 rounded-md font-bold hover:text-amber-500 hover:bg-white border-2 border-amber-500" onClick={() => setShowModal(true)}>
+        <button className="flex px-4 py-1 mr-4 font-bold text-white border-2 rounded-md bg-amber-500 hover:text-amber-500 hover:bg-white border-amber-500" onClick={() => setShowModal(true)}>
           <IoIosAdd size={26} className="pt-1" />
           <span>Ajouter</span>
         </button>
@@ -81,23 +81,23 @@ export default function Livreur() {
                 <input
                   id="checkbox-all-search"
                   type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                 />
                 <label htmlFor="checkbox-all-search" className="sr-only">
                   checkbox
                 </label>
               </div>
             </th>
-            <th scope="col" className="py-3 px-6">
+            <th scope="col" className="px-6 py-3">
               Name & Email
             </th>
-            <th scope="col" className="py-3 px-6">
+            <th scope="col" className="px-6 py-3">
               Role
             </th>
-            <th scope="col" className="py-3 px-6">
+            <th scope="col" className="px-6 py-3">
               Status
             </th>
-            <th scope="col" className="py-3 px-6">
+            <th scope="col" className="px-6 py-3">
               Action
             </th>
           </tr>
@@ -105,31 +105,31 @@ export default function Livreur() {
         {users.map((user, i) => (
           <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td className="p-4 w-4">
+              <td className="w-4 p-4">
                 <div className="flex items-center">
                   <input
                     id="checkbox-table-search-1"
                     type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   />
                   <label htmlFor="checkbox-table-search-1" className="sr-only">
                     checkbox
                   </label>
                 </div>
               </td>
-              <th scope="row" className="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
+              <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                 <div className="pl-3">
                   <div className="text-base font-semibold">{user.username}</div>
                   <div className="font-normal text-gray-500">{user.email}</div>
                 </div>
               </th>
-              <td className="py-4 px-6">{user.roles[0].name}</td>
-              <td className="py-4 px-6">
+              <td className="px-6 py-4">{user.roles[0].name}</td>
+              <td className="px-6 py-4">
                 <div className="flex items-center">
                   <div className={(user.status && "h-2.5 w-2.5 rounded-full bg-green-400 mr-2") || "h-2.5 w-2.5 rounded-full bg-red-500 mr-2"}></div> {(user.status && "Authorizde") || "Blocked"}
                 </div>
               </td>
-              <td className="py-4 px-6">
+              <td className="px-6 py-4">
                 <button
                   value={user._id}
                   onClick={handleBan}
@@ -147,23 +147,23 @@ export default function Livreur() {
       </table>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+            <div className="relative w-auto max-w-3xl mx-auto my-6">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t ">
+                <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200 ">
                   <h3 className="text-3xl font-semibold">Ajouter un nouveau Livreur</h3>
                   <button
-                    className="p-1 bg-transparent border-0 text-gray-300 opacity-1 float-right text-3xl leading-none font-semibold outline-none focus:outline-none ml-8"
+                    className="float-right p-1 ml-8 text-3xl font-semibold leading-none text-gray-300 bg-transparent border-0 outline-none opacity-1 focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className=" text-gray-300 h-6 w-6 text-2xl block outline-none focus:outline-none">x</span>
+                    <span className="block w-6 h-6 text-2xl text-gray-300 outline-none focus:outline-none">x</span>
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto">
-                  <form className="my-4 text-slate-500 text-lg leading-relaxed" onSubmit={handleSubmit}>
+                <div className="relative flex-auto p-6">
+                  <form className="my-4 text-lg leading-relaxed text-slate-500" onSubmit={handleSubmit}>
                     <div className="flex flex-col">
                       <div>
                         <label htmlFor="prenom" className="mb-2">
@@ -176,7 +176,7 @@ export default function Livreur() {
                           name="prenom"
                           id="prenom"
                           placeholder="Inserer le prenom"
-                          className=" block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm mb-5 hover:border-2  hover:border-cyan-500"
+                          className="block w-full py-2 pr-3 mb-5 bg-white border rounded-md shadow-sm border-slate-300 pl-9 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm hover:border-2 hover:border-cyan-500"
                         />
                       </div>
 
@@ -191,20 +191,20 @@ export default function Livreur() {
                           name="email"
                           id="email"
                           placeholder="Inserer l'email"
-                          className=" block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm mb-5 hover:border-2  hover:border-cyan-500"
+                          className="block w-full py-2 pr-3 mb-5 bg-white border rounded-md shadow-sm border-slate-300 pl-9 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm hover:border-2 hover:border-cyan-500"
                         />
                       </div>
                     </div>
-                    <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                    <div className="flex items-center justify-end p-6 border-t border-solid rounded-b border-slate-200">
                       <button
-                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
                         type="button"
                         onClick={() => setShowModal(false)}
                       >
                         Close
                       </button>
                       <button
-                        className="bg-amber-500 text-white active:bg-amber-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-amber-500 active:bg-amber-600 hover:shadow-lg focus:outline-none"
                         type="submit"
                         // onClick={() => setShowModal(false)}
                       >
@@ -217,7 +217,7 @@ export default function Livreur() {
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
         </>
       ) : null}
       <ToastContainer />
