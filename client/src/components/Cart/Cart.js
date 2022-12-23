@@ -24,7 +24,7 @@ const Cart = () => {
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              <HiMenuAlt3 classNameName="text-2xl text-black" />
+              <HiMenuAlt3 className="text-2xl text-black" />
             </button>
             <div
               className="hidden w-full md:block md:w-auto"
@@ -97,7 +97,7 @@ const Cart = () => {
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>
-            <HiMenuAlt3 classNameName="text-2xl text-black" />
+            <HiMenuAlt3 className="text-2xl text-black" />
           </button>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -114,22 +114,22 @@ const Cart = () => {
           </div>
         </div>
       </nav>
-      <div classNameName="text-center" style={{ margin: "0px 0px 100px 0px" }}>
-        <h1 classNameName="text-4xl font-bold mt-4 mb-3">Shopping Cart</h1>
-        <div classNameName="text-center">
-          <p classNameName="">Your cart is currently empty</p>
+      <div className="text-center" style={{ margin: "0px 0px 100px 0px" }}>
+        <h1 className="text-4xl font-bold mt-4 mb-3">Shopping Cart</h1>
+        <div className="text-center">
+          <p className="">Your cart is currently empty</p>
         </div>
       </div>
       <div
-        classNameName="flex flex-col my-auto items-center"
+        className="flex flex-col my-auto items-center"
         style={{ width: "100h", height: "100vh" }}
       >
         
         <img
-          src={image} classNameName="w-48 h-48 mb-4"/>
+          src={image} className="w-48 h-48 mb-4"/>
         <Link
           to={"/"}
-          classNameName="bg-[#f59e0b] rounded-full py-2 px-20 mt-9 font-bold text-white hover:bg-[#000] hover:text-[#f59e0b] "
+          className="bg-[#f59e0b] rounded-full py-2 px-20 mt-9 font-bold text-white hover:bg-[#000] hover:text-[#f59e0b] "
         >
           Browse Meals
         </Link>
