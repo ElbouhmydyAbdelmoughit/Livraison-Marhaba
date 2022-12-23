@@ -56,11 +56,11 @@ const Cart = () => {
             {
               mealData.map((meal) => 
           <div className="product hover:shadow rounded py-5 px-5 my-5 bg-gray-100" style={{width:"50vw"}}>
-                <div className="product" >
-                  <div className="image">
-                    <img src={meal.image} alt="" />
+                <div className="product flex">
+                  <div className="image w-52">
+                    <img src={process.env.REACT_APP_API_URL + '/' + meal.image} alt="" />
                   </div>
-                  <div className="title flex flex-col">
+                  <div className="title flex flex-col ml-3">
                     <p className="font-bold"> {meal.title} </p>
                     <p className="font-normal text-gray-500 flex-wrap"> {meal.description} </p>
                     <p className="font-bold">Price : {meal.price} DHs</p>
