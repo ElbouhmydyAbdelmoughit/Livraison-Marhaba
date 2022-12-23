@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import image from "../../assets/images/S1cd1579e3c2b4cc09c24c28ec64581af5.png_.webp";
 import logo from "../../assets/images/logo.png";
 import { HiMenuAlt3 } from "react-icons/hi";
+import { AiOutlineDelete } from "react-icons/ai";
 import { reactLocalStorage } from "reactjs-localstorage";
 
 const Cart = () => {
   const mealData = JSON.parse(reactLocalStorage.get("mealData"));
-  console.log(mealData)
+  console.log(mealData);
 
   return mealData.length > 0 ? (
     <div className="flex flex-col">
@@ -24,7 +25,7 @@ const Cart = () => {
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              <HiMenuAlt3 className="text-2xl text-black" />
+              <HiMenuAlt3 classNameName="text-2xl text-black" />
             </button>
             <div
               className="hidden w-full md:block md:w-auto"
@@ -51,34 +52,56 @@ const Cart = () => {
             Shopping Cart
           </h1>
         </div>
-        <hr/>
+        <hr />
         <div className="products mt-5 ml-5 px-3 py-5">
-            {
-              mealData.map((meal) => 
-          <div className="product hover:shadow rounded py-5 px-5 my-5 bg-gray-100" style={{width:"50vw"}}>
-                <div className="product flex">
-                  <div className="image w-52">
-                    <img src={process.env.REACT_APP_API_URL + '/' + meal.image} alt="" />
-                  </div>
-                  <div className="title flex flex-col ml-3">
-                    <p className="font-bold"> {meal.title} </p>
-                    <p className="font-normal text-gray-500 flex-wrap"> {meal.description} </p>
-                    <p className="font-bold">Price : {meal.price} DHs</p>
-                  </div>
+          {mealData.map((meal) => (
+            <div className="product hover:shadow rounded py-5 px-5 my-5 bg-gray-100">
+              <div className="product flex">
+                <div className="image w-52">
+                  <img
+                    src={process.env.REACT_APP_API_URL + "/" + meal.image}
+                    alt=""
+                  />
                 </div>
-          </div>
-            )}
-            <hr />
-            <button className="bg-amber-500 text-white py-2 px-10 rounded my-3"> Commande</button>
-            <table className="hover:table-fixed">
-              <thead>
-                <tr>
-                  <th>Song</th>
-                  <th>Artist</th>
-                  <th>Year</th>
-                </tr>
-              </thead>
-            </table>
+                <div className="title flex flex-col ml-3 w-full">
+                  <div className="flex justify-between w-full">
+                    <p className="font-bold"> {meal.title} </p>
+                    <AiOutlineDelete className="text-xl text-red-500" />
+                  </div>
+                  <div className="flex-wrap md:flex md:justify-between w-full my-4">
+                    <p className="font-normal text-gray-500 flex-wrap">
+                      {" "}
+                      {meal.description}{" "}
+                    </p>
+                    <div className="flex">
+                      <button className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full">
+                        +
+                      </button>
+                      <p className="mx-3">0</p>
+                      <button className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full">
+                        -
+                      </button>
+                    </div>
+                  </div>
+                  <p className="font-bold">Price : {meal.price} DHs</p>
+                </div>
+              </div>
+            </div>
+          ))}
+          <hr />
+          <button className="bg-amber-500 text-white py-2 px-10 rounded my-3">
+            {" "}
+            Commande
+          </button>
+          <table className="hover:table-fixed">
+            <thead>
+              <tr>
+                <th>Song</th>
+                <th>Artist</th>
+                <th>Year</th>
+              </tr>
+            </thead>
+          </table>
         </div>
       </div>
     </div>
@@ -97,7 +120,7 @@ const Cart = () => {
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>
-            <HiMenuAlt3 className="text-2xl text-black" />
+            <HiMenuAlt3 classNameName="text-2xl text-black" />
           </button>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -124,9 +147,7 @@ const Cart = () => {
         className="flex flex-col my-auto items-center"
         style={{ width: "100h", height: "100vh" }}
       >
-        
-        <img
-          src={image} className="w-48 h-48 mb-4"/>
+        <img src={image} className="w-48 h-48 mb-4" />
         <Link
           to={"/"}
           className="bg-[#f59e0b] rounded-full py-2 px-20 mt-9 font-bold text-white hover:bg-[#000] hover:text-[#f59e0b] "
