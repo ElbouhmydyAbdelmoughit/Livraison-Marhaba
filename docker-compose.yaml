@@ -1,0 +1,10 @@
+version: "3.9"
+services: 
+  client:
+    build: ./server
+    container_name: server_c
+    ports:
+      - '2000:2000'
+    volumes:
+      - ./server:/app
+      - ./app/node_modules
