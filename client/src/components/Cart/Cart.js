@@ -15,9 +15,8 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
-  const Send = (e) => {
-    console.log(e)
-    // dispatch(ADD(e));
+  const Send = (item) => {
+    dispatch(ADD(item));
   };
 
   const Delete = (_id) => {
@@ -120,7 +119,7 @@ const Cart = () => {
                       <span
                         className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full"
                         style={{ cursor: "pointer" }}
-                        onClick={()=>DeleteOne(meal)}
+                        onClick={meal.quantity <=1 ? () =>Delete(meal._id) : () =>DeleteOne(meal)}
                       >
                         -
                       </span>
