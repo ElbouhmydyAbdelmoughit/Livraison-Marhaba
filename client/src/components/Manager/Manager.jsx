@@ -8,7 +8,7 @@ function Manager() {
   return (
     <div className="flex w-screen">
       <Sidebar/>
-      <main className="w-full h-screen"> 
+      <main className="w-full h-screen overflow-auto"> 
         <Livreur/>
       </main>
     </div>

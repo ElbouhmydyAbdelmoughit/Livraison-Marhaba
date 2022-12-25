@@ -39,7 +39,7 @@ export default function Login() {
           localStorage.setItem("email", e.data.email);
           localStorage.setItem("username", e.data.username);
           localStorage.setItem("role", e.data.role);
-          window.location = `/${localStorage.getItem("role")}`;
+          window.location = "/";
         } else Generator("error", e.data);
       })
       .catch(() => {
