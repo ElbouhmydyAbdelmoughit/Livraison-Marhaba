@@ -8,7 +8,6 @@ export default function Repas() {
   const [data, setData] = useState([]);
   const [produit, setProduit] = useState([]);
   const [images, setImages] = useState([]);
-  const dispatch = useDispatch();
 
   const handleClick = (product) => {
     data.push(product);
@@ -33,9 +32,9 @@ export default function Repas() {
     setProduit(get_produit.data.produit);
   };
 
+  const dispatch = useDispatch();
 
-  
-  /* Send is a function that takes an event as an argument and dispatches an action to the reducer. */
+
   const Send = (e) => {
     dispatch(ADD(e))
   }

@@ -28,7 +28,7 @@ export const cartreducer = (state = INIT_STATE, action) => {
 
     case "RMV_ONE":
       const IteamIndex_dec = state.carts.findIndex(
-        (iteam) => iteam._id === action.payload._id
+        (iteam) => iteam._id === action.payload
       );
       if (state.carts[IteamIndex_dec].quantity >= 1) {
         const dltItem = (state.carts[IteamIndex_dec].quantity -= 1);

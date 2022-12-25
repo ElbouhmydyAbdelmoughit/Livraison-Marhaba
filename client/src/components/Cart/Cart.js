@@ -12,12 +12,12 @@ const Cart = () => {
   const mealData = JSON.parse(reactLocalStorage.get("mealData"));
   const [price, setPrice] = useState(0);
   console.log(mealData);
+
   const dispatch = useDispatch();
 
-
-  const Send = (iteam) => {
-    dispatch(ADD(iteam))
-  }
+  const Send = (item) => {
+    dispatch(ADD(item));
+  };
 
   const Delete = (_id) => {
     dispatch(DLT(_id));
@@ -90,6 +90,7 @@ const Cart = () => {
                 <div className="image w-72">
                   <img
                     src={process.env.REACT_APP_API_URL + "/" + meal.image}
+                    alt=""
                   />
                 </div>
                 <div className="title flex flex-col ml-3 w-full">
@@ -118,7 +119,7 @@ const Cart = () => {
                       <span
                         className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full"
                         style={{ cursor: "pointer" }}
-                        onClick={meal.quantity <=1 ? () =>Delete(meal) : () =>DeleteOne(meal.id)}
+                        onClick={meal.quantity <=1 ? () =>Delete(meal._id) : () =>DeleteOne(meal.id)}
                       >
                         -
                       </span>

@@ -10,7 +10,6 @@ import axios from "axios";
 export default function Header() {
   const getData = useSelector((state) => state.cartreducer.carts)
   reactLocalStorage.set("mealData",JSON.stringify(getData))
-  console.log(getData.length)
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
 
