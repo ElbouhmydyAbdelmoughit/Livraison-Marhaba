@@ -56,6 +56,8 @@ const verifyEmail = async (req, res) => {
     res.redirect('http://localhost:3000/login')
 }
 
+
+
 // const resetPassword = async (req, res) => {
 //     const {body} = req
 //     if(!body.last_password || !body.new_password || body.confirm_new_password != body.new_password) throw Error('Fill the all fields to reset your password')
