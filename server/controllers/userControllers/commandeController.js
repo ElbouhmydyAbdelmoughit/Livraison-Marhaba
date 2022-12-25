@@ -24,6 +24,18 @@ const getCommand = async (req, res) => {
   res.json({ command, livreur })
 }
 
+const getCommandLivruer = async (req, res) => {
+  const token = storage('token')
+  console.log(token)
+  // const status = await Status.find()
+  // const command = await Command.find({ client: find_role_livreur })
+  //   .populate({ path: 'produit', model: Produit })
+  //   .populate({ path: 'client', model: User })
+  //   .populate({ path: 'livreur', model: User })
+  //   .populate({ path: 'status', model: Status })
+  // res.json({ command, status })
+}
+
 const addCommand = async (req, res) => {
   const { body } = req
   if (!body.client || !body.produit || !body.quantite) throw Error('Fill the all fields to add command')
@@ -51,6 +63,7 @@ const assignCommand = async (req, res) => {
 
 module.exports = {
   getCommand,
+  getCommandLivruer,
   addCommand,
   assignCommand
 }
