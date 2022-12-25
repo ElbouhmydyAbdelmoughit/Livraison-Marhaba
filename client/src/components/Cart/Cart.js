@@ -119,7 +119,7 @@ const Cart = () => {
                       <span
                         className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full"
                         style={{ cursor: "pointer" }}
-                        onClick={meal.quantity <=1 ? () =>Delete(meal.id) : () =>DeleteOne(meal)}
+                        onClick={meal.quantity <=1 ? () =>Delete(meal._id) : () =>DeleteOne(meal)}
                       >
                         -
                       </span>
