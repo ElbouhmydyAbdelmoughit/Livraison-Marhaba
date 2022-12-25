@@ -29,7 +29,7 @@ export const cartreducer = (state = INIT_STATE, action) => {
           console.log([...state.carts,dltItem])
           return{
             ...state,
-            carts:[...state.carts]
+            carts:[...state.carts,dltItem]
           }
         }
 

@@ -14,9 +14,9 @@ export default function Header() {
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="https://github.com/safabalo" className="flex items-center">
+        <Link  to={"/"} className="flex items-center">
           <img src={logo} className="mr-3 h-6 sm:h-9" alt="Marhaba logo" />
-        </a>
+        </Link>
         <div className="flex justify-center items-center gap-x-8 md:order-2">
           <Link to={"/Cart"}>
             <Badge badgeContent={getData.length} color="error">

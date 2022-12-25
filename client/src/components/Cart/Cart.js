@@ -16,8 +16,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const Send = (e) => {
-    console.log(e)
-    // dispatch(ADD(e));
+    dispatch(ADD(e));
   };
 
   const Delete = (_id) => {
