@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
@@ -105,7 +104,7 @@ function Produit() {
                                 {produit.map((p, i) => (
                                     <tr className="bg-white border-b hover:bg-gray-50" key={i}>
                                         <td className="w-4 p-4">{p.title}</td>
-                                        <td className="w-4 p-4">{(p.categorie.length != 0) ? p.categorie[0].name : '---'}</td>
+                                        <td className="w-4 p-4">{(p.categorie.length !== 0) ? p.categorie[0].name : '---'}</td>
                                         <td className="w-4 p-4">{p.description}</td>
                                         <td className="w-4 p-4">{p.price} DH</td>
                                         <td className={`w-4 p-4 text-gray-500 ${!(p.status) ? 'hidden' : ''}`}>
