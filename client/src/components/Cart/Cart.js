@@ -5,33 +5,40 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { MdDeleteOutline } from "react-icons/md";
 import { reactLocalStorage } from "reactjs-localstorage";
 import { useDispatch } from "react-redux";
-import { useState ,useEffect} from "react";
-import  {DLT}  from "../../redux/actions/action" 
+import { useState, useEffect } from "react";
+import { DLT, ADD, REMOVE } from "../../redux/actions/action";
 
 const Cart = () => {
-
   const mealData = JSON.parse(reactLocalStorage.get("mealData"));
-  const [price,setPrice] = useState(0);
-  console.log(price)
+  const [price, setPrice] = useState(0);
+  console.log(mealData);
 
   const dispatch = useDispatch();
 
+  const Send = (e) => {
+    console.log(e)
+    // dispatch(ADD(e));
+  };
 
   const Delete = (_id) => {
-    dispatch(DLT(_id))
-  }
+    dispatch(DLT(_id));
+  };
 
-  const total = ()=>{
+  const DeleteOne = (item) => {
+    dispatch(REMOVE(item));
+  };
+  
+  const total = () => {
     let price = 0;
-    mealData.map((ele,k)=>{
-        price = ele.price  + price
+    mealData.map((ele, k) => {
+      price = ele.price * ele.quantity + price
     });
     setPrice(price);
-};
+  };
 
-useEffect(()=>{
+  useEffect(() => {
     total();
-},[total])
+  }, [total]);
 
   return mealData.length > 0 ? (
     <div className="flex flex-col">
@@ -91,26 +98,36 @@ useEffect(()=>{
                   <div className="flex justify-between w-full">
                     <p className="font-bold"> {meal.title} </p>
                     <p onClick={() => Delete(meal._id)}>
-                      <MdDeleteOutline className="text-xl text-black hover:text-red-500" style={{fontSize:"1.7rem",cursor:"pointer"}}/>
+                      <MdDeleteOutline
+                        className="text-xl text-black hover:text-red-500"
+                        style={{ fontSize: "1.7rem", cursor: "pointer" }}
+                      />
                     </p>
                   </div>
                   <div className="flex-wrap md:flex md:justify-between w-full my-4">
                     <p className="font-normal text-gray-500 flex-wrap">
-                      
                       {meal.description}
                     </p>
                     <div className="flex">
-                      <button className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full">
+                      <span
+                        className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full"
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>Send(meal)}
+                      >
                         +
-                      </button>
-                      <p className="mx-3">0</p>
-                      <button className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full">
+                      </span>
+                      <p className="mx-3">{meal.quantity}</p>
+                      <span
+                        className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full"
+                        style={{ cursor: "pointer" }}
+                        onClick={()=>DeleteOne(meal)}
+                      >
                         -
-                      </button>
+                      </span>
                     </div>
                   </div>
                   <p className="font-bold">Price : {meal.price} DHs</p>
-                  <p className="font-bold mt-4">Quantity : 0</p>
+                  <p className="font-bold mt-4">Quantity : {meal.quantity}</p>
                 </div>
               </div>
             </div>
@@ -121,7 +138,9 @@ useEffect(()=>{
               Commande
             </button>
             <div className="total">
-              <p className="font-bold" style={{textAlign:"end"}}>Total : {price} DHs</p>
+              <p className="font-bold" style={{ textAlign: "end" }}>
+                Total : {price} DHs
+              </p>
             </div>
           </div>
         </div>
