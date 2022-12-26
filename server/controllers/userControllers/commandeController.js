@@ -25,6 +25,18 @@ const getCommand = async (req, res) => {
   res.json({ command, livreur })
 }
 
+const Historique = async (req, res) => {
+  const verify_token = await jwt.verify(req.params.token, process.env.TOKEN_KEY)
+  const find_user = await User.findById(verify_token._id)
+  if(!find_user) throw Error('Error, User not found')
+  const command = await Command.find({client: find_user._id})
+    .populate({ path: 'produit', model: Produit })
+    .populate({ path: 'client', model: User })
+    .populate({ path: 'livreur', model: User })
+    .populate({ path: 'status', model: Status })
+    res.json({ command })
+}
+
 const getCommandLivruer = async (req, res) => {
   const token = req.params.token
   const verify_token = await jwt.verify(token, process.env.TOKEN_KEY)
@@ -81,5 +93,6 @@ module.exports = {
   getCommandLivruer,
   addCommand,
   assignCommand,
-  statusCommand
+  statusCommand,
+  Historique
 }
