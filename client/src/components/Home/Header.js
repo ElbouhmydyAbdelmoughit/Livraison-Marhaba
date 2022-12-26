@@ -5,11 +5,19 @@ import { FaShoppingBag } from "react-icons/fa";
 import  Badge  from "@mui/material/Badge";
 import {useSelector} from "react-redux"
 import {reactLocalStorage} from "reactjs-localstorage"
+import axios from "axios";
 
 export default function Header() {
   const getData = useSelector((state) => state.cartreducer.carts)
   reactLocalStorage.set("mealData",JSON.stringify(getData))
-  console.log(getData.length)
+  const role = localStorage.getItem("role");
+  const token = localStorage.getItem("token");
+
+  const logout = async () => {
+    const logout = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/logout`)
+    localStorage.clear()
+    window.location.reload(false)  
+  }
 
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
@@ -18,16 +26,31 @@ export default function Header() {
           <img src={logo} className="mr-3 h-6 sm:h-9" alt="Marhaba logo" />
         </Link>
         <div className="flex justify-center items-center gap-x-8 md:order-2">
+        {
+          (role === "client")?
+
           <Link to={"/Cart"}>
             <Badge badgeContent={getData.length} color="error">
               <FaShoppingBag className="text-2xl text-black hover:text-amber-500" />
             </Badge>
           </Link>
-          <Link to={"/Login"}>
+          : ""
+        }
+        {
+          (token) ?
+
+          <Link onClick={logout}>
+            <p className="btn text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-amber-400 dark:hover:bg-amber-600 dark:focus:ring-amber-700">
+              Logout
+            </p>
+          </Link>
+          :
+          <Link to={"/login"}>
             <p className="btn text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-amber-400 dark:hover:bg-amber-600 dark:focus:ring-amber-700">
               Login
             </p>
           </Link>
+        }
         </div>
         <div
           className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
