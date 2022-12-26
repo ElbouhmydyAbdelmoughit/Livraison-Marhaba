@@ -7,6 +7,7 @@ import { reactLocalStorage } from "reactjs-localstorage";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { DLT, ADD, REMOVE } from "../../redux/actions/action";
+import PayButton from "./PayButton";
 
 const Cart = () => {
   const mealData = JSON.parse(reactLocalStorage.get("mealData"));
@@ -38,6 +39,7 @@ const Cart = () => {
   useEffect(() => {
     total();
   }, [total]);
+  const cart = JSON.parse(localStorage.getItem("mealData"));
 
   return mealData.length > 0 ? (
     <div className="flex flex-col">
@@ -134,10 +136,11 @@ const Cart = () => {
           <hr />
           <div className="">
             <Link to={'/Payer'}>
-            <button className="bg-amber-500 text-white py-2 px-10 rounded my-3">
+            <button className="border py-2 px-10 my-3 text-white tracking-wider bg-amber-500 rounded hover:bg-white hover:text-amber-500 hover:border-amber-500">
               Commande
             </button>
             </Link>
+            <PayButton cartItems={cart} />
             <div className="total">
               <p className="font-bold" style={{ textAlign: "end" }}>
                 Total : {price} DHs

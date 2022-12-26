@@ -1,7 +1,6 @@
 
 const stripe = require("stripe")(process.env.STRIPE_API_SECRET);
 const stripePayment = async (req, res) => {
-  console.log("got data ", req.body.cartItems);
   const customers = await stripe.customers.create({
     metadata: {
       userId: req.body.userId,
@@ -29,12 +28,32 @@ const stripePayment = async (req, res) => {
     line_items,
     mode: "payment",
     customer: customers.id,
+    shipping_address_collection: {allowed_countries: ['MA']},
+    custom_text: {
+    shipping_address: {
+      message: 'Please note that we can\'t guarantee 2-day delivery for PO boxes at this time.',
+    },
+    submit: {message: 'We\'ll email you instructions on how to get started.'},
+  },
     success_url: "http://localhost:3000/checkout-success",
     cancel_url: "http://localhost:3000/Cart",
   });
 
   res.send({ url: session.url });
 };
+// const getCustomer = ()=>{
+//   const id= req.params.id
+//   stripe.customers.retrieve(id,(err,customer)=>{
+//     if(err){
+//       console.log('err: '+err)
+//     }if(customer){
+//       console.log('success: '+JSON.stringify(customer))
+//     }else{
+//       console.log('something wrong')
+//     }
+//   })
+// }
+// console.log(getCustomer())
 module.exports = {
   stripePayment,
 };

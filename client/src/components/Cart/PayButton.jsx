@@ -22,7 +22,7 @@ const PayButton = ({ cartItems }) => {
     <>
 
       <button
-        className="border px-6 py-1 text-white tracking-wider bg-amber-500 rounded hover:bg-white hover:text-amber-500 hover:border-amber-500"
+        className="border py-2 px-10 my-3 text-white tracking-wider bg-green-500 rounded hover:bg-white hover:text-green-500 hover:border-green-500"
         onClick={(e) => {
           e.preventDefault();
           console.log("checkout btn clicked");
