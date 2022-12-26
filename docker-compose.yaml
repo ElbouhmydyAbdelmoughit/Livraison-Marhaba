@@ -1,13 +1,3 @@
-# version: "3.8"
-# services: 
-#   client:
-#     build: ./server
-#     container_name: server_c
-#     ports:
-#       - '3000:3000'
-#     volumes:
-#       - ./server:/app
-#       - ./app/node_modules
 
 version: '3'
 services:
