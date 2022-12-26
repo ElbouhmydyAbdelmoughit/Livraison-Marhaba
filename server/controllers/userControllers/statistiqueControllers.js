@@ -16,10 +16,6 @@ const User = db.user;
 
 const StatistiqueManager = async (req, res) => {
     const user = await User.aggregate([
-        // { $match: { roles: '638db2e2fac576e47136ede5' } },
-        // { $group: { _id: null, sum: { $count: {} } } }
-        { $match: { roles: '638db2e2fac576e47136ede5' } },
-        { $lookup: { from: "users", localField: "roles", as: "client", foreignField: "roles" } },
         { $group: { _id: null, sum: { $count: {} } } }
     ])
     const command = await Command.aggregate([
