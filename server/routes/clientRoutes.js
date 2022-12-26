@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 // Require modules
 const statistiqueControllers = require('../controllers/userControllers/statistiqueControllers');
-const middleware = require('../middlewares/stripe')
+const middleware = require('../middlewares/stripe');
 const tryCatch = require('../middlewares/tryCatch');
 const errorHandller = require('../middlewares/errorHandller');
 
