@@ -17,6 +17,7 @@ import Statistique from "./components/Manager/Statistique";
 import Manager from "./components/Manager/Manager";
 import Livreur from "./components/Livreur/Livreur";
 import Client from "./components/Client/Client";
+import Historique from "./components/Client/Historique";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import ERROR404 from "./components/ERROR404/ERROR404";
 import Paiement from "./components/Payment/Paiement";
@@ -72,6 +73,7 @@ const App = () => {
             {/* User client */}
             <Route element={<RolePrivateRoutes role="client" />}>
               <Route path="Client" element={<Client />} />
+              <Route path="Historique" element={<Historique />} />
               <Route path="Cart" element={<Cart />} />
               <Route path="/Payer" element={<Paiement/>} />
               <Route path="/checkout-success" element={<CheckoutSucess/>}/>
