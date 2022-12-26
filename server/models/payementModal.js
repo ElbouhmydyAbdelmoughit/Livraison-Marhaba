@@ -10,6 +10,7 @@ const Payement = mongoose.model(
         }
       ],
     adresse: String,
+    phone:Number,
     price: String,
     mode: String
   })

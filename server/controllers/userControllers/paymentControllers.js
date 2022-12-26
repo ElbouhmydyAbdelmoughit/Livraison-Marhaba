@@ -17,7 +17,18 @@ const getPayment = async (req, res) => {
 
     res.send(payement)
 }
-
+const addPayement = async(req,res)=>{
+    let {phone, adress, price, mode,client} = req.body
+    const clients = User.findById(client)
+    const payment = await Payement.create({
+        client:clients,
+        adress:adress,
+        phone:phone,
+        price:price,
+        mode:mode
+    })
+    res.send(payment)
+}
 module.exports = {
     getPayment
 }
