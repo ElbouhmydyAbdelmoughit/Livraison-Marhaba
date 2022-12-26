@@ -64,7 +64,7 @@ export default function Livreur() {
                     <td className="p-4">{(c.produit[0].price) * (c.quantite)}</td>
                     <td className="flex justify-between p-4 align-center">
                       {status.map((s, i) => (
-                        <button key={i} onClick={(e) => onClick(c._id, s._id)} className={`p-1 border-2 rounded-md border-amber-500 ${!(s.name == c.status[0].name) ? 'bg-amber-500 text-white' : 'border-amber-500 text-amber-500'}`}>{s.name}</button>
+                        <button key={i} onClick={(e) => onClick(c._id, s._id)} className={`p-1 border-2 rounded-md border-amber-500 ${!(s.name === c.status[0].name) ? 'bg-amber-500 text-white' : 'border-amber-500 text-amber-500'}`}>{s.name}</button>
                       ))}
                     </td>
                   </tr>
