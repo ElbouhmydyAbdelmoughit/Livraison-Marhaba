@@ -133,9 +133,11 @@ const Cart = () => {
           ))}
           <hr />
           <div className="">
+            <Link to={'/Payer'}>
             <button className="bg-amber-500 text-white py-2 px-10 rounded my-3">
               Commande
             </button>
+            </Link>
             <div className="total">
               <p className="font-bold" style={{ textAlign: "end" }}>
                 Total : {price} DHs
