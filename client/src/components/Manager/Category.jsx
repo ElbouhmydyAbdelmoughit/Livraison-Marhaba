@@ -46,7 +46,7 @@ function Category() {
 
     const updateCategorie = async (e) => {
         e.preventDefault()
-        console.log(updatName)
+        // console.log(updatName)
         const update_categorie = await axios.put(`http://localhost:2000/manager/updateCategorie/${updatName._id}`, updatName)
         if (update_categorie.data.message) {
             Generator("success", update_categorie.data.message)
@@ -55,7 +55,6 @@ function Category() {
         }
         else Generator("error", update_categorie.data)
     }
-
 
     return (
         <div className="flex w-screen">
