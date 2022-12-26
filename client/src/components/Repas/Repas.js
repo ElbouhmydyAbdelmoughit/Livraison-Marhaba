@@ -55,7 +55,7 @@ export default function Repas() {
                   alt={p.image}
                 />
               </div>
-              <div className="p-2">
+              <div className="px-3 py-2">
                 <h5 className="mb-1 text-2xl font-bold tracking-tight text-gray-900">{p.title}</h5>
                 <p className="flex gap-1 mb-1 font-normal text-gray-700 align-center">Price: <span className="font-bold">{p.price} DH</span></p>
 
