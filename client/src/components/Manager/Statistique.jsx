@@ -20,7 +20,8 @@ function Statistique() {
   }
 
   const card = [
-    { name: "Users", number: statistique.user, icon: AiOutlineUser },
+    { name: "Client", number: statistique.user, icon: AiOutlineUser },
+    { name: "Livreur", number: statistique.user, icon: AiOutlineUser },
     { name: "Commandes", number: statistique.command, icon: '' },
     { name: "Payements", number: statistique.payement, icon: '' },
     { name: "Categories", number: statistique.categorie, icon: '' },
