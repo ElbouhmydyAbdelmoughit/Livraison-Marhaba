@@ -1,12 +1,13 @@
 import axios from "axios";
 
 const PayButton = ({ cartItems }) => {
-  let cartItem = cartItems[0]
   const id = localStorage.getItem("_id");
   const handleCheckout = () => {
     axios
       .post(`${process.env.REACT_APP_API_URL}/client/payment`, {
-        cartItem,
+
+        cartItems,
+
         userId: id,
       })
       .then((res) => {
@@ -15,12 +16,20 @@ const PayButton = ({ cartItems }) => {
         }
       })
       .catch((err) => console.log(err.msg));
-        console.log("hello");
   };
 
   return (
     <>
-      <button className="border px-6 py-1 text-white tracking-wider bg-amber-500 rounded hover:bg-white hover:text-amber-500 hover:border-amber-500" onClick={() => handleCheckout}>
+
+      <button
+        className="border py-2 px-10 my-3 text-white tracking-wider bg-green-500 rounded hover:bg-white hover:text-green-500 hover:border-green-500"
+        onClick={(e) => {
+          e.preventDefault();
+          console.log("checkout btn clicked");
+          handleCheckout();
+        }}
+      >
+
         Pay By card
       </button>
     </>

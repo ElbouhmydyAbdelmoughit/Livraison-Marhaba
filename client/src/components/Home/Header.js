@@ -14,7 +14,7 @@ export default function Header() {
   const token = localStorage.getItem("token");
 
   const logout = async () => {
-    const logout = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/logout`)
+    await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/logout`)
     localStorage.clear()
     window.location.reload(false)  
   }
