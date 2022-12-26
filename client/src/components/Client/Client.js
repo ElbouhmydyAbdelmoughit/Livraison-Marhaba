@@ -9,7 +9,7 @@ export default function Client() {
     { name: "Home", link: "/", icon: MdOutlineDashboard },
     { name: "Produit", link: "/", icon: AiOutlineShoppingCart },
     { name: "Cart", link: "/Cart", icon: AiOutlineShopping },
-    { name: "Historique", link: "/", icon: FaHistory },
+    { name: "Historique", link: "/Historique", icon: FaHistory },
   ];
   return (
     <div className="flex w-screen">
