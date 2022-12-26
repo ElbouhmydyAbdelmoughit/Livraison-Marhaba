@@ -1,3 +1,4 @@
+
 const stripe = require("stripe")(process.env.STRIPE_API_SECRET);
 const stripePayment = async (req, res) => {
   console.log("got data ", req.body.cartItems);
@@ -37,3 +38,4 @@ const stripePayment = async (req, res) => {
 module.exports = {
   stripePayment,
 };
+
