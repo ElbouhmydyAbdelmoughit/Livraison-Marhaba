@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import Sidebar from "./Sidebar";
+import Generator from "../../helpes/Generator"
+import { ToastContainer } from "react-toastify"
 
 export default function Livreur() {
   const [command, setCommand] = useState([])
@@ -16,9 +17,18 @@ export default function Livreur() {
     }
   }, []);
   const get = async () => {
-    const get_command = await axios.get(`${process.env.REACT_APP_API_URL}/livreur/get_command/${localStorage.getItem('token')}`)
-    // setCommand(get_command.data.command)
-    // setStatus(get_command.data.status)
+    const get_command = await axios.get(`${process.env.REACT_APP_API_URL}/livreur/get-command/${localStorage.getItem('token')}`)
+    setCommand(get_command.data.command)
+    setStatus(get_command.data.status)
+  }
+
+  const onClick = async (c, s) => {
+    const status_command = await axios.post(`${process.env.REACT_APP_API_URL}/livreur/status-command`, { c, s })
+    if (status_command.data.message) {
+      Generator("success", status_command.data.message)
+      setTimeout(() => { window.location.reload(false) }, "1000")
+    }
+    else Generator("error", status_command.data)
   }
 
   return (
@@ -34,6 +44,7 @@ export default function Livreur() {
             <table className="w-full text-sm text-center text-gray-500">
               <thead className="text-gray-700 uppercase w-text-xs bg-gray-50">
                 <tr>
+                  <th scope="col" className="px-6 py-3">Command</th>
                   <th scope="col" className="px-6 py-3">Client</th>
                   <th scope="col" className="px-6 py-3">Produit</th>
                   <th scope="col" className="px-6 py-3">Quantite</th>
@@ -43,31 +54,27 @@ export default function Livreur() {
                 </tr>
               </thead>
               <tbody>
-                {/* {produit.map((p, i) => (
+                {command.map((c, i) => (
                   <tr className="bg-white border-b hover:bg-gray-50" key={i}>
-                    <td className="w-4 p-4">{p.title}</td>
-                    <td className="w-4 p-4">{(p.categorie.length != 0) ? p.categorie[0].name : '---'}</td>
-                    <td className="w-4 p-4">{p.description}</td>
-                    <td className="w-4 p-4">{p.price} DH</td>
-                    <td className={`w-4 p-4 text-gray-500 ${!(p.status) ? 'hidden' : ''}`}>
-                      <div className='flex justify-evenly'>
-                        <button type='button' onClick={() => { setEditProduit(p); setShowModalEdit(true) }} className='text-xl hover:text-amber-500'><AiOutlineEdit /></button>
-                        <button type='button' onClick={(e) => deletProduit(p._id, false, e)} className='text-xl hover:text-amber-500'><AiOutlineDelete /></button>
-                      </div>
-                    </td>
-                    <td className={`w-4 p-4 text-gray-500 ${(p.status) ? 'hidden' : ''}`}>
-                      <div className='flex justify-evenly'>
-                        <button type='button' onClick={(e) => deletProduit(p._id, true, e)} className='text-xl hover:text-amber-500'><BiReset /></button>
-                      </div>
+                    <td className="p-4">{c._id}</td>
+                    <td className="p-4">{c.client[0].username}</td>
+                    <td className="p-4">{c.produit[0].title}</td>
+                    <td className="p-4">{c.quantite}</td>
+                    <td className="p-4">{c.produit[0].price}</td>
+                    <td className="p-4">{(c.produit[0].price) * (c.quantite)}</td>
+                    <td className="flex justify-between p-4 align-center">
+                      {status.map((s, i) => (
+                        <button key={i} onClick={(e) => onClick(c._id, s._id)} className={`p-1 border-2 rounded-md border-amber-500 ${!(s.name == c.status[0].name) ? 'bg-amber-500 text-white' : 'border-amber-500 text-amber-500'}`}>{s.name}</button>
+                      ))}
                     </td>
                   </tr>
-                ))} */}
+                ))}
               </tbody>
             </table>
           </div>
         </div>
-      </main>
+      </main >
       <ToastContainer />
-    </div>
+    </div >
   );
 }

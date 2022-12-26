@@ -6,7 +6,7 @@ import { FaHistory } from "react-icons/fa";
 import Product from './Product'
 export default function Client() {
   const menus = [
-    { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
+    { name: "Home", link: "/", icon: MdOutlineDashboard },
     { name: "Produit", link: "/", icon: AiOutlineShoppingCart },
     { name: "Cart", link: "/Cart", icon: AiOutlineShopping },
     { name: "Historique", link: "/", icon: FaHistory },

@@ -10,8 +10,9 @@ const errorHandller = require('../middlewares/errorHandller');
 
 // Routes of livreur
 router.get('/', tryCatch(statistiqueControllers.StatistiqueLivreur));
-router.get('/get_command', tryCatch(commandeController.getCommandLivruer));
+router.get('/get-command/:token', tryCatch(commandeController.getCommandLivruer));
 router.post('/add-livreur', tryCatch(userControllers.AddLivreur))
+router.post('/status-command', tryCatch(commandeController.statusCommand))
 
 router.use(errorHandller)
 

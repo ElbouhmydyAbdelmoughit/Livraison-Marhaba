@@ -2,11 +2,42 @@ import { Link } from "react-router-dom";
 import image from "../../assets/images/S1cd1579e3c2b4cc09c24c28ec64581af5.png_.webp";
 import logo from "../../assets/images/logo.png";
 import { HiMenuAlt3 } from "react-icons/hi";
+import { MdDeleteOutline } from "react-icons/md";
 import { reactLocalStorage } from "reactjs-localstorage";
+import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { DLT, ADD, REMOVE } from "../../redux/actions/action";
 
 const Cart = () => {
   const mealData = JSON.parse(reactLocalStorage.get("mealData"));
-  console.log(mealData)
+  const [price, setPrice] = useState(0);
+  console.log(mealData);
+
+  const dispatch = useDispatch();
+
+  const Send = (item) => {
+    dispatch(ADD(item));
+  };
+
+  const Delete = (_id) => {
+    dispatch(DLT(_id));
+  };
+
+  const DeleteOne = (item) => {
+    dispatch(REMOVE(item));
+  };
+  
+  const total = () => {
+    let price = 0;
+    mealData.map((ele, k) => {
+      price = ele.price * ele.quantity + price
+    });
+    setPrice(price);
+  };
+
+  useEffect(() => {
+    total();
+  }, [total]);
 
   return mealData.length > 0 ? (
     <div className="flex flex-col">
@@ -51,34 +82,66 @@ const Cart = () => {
             Shopping Cart
           </h1>
         </div>
-        <hr/>
-        <div className="products mt-5 ml-5 px-3 py-5">
-            {
-              mealData.map((meal) => 
-          <div className="product hover:shadow rounded py-5 px-5 my-5 bg-gray-100" style={{width:"50vw"}}>
-                <div className="product flex">
-                  <div className="image w-52">
-                    <img src={process.env.REACT_APP_API_URL + '/' + meal.image} alt="" />
-                  </div>
-                  <div className="title flex flex-col ml-3">
-                    <p className="font-bold"> {meal.title} </p>
-                    <p className="font-normal text-gray-500 flex-wrap"> {meal.description} </p>
-                    <p className="font-bold">Price : {meal.price} DHs</p>
-                  </div>
+        <hr />
+        <div className="products ml-5 px-3 mt-2">
+          {mealData.map((meal) => (
+            <div className="product hover:shadow rounded py-5 px-5 my-5 bg-gray-100">
+              <div className="product flex">
+                <div className="image w-72">
+                  <img
+                    src={process.env.REACT_APP_API_URL + "/" + meal.image}
+                    alt=""
+                  />
                 </div>
+                <div className="title flex flex-col ml-3 w-full">
+                  <div className="flex justify-between w-full">
+                    <p className="font-bold"> {meal.title} </p>
+                    <p onClick={() => Delete(meal._id)}>
+                      <MdDeleteOutline
+                        className="text-xl text-black hover:text-red-500"
+                        style={{ fontSize: "1.7rem", cursor: "pointer" }}
+                      />
+                    </p>
+                  </div>
+                  <div className="flex-wrap md:flex md:justify-between w-full my-4">
+                    <p className="font-normal text-gray-500 flex-wrap">
+                      {meal.description}
+                    </p>
+                    <div className="flex">
+                      <span
+                        className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full"
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>Send(meal)}
+                      >
+                        +
+                      </span>
+                      <p className="mx-3">{meal.quantity}</p>
+                      <span
+                        className="bg-amber-500 btn w-8 h-8 text-center font-bold rounded-full"
+                        style={{ cursor: "pointer" }}
+                        onClick={meal.quantity <=1 ? () =>Delete(meal._id) : () =>DeleteOne(meal.id)}
+                      >
+                        -
+                      </span>
+                    </div>
+                  </div>
+                  <p className="font-bold">Price : {meal.price} DHs</p>
+                  <p className="font-bold mt-4">Quantity : {meal.quantity}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+          <hr />
+          <div className="">
+            <button className="bg-amber-500 text-white py-2 px-10 rounded my-3">
+              Commande
+            </button>
+            <div className="total">
+              <p className="font-bold" style={{ textAlign: "end" }}>
+                Total : {price} DHs
+              </p>
+            </div>
           </div>
-            )}
-            <hr />
-            <button className="bg-amber-500 text-white py-2 px-10 rounded my-3"> Commande</button>
-            <table className="hover:table-fixed">
-              <thead>
-                <tr>
-                  <th>Song</th>
-                  <th>Artist</th>
-                  <th>Year</th>
-                </tr>
-              </thead>
-            </table>
         </div>
       </div>
     </div>
@@ -114,22 +177,20 @@ const Cart = () => {
           </div>
         </div>
       </nav>
-      <div classNameName="text-center" style={{ margin: "0px 0px 100px 0px" }}>
-        <h1 classNameName="text-4xl font-bold mt-4 mb-3">Shopping Cart</h1>
-        <div classNameName="text-center">
-          <p classNameName="">Your cart is currently empty</p>
+      <div className="text-center" style={{ margin: "0px 0px 100px 0px" }}>
+        <h1 className="text-4xl font-bold mt-4 mb-3">Shopping Cart</h1>
+        <div className="text-center">
+          <p className="">Your cart is currently empty</p>
         </div>
       </div>
       <div
-        classNameName="flex flex-col my-auto items-center"
+        className="flex flex-col my-auto items-center"
         style={{ width: "100h", height: "100vh" }}
       >
-        
-        <img
-          src={image} classNameName="w-48 h-48 mb-4"/>
+        <img src={image} className="w-48 h-48 mb-4" />
         <Link
           to={"/"}
-          classNameName="bg-[#f59e0b] rounded-full py-2 px-20 mt-9 font-bold text-white hover:bg-[#000] hover:text-[#f59e0b] "
+          className="bg-[#f59e0b] rounded-full py-2 px-20 mt-9 font-bold text-white hover:bg-[#000] hover:text-[#f59e0b] "
         >
           Browse Meals
         </Link>
