@@ -19,10 +19,10 @@ const getPayment = async (req, res) => {
     res.send(payement)
 }
 const addPayement = async(req,res)=>{
-    let {phone, adress, price, mode,client} = req.body
+    let {phone, adresse, price, mode,client} = req.body
     const payment = await Payement.create({
         client:client,
-        adress:adress,
+        adresse:adresse,
         phone:phone,
         price:price,
         mode:mode

@@ -7,7 +7,7 @@ export default function Form() {
 
 
   const[phone,setPhone]= useState('')
-  const[adress,setAdress]= useState('')
+  const[adresse,setAdress]= useState('')
   const[city,setCity]= useState('')
   const[country,setCountry]= useState('')
   const[zip,setZip]= useState('')
@@ -18,7 +18,7 @@ export default function Form() {
   const produit= meal[0]._id
   const quantite=meal[0].quantity
   let [dt, setData]=useState('')
-  const data ={phone,adress,mode,client,price}
+  const data ={phone,adresse,mode,client,price}
   const handleSubmit=(e)=>{
     e.preventDefault()
     axios.post(`${process.env.REACT_APP_API_URL}/client/cash`,data)
@@ -70,11 +70,11 @@ export default function Form() {
             className="w-full p-2.5 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block"
             id="cus_email"
 
-            name="adress"
+            name="adresse"
             type="text"
             required=""
             placeholder="Street"
-            value={adress}
+            value={adresse}
             onChange={e=>setAdress(e.target.value)}
 
           />
