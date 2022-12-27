@@ -54,6 +54,7 @@ const stripePayment = async (req, res) => {
 //   })
 // }
 // console.log(getCustomer())
+
 module.exports = {
   stripePayment,
 };
