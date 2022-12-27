@@ -11,20 +11,30 @@ export default function Form() {
   const[city,setCity]= useState('')
   const[country,setCountry]= useState('')
   const[zip,setZip]= useState('')
-  // let [full,setFull]=useState('')
-  // setFull(full = (adress+' '+city+' '+country+' '+zip))
   const mode = 'cash on delivery'
   const client = localStorage.getItem('_id')
   const meal = JSON.parse(localStorage.getItem('mealData'))
   const price = meal[0].price
+  const produit= meal[0]._id
+  const quantite=meal[0].quantity
+  let [dt, setData]=useState('')
   const data ={phone,adress,mode,client,price}
   const handleSubmit=(e)=>{
     e.preventDefault()
     axios.post(`${process.env.REACT_APP_API_URL}/client/cash`,data)
     .then((res)=>{
       console.log(res.data)
+      setData(dt=res.data._id)
     })
     .catch((err)=>{console.log(err.msg)})
+    const d = {client,dt,produit,quantite}
+    axios.post(`${process.env.REACT_APP_API_URL}/manager/add-command`,d)
+    .then((res)=>{
+      console.log(res.data)
+    })
+    .catch((err)=>{
+      console.log(err.msg)
+    })
   }
 
   return (
